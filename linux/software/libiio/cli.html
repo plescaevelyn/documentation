@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Libiio command line utility &#8212; System Level Documentation  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/style.min.css?v=765fa3cc" />
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script defer="" src="../../../_static/app.umd.js?v=c93eadd1"></script>
+    <link rel="icon" href="../../../_static/icon.svg"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="PyADI-IIO" href="../pyadi-iio/index.html" />
+    <link rel="prev" title="About libiio" href="internals.html" />
+   
+  
+  <meta name="global_root" content="../../../../">
+  <meta name="repo" content="documentation">
+  
+
+
+<style>
+  body {
+    
+  }
+
+  body.dark {
+    
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body:not(.light) {
+      
+    }
+  }
+</style>
+  </head><body>
+  <div class="banner"></div>
+  <input type="checkbox" id="input-show-toc">
+  <input type="checkbox" id="input-show-localtoc">
+  <input type="checkbox" id="input-show-repotoc">
+
+  
+  <div class="search-area">
+    <form action="" method="get">
+      <input type="text" name="q" aria-labelledby="search-documentation" value="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="search" placeholder="Search"/>
+      <button value="search" class="icon"></button>
+      <span id="search-progress"></span>
+    </form>
+  </div>
+  
+
+  <header>
+    <div id="left">
+      <label id="show-sidebar" class="icon" for="input-show-toc" title="Show/hide index"></label>
+    </div>
+    <div id="right">
+      <span>
+        <a id="logo-org" href="https://analog.com"></a>
+        <div class="vertical-divider"></div>
+        <label id="show-repotoc" for="input-show-repotoc" title="Show/hide docs" tabindex="0">Docs</label>
+        <a id="logo" href="../../../index.html">
+          <div>System Level</div>
+        </a>
+      </span>
+      <span class="reverse">
+        <label id="show-localtoc" class="icon" for="input-show-localtoc" title="Show/hide contents"></label>
+      </span>
+    </div>
+  </header>
+
+
+  <div class="repotoc-tree overlay">
+    <root>
+  <a href="../../../index.html" class="current">System Level</a>
+  <a href="../../../../hdl/index.html">HDL</a>
+  <a href="../../../../testbenches/index.html">HDL Testbenches</a>
+  <a href="../../../../pyadi-iio/index.html">Hardware Python Interfaces</a>
+  <a href="../../../../libiio/index.html">libiio</a>
+  <a href="../../../../no-OS/index.html">no-OS</a>
+  <a href="../../../../precision-converters-firmware/index.html">Precision Converters Firmware</a>
+  <a href="../../../../PrecisionToolbox/index.html">Precision Toolbox</a>
+  <a href="../../../../scopy/index.html">Scopy</a>
+  <a href="../../../../doctools/index.html">Doctools</a>
+</root>
+
+  </div>
+    <div class="localtoc">
+      <div class="tocwrapper">
+        <div>
+          <div class="localtoc-header">On this page</div>
+          <a id="scroll-up" href="#top-anchor" title="Back to top"></a>
+        </div>
+        <nav>
+          <ul>
+<li><a class="reference internal" href="#">Libiio command line utility</a><ul>
+<li><a class="reference internal" href="#iio-reg">iio_reg</a><ul>
+<li><a class="reference internal" href="#running-remote">Running Remote</a></li>
+<li><a class="reference internal" href="#finding">Finding</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iio-attr">iio_attr</a><ul>
+<li><a class="reference internal" href="#examples">Examples</a><ul>
+<li><a class="reference internal" href="#look-at-context-attributes">Look at Context Attributes</a></li>
+<li><a class="reference internal" href="#list-devices-in-a-context">List Devices in a Context</a></li>
+<li><a class="reference internal" href="#list-channel-attributes">List Channel attributes</a></li>
+<li><a class="reference internal" href="#read-a-channel-attributes">Read a channel attributes</a></li>
+<li><a class="reference internal" href="#write-to-a-channel-attribute">Write to a channel attribute</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iio-info">iio_info</a><ul>
+<li><a class="reference internal" href="#id1">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iio-readdev">iio_readdev</a><ul>
+<li><a class="reference internal" href="#id2">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#iio-writedev">iio_writedev</a><ul>
+<li><a class="reference internal" href="#id3">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </nav>
+      </div>
+    </div>
+
+  
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+    <a id="no-logo" href="../../../index.html">
+      System Level Documentation
+    </a><input id="input-switch-toc" type="checkbox">
+<label id="show-repotoc" for="input-switch-toc">
+All content
+</label>
+<label id="show-toc" for="input-switch-toc">
+Content on this topic
+</label>
+<div class="repotoc-tree">
+  <root>
+  <a href="../../../index.html" class="current">System Level</a>
+  <a href="../../../../hdl/index.html">HDL</a>
+  <a href="../../../../testbenches/index.html">HDL Testbenches</a>
+  <a href="../../../../pyadi-iio/index.html">Hardware Python Interfaces</a>
+  <a href="../../../../libiio/index.html">libiio</a>
+  <a href="../../../../no-OS/index.html">no-OS</a>
+  <a href="../../../../precision-converters-firmware/index.html">Precision Converters Firmware</a>
+  <a href="../../../../PrecisionToolbox/index.html">Precision Toolbox</a>
+  <a href="../../../../scopy/index.html">Scopy</a>
+  <a href="../../../../doctools/index.html">Doctools</a>
+</root>
+
+</div>
+<div class="toc-tree">
+  <html>
+  <body><p class="caption" role="heading"><span class="caption-text">Linux Kernel &amp; Software</span></p>
+<ul class="current">
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1" id="toctree-collapse-1"/><div class="collapse"><a class="reference internal" href="../../kuiper/index.html">Kuiper Linux</a><label for="toctree-collapse-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kuiper/release-notes.html">Release notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kuiper/sdcard/index.html">SD Card flashing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kuiper/project-list.html">Project list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../kuiper/update.html">Updating</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2" id="toctree-collapse-2"/><div class="collapse"><a class="reference internal" href="../../drivers/index.html">Linux drivers</a><label for="toctree-collapse-2"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1" id="toctree-collapse-2-1"/><div class="collapse"><a class="reference internal" href="../../drivers/iio-transceiver/index.html">IIO Transceivers</a><label for="toctree-collapse-2-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1-1" id="toctree-collapse-2-1-1"/><div class="collapse"><a class="reference internal" href="../../drivers/iio-transceiver/adrv9009/index.html">ADRV9009, ADRV9008-1, ADRV9008-2</a><label for="toctree-collapse-2-1-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../drivers/iio-transceiver/adrv9009/customization.html">Customization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-2" id="toctree-collapse-2-2"/><div class="collapse"><a class="reference internal" href="../../drivers/iio/index.html">Linux Industrial I/O Subsystem</a><label for="toctree-collapse-2-2"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../drivers/iio/iio-trig-sysfs.html">iio-trig-sysfs driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../drivers/iio/iio-trig-bfin-timer.html">iio-trig-bfin-timer driver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-3" id="toctree-collapse-3"/><div class="collapse"><a class="reference internal" href="../../kernel/index.html">Kernel and devicetrees</a><label for="toctree-collapse-3"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../kernel/petalinux.html">Building with Petalinux</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4" id="toctree-collapse-4" checked=""/><div class="collapse"><a class="reference internal" href="../index.html">Software</a><label for="toctree-collapse-4"><div class="icon"></div></label></div><ul class="current">
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1" id="toctree-collapse-4-1"/><div class="collapse"><a class="reference internal" href="../iio-oscilloscope/index.html">IIO Oscilloscope</a><label for="toctree-collapse-4-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1-1" id="toctree-collapse-4-1-1"/><div class="collapse"><a class="reference internal" href="../iio-oscilloscope/adrv9009/index.html">ADRV9009</a><label for="toctree-collapse-4-1-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l4"><a class="reference internal" href="../iio-oscilloscope/adrv9009/plugin.html">Standard Plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../iio-oscilloscope/adrv9009/advanced-plugin.html">Advanced plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-2" id="toctree-collapse-4-2" checked=""/><div class="collapse"><a class="reference internal" href="index.html">Libiio</a><label for="toctree-collapse-4-2"><div class="icon"></div></label></div><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="internals.html">About</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Command line utility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../pyadi-iio/index.html">PyADI-IIO</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Evaluation Boards</span></p>
+<ul>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-5" id="toctree-collapse-5"/><div class="collapse"><a class="reference internal" href="../../../eval/user-guide/index.html">User guides</a><label for="toctree-collapse-5"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-5-1" id="toctree-collapse-5-1"/><div class="collapse"><a class="reference internal" href="../../../eval/user-guide/adrv9009/index.html">ADRV9009 &amp; ADRV9008</a><label for="toctree-collapse-5-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../eval/user-guide/adrv9009/prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-5-1-1" id="toctree-collapse-5-1-1"/><div class="collapse"><a class="reference internal" href="../../../eval/user-guide/adrv9009/quickstart/index.html">Quickstart</a><label for="toctree-collapse-5-1-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../eval/user-guide/adrv9009/quickstart/zynqmp.html">ZCU102</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../eval/user-guide/adrv9009/basic-iq-datafiles.html">Basic IQ Datafiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">University Program</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../university/index.html">Engineering University Program</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing and Guidelines</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/forking_publishing.html">Forking and publishing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/creating_new_pages.html">Creating new pages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing/docs_guidelines.html">Documentation guidelines</a></li>
+</ul>
+</body>
+</html>
+
+</div>
+        </div>
+      </div>
+
+  <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper" id="top-anchor">
+          <div class="body" role="main">
+            
+  <section id="libiio-command-line-utility">
+<span id="libiio-cli"></span><h1>Libiio command line utility<a class="headerlink" href="#libiio-command-line-utility" title="Link to this heading">#</a></h1>
+<p>Libiio provides five main userspace help/utilities to ease
+development of software interfacing <a class="reference internal" href="../../drivers/iio/index.html#iio"><span class="std std-ref">Linux Industrial I/O</span></a> (IIO) devices:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#libiio-iio-attr"><span class="std std-ref">iio_attr</span></a> : read and write IIO attributes.</p></li>
+<li><p><a class="reference internal" href="#libiio-iio-info"><span class="std std-ref">iio_info</span></a> : dump the IIO attributes.</p></li>
+<li><p><a class="reference internal" href="#libiio-iio-readdev"><span class="std std-ref">iio_readdev</span></a> : read an IIO buffer device.</p></li>
+<li><p><a class="reference internal" href="#libiio-iio-writedev"><span class="std std-ref">iio_writedev</span></a> : write an IIO buffer device.</p></li>
+<li><p><a class="reference internal" href="#libiio-iio-reg"><span class="std std-ref">iio_reg</span></a> : read or write SPI or I2C registers in an IIO device
+(useful to debug drivers).</p></li>
+</ul>
+<blockquote>
+<div></div></blockquote>
+<section id="iio-reg">
+<span id="libiio-iio-reg"></span><h2>iio_reg<a class="headerlink" href="#iio-reg" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">iio_reg</span></code> is part of the <a class="reference internal" href="index.html#libiio"><span class="std std-ref">Libiio</span></a> package and allows to
+read or write SPI or I2C registers in an IIO device (useful to debug drivers):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_reg -h
+Usage:
+
+iio_reg &lt;device&gt; &lt;register&gt; [&lt;value&gt;]
+</pre></div>
+</div>
+<section id="running-remote">
+<h3>Running Remote<a class="headerlink" href="#running-remote" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">iio_reg</span></code> application can also connect to a libiio remote device via IP.
+Prior in running <code class="docutils literal notranslate"><span class="pre">iio_reg</span></code> set the <code class="docutils literal notranslate"><span class="pre">IIOD_REMOTE</span></code> environmental variable.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export IIOD_REMOTE=IP address of the remote platform
+</pre></div>
+</div>
+</section>
+<section id="finding">
+<h3>Finding<a class="headerlink" href="#finding" title="Link to this heading">#</a></h3>
+<p>An IIO context can have multiple logical devices, and sometimes not all devices
+will have a specific register interface. To find out which IIO device support
+register access, try (remember that <code class="docutils literal notranslate"><span class="pre">iio_attr</span></code> supports a <code class="docutils literal notranslate"><span class="pre">-D</span></code> option to
+look for debug attributes).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ iio_attr  -u ip:192.168.2.1 -D
+IIO context has 4 devices:
+    iio:device0, ad9361-phy: found 179 debug attributes
+    iio:device1, xadc: found 0 debug attributes
+    iio:device2, cf-ad9361-dds-core-lpc: found 1 debug attributes
+    iio:device3, cf-ad9361-lpc: found 2 debug attributes
+
+$ iio_attr  -u ip:192.168.2.1 -D . direct_reg_access
+dev &#39;ad9361-phy&#39;, debug attr &#39;direct_reg_access&#39;, value :&#39;0x0&#39;
+dev &#39;cf-ad9361-dds-core-lpc&#39;, debug attr &#39;direct_reg_access&#39;, value :&#39;0x90162&#39;
+dev &#39;cf-ad9361-lpc&#39;, debug attr &#39;direct_reg_access&#39;, value :&#39;0x0&#39;
+</pre></div>
+</div>
+<p>From here you can see the three different devices that support the <code class="docutils literal notranslate"><span class="pre">iio_reg</span></code>
+tool.</p>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ iio_reg ad9361-phy 0x3
+0x5c
+</pre></div>
+</div>
+</section>
+</section>
+<section id="iio-attr">
+<span id="libiio-iio-attr"></span><h2>iio_attr<a class="headerlink" href="#iio-attr" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">iio_attr</span></code> is part of the <a class="reference internal" href="index.html#libiio"><span class="std std-ref">Libiio</span></a> package, and allows to
+read and write IIO attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_attr -h
+Usage:
+        iio_attr [OPTION]...    -d [device] [attr] [value]
+                                -c [device] [channel] [attr] [value]
+                                -B [device] [attr] [value]
+                                -D [device] [attr] [value]
+                                -C [attr]
+Options:
+        -h, --help           : Show this help and quit.
+        -I, --ignore-case    : Ignore case distinctions.
+        -q, --quiet          : Return result only.
+        -a, --auto           : Use the first context found.
+Optional qualifiers:
+        -u, --uri            : Use the context at the provided URI.
+        -i, --input-channel  : Filter Input Channels only.
+        -o, --output-channel : Filter Output Channels only.
+Attribute types:
+        -s, --scan-channel   : Filter Scan Channels only.
+        -d, --device-attr    : Read/Write device attributes
+        -c, --channel-attr   : Read/Write channel attributes.
+        -C, --context-attr   : Read IIO context attributes.
+        -B, --buffer-attr    : Read/Write buffer attributes.
+        -D, --debug-attr     : Read/Write debug attributes.
+</pre></div>
+</div>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<section id="look-at-context-attributes">
+<h4>Look at Context Attributes<a class="headerlink" href="#look-at-context-attributes" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rgetz@brain:~/github/libiio$ **iio_attr -a -C**
+Using auto-detected IIO context at URI &quot;usb:3.8.5&quot;
+IIO context with 14 attributes:
+hw_model: Analog Devices PlutoSDR Rev.B (Z7010-AD9364)
+hw_model_variant: 0
+hw_serial: 104473222a87000618000600473ed57ae0
+fw_version: v0.31
+ad9361-phy,xo_correction: 40000000
+ad9361-phy,model: ad9364
+local,kernel: 4.14.0-42540-g387d584
+usb,idVendor: 0456
+usb,idProduct: b673
+usb,release: 2.0
+usb,vendor: Analog Devices Inc.
+usb,product: PlutoSDR (ADALM-PLUTO)
+usb,serial: 104473222a87000618000600473ed57ae0
+usb,libusb: 1.0.22.11312
+</pre></div>
+</div>
+</section>
+<section id="list-devices-in-a-context">
+<h4>List Devices in a Context<a class="headerlink" href="#list-devices-in-a-context" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rgetz@brain:~/github/libiio$ iio_attr -u usb:3.8.5 -d
+IIO context has 5 devices:
+    iio:device0: adm1177, found 0 device attributes
+    iio:device1: ad9361-phy, found 18 device attributes
+    iio:device2: xadc, found 1 device attributes
+    iio:device3: cf-ad9361-dds-core-lpc, found 0 device attributes
+    iio:device4: cf-ad9361-lpc, found 0 device attributes
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rgetz@brain:~/github/libiio$ **iio_attr -u usb:3.8.5 -c**
+IIO context has 5 devices:
+    iio:device0: adm1177, found 2 channels
+    iio:device1: ad9361-phy, found 9 channels
+    iio:device2: xadc, found 10 channels
+    iio:device3: cf-ad9361-dds-core-lpc, found 6 channels
+    iio:device4: cf-ad9361-lpc, found 2 channels
+</pre></div>
+</div>
+</section>
+<section id="list-channel-attributes">
+<h4>List Channel attributes<a class="headerlink" href="#list-channel-attributes" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">.</span></code> can be used as a wildcard if you don’t know the name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rgetz@brain:~/github/libiio$ iio_attr -u ip:192.168.2.1 -c adm1177 .
+dev &#39;adm1177&#39;, channel &#39;voltage0&#39; (input), attr &#39;raw&#39;, value &#39;771&#39;
+dev &#39;adm1177&#39;, channel &#39;voltage0&#39; (input), attr &#39;scale&#39;, value &#39;6.433105468&#39;
+dev &#39;adm1177&#39;, channel &#39;current0&#39; (input), attr &#39;raw&#39;, value &#39;776&#39;
+dev &#39;adm1177&#39;, channel &#39;current0&#39; (input), attr &#39;scale&#39;, value &#39;0.516601562&#39;
+</pre></div>
+</div>
+</section>
+<section id="read-a-channel-attributes">
+<h4>Read a channel attributes<a class="headerlink" href="#read-a-channel-attributes" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rgetz@brain:~/github/libiio$ **iio_attr -u ip:192.168.2.1 -c ad9361-phy RX_LO**
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;external&#39;, value &#39;0&#39;
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;fastlock_load&#39;, value &#39;0&#39;
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;fastlock_recall&#39;, ERROR: Invalid argument (-22)
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;fastlock_save&#39;, value &#39;0 242,198,163,125,228,163,171,195,167,187,179,163,241,167,187,167&#39;
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;fastlock_store&#39;, value &#39;0&#39;
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;frequency&#39;, value &#39;2400000000&#39;
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;frequency_available&#39;, value &#39;[70000000 1 6000000000]&#39;
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;powerdown&#39;, value &#39;0&#39;
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rgetz@brain:~/github/libiio$ iio_attr -u ip:192.168.2.1 -c ad9361-phy RX_LO frequency
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;frequency&#39;, value &#39;2400000000&#39;
+</pre></div>
+</div>
+</section>
+<section id="write-to-a-channel-attribute">
+<h4>Write to a channel attribute<a class="headerlink" href="#write-to-a-channel-attribute" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rgetz@brain:~/github/libiio$ **iio_attr -u ip:192.168.2.1 -c ad9361-phy RX_LO frequency 2400000100**
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;frequency&#39;, value &#39;2400000000&#39;
+wrote 11 bytes to frequency
+dev &#39;ad9361-phy&#39;, channel &#39;altvoltage0&#39; (output), id &#39;RX_LO&#39;, attr &#39;frequency&#39;, value &#39;2400000100&#39;
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="iio-info">
+<span id="libiio-iio-info"></span><h2>iio_info<a class="headerlink" href="#iio-info" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">iio_info</span></code> is part of the <a class="reference internal" href="index.html#libiio"><span class="std std-ref">Libiio</span></a> package and allows to
+dump the IIO attributes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_info -h
+Usage:
+        iio_info [-x &lt;xml_file&gt;]
+        iio_info [-n &lt;hostname&gt;]
+        iio_info [-u &lt;uri&gt;]
+
+Options:
+        -h, --help
+                        Show this help and quit.
+        -x, --xml
+                        Use the XML backend with the provided XML file.
+        -n, --network
+                        Use the network backend with the provided hostname.
+        -u, --uri
+                        Use the context at the provided URI.
+        -s, --scan
+                        Scan for available backends.
+        -a, --auto
+                        Scan for available contexts and if only one is available use it.
+</pre></div>
+</div>
+<section id="id1">
+<h3>Example<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div><div class="collapsible docutils container">
+<input class="collapsible_input" id="c55447e780d06cfbc6b253ff7cd21d8557d2fa91" name="c55447e780d06cfbc6b253ff7cd21d8557d2fa91" type="checkbox"></input><label for="c55447e780d06cfbc6b253ff7cd21d8557d2fa91"><p>iio_info example</p>
+<div class="icon"></div></label><div class="collapsible_content docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># iio_info</span>
+<span class="n">Library</span> <span class="n">version</span><span class="p">:</span> <span class="mf">0.15</span> <span class="p">(</span><span class="n">git</span> <span class="n">tag</span><span class="p">:</span> <span class="n">v0</span><span class="mf">.15</span><span class="p">)</span>
+<span class="n">Compiled</span> <span class="k">with</span> <span class="n">backends</span><span class="p">:</span> <span class="n">local</span> <span class="n">xml</span> <span class="n">ip</span> <span class="n">usb</span> <span class="n">serial</span>
+<span class="n">IIO</span> <span class="n">context</span> <span class="n">created</span> <span class="k">with</span> <span class="n">local</span> <span class="n">backend</span><span class="o">.</span>
+<span class="n">Backend</span> <span class="n">version</span><span class="p">:</span> <span class="mf">0.15</span> <span class="p">(</span><span class="n">git</span> <span class="n">tag</span><span class="p">:</span> <span class="n">v0</span><span class="mf">.15</span><span class="p">)</span>
+<span class="n">Backend</span> <span class="n">description</span> <span class="n">string</span><span class="p">:</span> <span class="n">Linux</span> <span class="n">pluto</span> <span class="mf">4.9.0</span><span class="o">-</span><span class="mi">10475</span><span class="o">-</span><span class="n">g2398d50</span> <span class="c1">#263 SMP PREEMPT Mon Aug 20 15:30:08 CEST 2018 armv7l</span>
+<span class="n">IIO</span> <span class="n">context</span> <span class="n">has</span> <span class="mi">7</span> <span class="n">attributes</span><span class="p">:</span>
+        <span class="n">hw_model</span><span class="p">:</span> <span class="n">Analog</span> <span class="n">Devices</span> <span class="n">PlutoSDR</span> <span class="n">Rev</span><span class="o">.</span><span class="n">B</span> <span class="p">(</span><span class="n">Z7010</span><span class="o">-</span><span class="n">AD9363</span><span class="p">)</span>
+        <span class="n">hw_model_variant</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="n">hw_serial</span><span class="p">:</span> <span class="mi">104400</span><span class="n">b83991001807001100968f65adac</span>
+        <span class="n">fw_version</span><span class="p">:</span> <span class="n">v0</span><span class="mf">.29</span>
+        <span class="n">ad9361</span><span class="o">-</span><span class="n">phy</span><span class="p">,</span><span class="n">xo_correction</span><span class="p">:</span> <span class="mi">39999853</span>
+        <span class="n">ad9361</span><span class="o">-</span><span class="n">phy</span><span class="p">,</span><span class="n">model</span><span class="p">:</span> <span class="n">ad9364</span>
+        <span class="n">local</span><span class="p">,</span><span class="n">kernel</span><span class="p">:</span> <span class="mf">4.9.0</span><span class="o">-</span><span class="mi">10475</span><span class="o">-</span><span class="n">g2398d50</span>
+<span class="n">IIO</span> <span class="n">context</span> <span class="n">has</span> <span class="mi">5</span> <span class="n">devices</span><span class="p">:</span>
+        <span class="n">iio</span><span class="p">:</span><span class="n">device3</span><span class="p">:</span> <span class="n">cf</span><span class="o">-</span><span class="n">ad9361</span><span class="o">-</span><span class="n">dds</span><span class="o">-</span><span class="n">core</span><span class="o">-</span><span class="n">lpc</span> <span class="p">(</span><span class="n">buffer</span> <span class="n">capable</span><span class="p">)</span>
+                <span class="mi">6</span> <span class="n">channels</span> <span class="n">found</span><span class="p">:</span>
+                        <span class="n">voltage0</span><span class="p">:</span>  <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">le</span><span class="p">:</span><span class="n">S16</span><span class="o">/</span><span class="mi">16</span><span class="o">&gt;&gt;</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="mi">4</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">calibscale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">1.000000</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">calibphase</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span> <span class="mi">3840000</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                        <span class="n">voltage1</span><span class="p">:</span>  <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">le</span><span class="p">:</span><span class="n">S16</span><span class="o">/</span><span class="mi">16</span><span class="o">&gt;&gt;</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="mi">4</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">calibphase</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">calibscale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">1.000000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span> <span class="mi">3840000</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                        <span class="n">altvoltage3</span><span class="p">:</span> <span class="n">TX1_Q_F2</span> <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">5</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">phase</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">9279985</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                        <span class="n">altvoltage1</span><span class="p">:</span> <span class="n">TX1_I_F2</span> <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">5</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">phase</span> <span class="n">value</span><span class="p">:</span> <span class="mi">90000</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">9279985</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                        <span class="n">altvoltage0</span><span class="p">:</span> <span class="n">TX1_I_F1</span> <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">5</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">phase</span> <span class="n">value</span><span class="p">:</span> <span class="mi">90000</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">9279985</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                        <span class="n">altvoltage2</span><span class="p">:</span> <span class="n">TX1_Q_F1</span> <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">5</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">phase</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">9279985</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                <span class="mi">2</span> <span class="n">buffer</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">watermark</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2048</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">data_available</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                <span class="mi">1</span> <span class="n">debug</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">direct_reg_access</span> <span class="n">value</span><span class="p">:</span> <span class="mh">0x90062</span>
+        <span class="n">iio</span><span class="p">:</span><span class="n">device1</span><span class="p">:</span> <span class="n">ad9361</span><span class="o">-</span><span class="n">phy</span>
+                <span class="mi">9</span> <span class="n">channels</span> <span class="n">found</span><span class="p">:</span>
+                        <span class="n">altvoltage1</span><span class="p">:</span> <span class="n">TX_LO</span> <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">8</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">external</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2450000000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">fastlock_store</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">fastlock_recall</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">argument</span> <span class="p">(</span><span class="o">-</span><span class="mi">22</span><span class="p">)</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">powerdown</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">fastlock_save</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span><span class="p">,</span><span class="mi">218</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">46875001</span> <span class="mi">1</span> <span class="mi">6000000000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">fastlock_load</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                        <span class="n">voltage0</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">15</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">hardwaregain_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span> <span class="mi">1</span> <span class="mi">71</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">hardwaregain</span> <span class="n">value</span><span class="p">:</span> <span class="mf">71.000000</span> <span class="n">dB</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">rssi</span> <span class="n">value</span><span class="p">:</span> <span class="mf">115.50</span> <span class="n">dB</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">rf_port_select</span> <span class="n">value</span><span class="p">:</span> <span class="n">A_BALANCED</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">gain_control_mode</span> <span class="n">value</span><span class="p">:</span> <span class="n">slow_attack</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">rf_port_select_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">A_BALANCED</span> <span class="n">B_BALANCED</span> <span class="n">C_BALANCED</span> <span class="n">A_N</span> <span class="n">A_P</span> <span class="n">B_N</span> <span class="n">B_P</span> <span class="n">C_N</span> <span class="n">C_P</span> <span class="n">TX_MONITOR1</span> <span class="n">TX_MONITOR2</span> <span class="n">TX_MONITOR1_2</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">rf_bandwidth</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18000000</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">rf_dc_offset_tracking_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span>  <span class="mi">8</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">2083333</span> <span class="mi">1</span> <span class="mi">61440000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">9</span><span class="p">:</span> <span class="n">quadrature_tracking_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span> <span class="mi">10</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                                <span class="n">attr</span> <span class="mi">11</span><span class="p">:</span> <span class="n">gain_control_mode_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">manual</span> <span class="n">fast_attack</span> <span class="n">slow_attack</span> <span class="n">hybrid</span>
+                                <span class="n">attr</span> <span class="mi">12</span><span class="p">:</span> <span class="n">filter_fir_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span> <span class="mi">13</span><span class="p">:</span> <span class="n">rf_bandwidth_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span> <span class="mi">1</span> <span class="mi">56000000</span><span class="p">]</span>
+                                <span class="n">attr</span> <span class="mi">14</span><span class="p">:</span> <span class="n">bb_dc_offset_tracking_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                        <span class="n">voltage3</span><span class="p">:</span>  <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">8</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">1.000000</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">306</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">2083333</span> <span class="mi">1</span> <span class="mi">61440000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">rf_port_select_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">A</span> <span class="n">B</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">filter_fir_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">rf_bandwidth_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span> <span class="mi">1</span> <span class="mi">40000000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">rf_bandwidth</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18000000</span>
+                        <span class="n">altvoltage0</span><span class="p">:</span> <span class="n">RX_LO</span> <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">8</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">70000000</span> <span class="mi">1</span> <span class="mi">6000000000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">fastlock_save</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span><span class="p">,</span><span class="mi">220</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">powerdown</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">fastlock_load</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">fastlock_store</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2399999998</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">external</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">fastlock_recall</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">Invalid</span> <span class="n">argument</span> <span class="p">(</span><span class="o">-</span><span class="mi">22</span><span class="p">)</span>
+                        <span class="n">voltage2</span><span class="p">:</span>  <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">8</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">306</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">1.000000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">2083333</span> <span class="mi">1</span> <span class="mi">61440000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">rf_port_select_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">A</span> <span class="n">B</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">filter_fir_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">rf_bandwidth_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span> <span class="mi">1</span> <span class="mi">40000000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">rf_bandwidth</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18000000</span>
+                        <span class="n">temp0</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">1</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="nb">input</span> <span class="n">value</span><span class="p">:</span> <span class="mi">33333</span>
+                        <span class="n">voltage0</span><span class="p">:</span>  <span class="p">(</span><span class="n">output</span><span class="p">)</span>
+                        <span class="mi">10</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">rf_port_select</span> <span class="n">value</span><span class="p">:</span> <span class="n">A</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">hardwaregain</span> <span class="n">value</span><span class="p">:</span> <span class="o">-</span><span class="mf">10.000000</span> <span class="n">dB</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">rssi</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.00</span> <span class="n">dB</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">hardwaregain_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">250</span> <span class="mi">89750</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">2083333</span> <span class="mi">1</span> <span class="mi">61440000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">rf_port_select_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">A</span> <span class="n">B</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">filter_fir_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                                <span class="n">attr</span>  <span class="mi">8</span><span class="p">:</span> <span class="n">rf_bandwidth_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span> <span class="mi">1</span> <span class="mi">40000000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">9</span><span class="p">:</span> <span class="n">rf_bandwidth</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18000000</span>
+                        <span class="n">voltage2</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">13</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">offset</span> <span class="n">value</span><span class="p">:</span> <span class="mi">57</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.305250</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1049</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">rf_port_select_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">A_BALANCED</span> <span class="n">B_BALANCED</span> <span class="n">C_BALANCED</span> <span class="n">A_N</span> <span class="n">A_P</span> <span class="n">B_N</span> <span class="n">B_P</span> <span class="n">C_N</span> <span class="n">C_P</span> <span class="n">TX_MONITOR1</span> <span class="n">TX_MONITOR2</span> <span class="n">TX_MONITOR1_2</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">rf_bandwidth</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18000000</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">rf_dc_offset_tracking_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">2083333</span> <span class="mi">1</span> <span class="mi">61440000</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">quadrature_tracking_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">attr</span>  <span class="mi">8</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                                <span class="n">attr</span>  <span class="mi">9</span><span class="p">:</span> <span class="n">gain_control_mode_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">manual</span> <span class="n">fast_attack</span> <span class="n">slow_attack</span> <span class="n">hybrid</span>
+                                <span class="n">attr</span> <span class="mi">10</span><span class="p">:</span> <span class="n">filter_fir_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span> <span class="mi">11</span><span class="p">:</span> <span class="n">rf_bandwidth_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">200000</span> <span class="mi">1</span> <span class="mi">56000000</span><span class="p">]</span>
+                                <span class="n">attr</span> <span class="mi">12</span><span class="p">:</span> <span class="n">bb_dc_offset_tracking_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                        <span class="n">out</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">1</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">voltage_filter_fir_en</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                <span class="mi">18</span> <span class="n">device</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">dcxo_tune_coarse</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">device</span> <span class="p">(</span><span class="o">-</span><span class="mi">19</span><span class="p">)</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">rx_path_rates</span> <span class="n">value</span><span class="p">:</span> <span class="n">BBPLL</span><span class="p">:</span><span class="mi">983040007</span> <span class="n">ADC</span><span class="p">:</span><span class="mi">245760001</span> <span class="n">R2</span><span class="p">:</span><span class="mi">122880000</span> <span class="n">R1</span><span class="p">:</span><span class="mi">61440000</span> <span class="n">RF</span><span class="p">:</span><span class="mi">30720000</span> <span class="n">RXSAMP</span><span class="p">:</span><span class="mi">30720000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">trx_rate_governor</span> <span class="n">value</span><span class="p">:</span> <span class="n">nominal</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">calib_mode_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">auto</span> <span class="n">manual</span> <span class="n">manual_tx_quad</span> <span class="n">tx_quad</span> <span class="n">rf_dc_offs</span> <span class="n">rssi_gain_step</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">xo_correction_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">39991854</span> <span class="mi">1</span> <span class="mi">40007852</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">gain_table_config</span> <span class="n">value</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">gaintable</span> <span class="n">AD9361</span> <span class="nb">type</span><span class="o">=</span><span class="n">FULL</span> <span class="n">dest</span><span class="o">=</span><span class="mi">3</span> <span class="n">start</span><span class="o">=</span><span class="mi">1300000000</span> <span class="n">end</span><span class="o">=</span><span class="mi">4000000000</span><span class="o">&gt;</span>
+                                <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">dcxo_tune_fine</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">device</span> <span class="p">(</span><span class="o">-</span><span class="mi">19</span><span class="p">)</span>
+                                <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">dcxo_tune_fine_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+                                <span class="n">attr</span>  <span class="mi">8</span><span class="p">:</span> <span class="n">ensm_mode_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">sleep</span> <span class="n">wait</span> <span class="n">alert</span> <span class="n">fdd</span> <span class="n">pinctrl</span> <span class="n">pinctrl_fdd_indep</span>
+                                <span class="n">attr</span>  <span class="mi">9</span><span class="p">:</span> <span class="n">multichip_sync</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">Permission</span> <span class="n">denied</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+                                <span class="n">attr</span> <span class="mi">10</span><span class="p">:</span> <span class="n">rssi_gain_step_error</span> <span class="n">value</span><span class="p">:</span> <span class="n">lna_error</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">mixer_error</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>  <span class="n">gain_step_calib_reg_val</span><span class="p">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+                                <span class="n">attr</span> <span class="mi">11</span><span class="p">:</span> <span class="n">dcxo_tune_coarse_available</span> <span class="n">value</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+                                <span class="n">attr</span> <span class="mi">12</span><span class="p">:</span> <span class="n">tx_path_rates</span> <span class="n">value</span><span class="p">:</span> <span class="n">BBPLL</span><span class="p">:</span><span class="mi">983040007</span> <span class="n">DAC</span><span class="p">:</span><span class="mi">122880000</span> <span class="n">T2</span><span class="p">:</span><span class="mi">122880000</span> <span class="n">T1</span><span class="p">:</span><span class="mi">61440000</span> <span class="n">TF</span><span class="p">:</span><span class="mi">30720000</span> <span class="n">TXSAMP</span><span class="p">:</span><span class="mi">30720000</span>
+                                <span class="n">attr</span> <span class="mi">13</span><span class="p">:</span> <span class="n">trx_rate_governor_available</span> <span class="n">value</span><span class="p">:</span> <span class="n">nominal</span> <span class="n">highest_osr</span>
+                                <span class="n">attr</span> <span class="mi">14</span><span class="p">:</span> <span class="n">xo_correction</span> <span class="n">value</span><span class="p">:</span> <span class="mi">39999853</span>
+                                <span class="n">attr</span> <span class="mi">15</span><span class="p">:</span> <span class="n">ensm_mode</span> <span class="n">value</span><span class="p">:</span> <span class="n">fdd</span>
+                                <span class="n">attr</span> <span class="mi">16</span><span class="p">:</span> <span class="n">filter_fir_config</span> <span class="n">value</span><span class="p">:</span> <span class="n">FIR</span> <span class="n">Rx</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span> <span class="n">Tx</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+                                <span class="n">attr</span> <span class="mi">17</span><span class="p">:</span> <span class="n">calib_mode</span> <span class="n">value</span><span class="p">:</span> <span class="n">auto</span>
+                <span class="mi">178</span> <span class="n">debug</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">digital_tune</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">calibration_switch_control</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">multichip_sync</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">gaininfo_rx2</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">Resource</span> <span class="n">temporarily</span> <span class="n">unavailable</span> <span class="p">(</span><span class="o">-</span><span class="mi">11</span><span class="p">)</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">gaininfo_rx1</span> <span class="n">value</span><span class="p">:</span> <span class="mi">71</span> <span class="mi">76</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">bist_timing_analysis</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">6</span><span class="p">:</span> <span class="n">bist_tone</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">7</span><span class="p">:</span> <span class="n">bist_prbs</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">8</span><span class="p">:</span> <span class="n">loopback</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">9</span><span class="p">:</span> <span class="n">initialize</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">10</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">lo</span><span class="o">-</span><span class="n">cm</span> <span class="n">value</span><span class="p">:</span> <span class="mi">48</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">11</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">lo</span><span class="o">-</span><span class="n">cm</span> <span class="n">value</span><span class="p">:</span> <span class="mi">48</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">12</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="n">front</span><span class="o">-</span><span class="n">end</span><span class="o">-</span><span class="n">gain</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">13</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">front</span><span class="o">-</span><span class="n">end</span><span class="o">-</span><span class="n">gain</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">14</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="n">duration</span> <span class="n">value</span><span class="p">:</span> <span class="mi">8192</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">15</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="n">delay</span> <span class="n">value</span><span class="p">:</span> <span class="mi">511</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">16</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="n">one</span><span class="o">-</span><span class="n">shot</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">17</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="n">dc</span><span class="o">-</span><span class="n">tracking</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">18</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">gain</span> <span class="n">value</span><span class="p">:</span> <span class="mi">24</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">19</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="n">gain</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">20</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">txmon</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">thresh</span> <span class="n">value</span><span class="p">:</span> <span class="mi">37000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">21</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo3</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">22</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo3</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">23</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo2</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">24</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo2</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">25</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo1</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">26</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo1</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">27</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo0</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">28</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo0</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">29</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo3</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">30</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo3</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">31</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo2</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">32</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo2</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">33</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo1</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">34</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo1</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">35</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo0</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">36</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo0</span><span class="o">-</span><span class="n">slave</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">37</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo3</span><span class="o">-</span><span class="n">inactive</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">38</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo2</span><span class="o">-</span><span class="n">inactive</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">39</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo1</span><span class="o">-</span><span class="n">inactive</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">40</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo0</span><span class="o">-</span><span class="n">inactive</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">41</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo</span><span class="o">-</span><span class="n">manual</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span><span class="o">-</span><span class="n">mask</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">42</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gpo</span><span class="o">-</span><span class="n">manual</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">43</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac2</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">44</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac2</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">45</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac2</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">alert</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">46</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac2</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">47</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac2</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">48</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac2</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">mV</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">49</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac1</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">50</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac1</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">51</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac1</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">alert</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">52</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac1</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">53</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac1</span><span class="o">-</span><span class="n">active</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">54</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac1</span><span class="o">-</span><span class="n">default</span><span class="o">-</span><span class="n">value</span><span class="o">-</span><span class="n">mV</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">55</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">dac</span><span class="o">-</span><span class="n">manual</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">56</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">decimation</span> <span class="n">value</span><span class="p">:</span> <span class="mi">256</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">57</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">aux</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">rate</span> <span class="n">value</span><span class="p">:</span> <span class="mi">40000000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">58</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">temp</span><span class="o">-</span><span class="n">sense</span><span class="o">-</span><span class="n">decimation</span> <span class="n">value</span><span class="p">:</span> <span class="mi">256</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">59</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">temp</span><span class="o">-</span><span class="n">sense</span><span class="o">-</span><span class="n">periodic</span><span class="o">-</span><span class="n">measurement</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">60</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">temp</span><span class="o">-</span><span class="n">sense</span><span class="o">-</span><span class="n">offset</span><span class="o">-</span><span class="n">signed</span> <span class="n">value</span><span class="p">:</span> <span class="mi">206</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">61</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">temp</span><span class="o">-</span><span class="n">sense</span><span class="o">-</span><span class="n">measurement</span><span class="o">-</span><span class="n">interval</span><span class="o">-</span><span class="n">ms</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">62</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">elna</span><span class="o">-</span><span class="n">gaintable</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">63</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">elna</span><span class="o">-</span><span class="n">rx2</span><span class="o">-</span><span class="n">gpo1</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">64</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">elna</span><span class="o">-</span><span class="n">rx1</span><span class="o">-</span><span class="n">gpo0</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">65</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">elna</span><span class="o">-</span><span class="n">bypass</span><span class="o">-</span><span class="n">loss</span><span class="o">-</span><span class="n">mdB</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">66</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">elna</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">mdB</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">67</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">elna</span><span class="o">-</span><span class="n">settling</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">ns</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">68</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">ctrl</span><span class="o">-</span><span class="n">outs</span><span class="o">-</span><span class="n">enable</span><span class="o">-</span><span class="n">mask</span> <span class="n">value</span><span class="p">:</span> <span class="mi">255</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">69</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">ctrl</span><span class="o">-</span><span class="n">outs</span><span class="o">-</span><span class="n">index</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">70</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rssi</span><span class="o">-</span><span class="n">duration</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">71</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rssi</span><span class="o">-</span><span class="n">wait</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">72</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rssi</span><span class="o">-</span><span class="n">delay</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">73</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rssi</span><span class="o">-</span><span class="n">unit</span><span class="o">-</span><span class="ow">is</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">samples</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">74</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rssi</span><span class="o">-</span><span class="n">restart</span><span class="o">-</span><span class="n">mode</span> <span class="n">value</span><span class="p">:</span> <span class="mi">3</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">75</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">inc</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">76</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">power</span><span class="o">-</span><span class="n">measurement</span><span class="o">-</span><span class="n">duration</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">state5</span> <span class="n">value</span><span class="p">:</span> <span class="mi">64</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">77</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="n">en</span><span class="o">-</span><span class="n">agc</span><span class="o">-</span><span class="n">pulled</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">mode</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">78</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">en</span><span class="o">-</span><span class="n">agc</span><span class="o">-</span><span class="n">pulled</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">79</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">80</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">81</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">energy</span><span class="o">-</span><span class="n">lost</span><span class="o">-</span><span class="n">stronger</span><span class="o">-</span><span class="n">sig</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">lock</span><span class="o">-</span><span class="n">exit</span><span class="o">-</span><span class="n">cnt</span> <span class="n">value</span><span class="p">:</span> <span class="mi">8</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">82</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">engergy</span><span class="o">-</span><span class="n">lost</span><span class="o">-</span><span class="n">sig</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">below</span><span class="o">-</span><span class="n">ll</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">83</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">engergy</span><span class="o">-</span><span class="n">lost</span><span class="o">-</span><span class="n">goto</span><span class="o">-</span><span class="n">optim</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">84</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">engergy</span><span class="o">-</span><span class="n">lost</span><span class="o">-</span><span class="n">sig</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">exceeded</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">85</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">stronger</span><span class="o">-</span><span class="n">sig</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">above</span><span class="o">-</span><span class="n">ll</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">86</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">optimized</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">offset</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">87</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">rst</span><span class="o">-</span><span class="n">gla</span><span class="o">-</span><span class="n">stronger</span><span class="o">-</span><span class="n">sig</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">exceeded</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">88</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">last</span><span class="o">-</span><span class="n">lock</span><span class="o">-</span><span class="n">level</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="nb">set</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">89</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">index</span><span class="o">-</span><span class="nb">type</span><span class="o">-</span><span class="n">after</span><span class="o">-</span><span class="n">exit</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">mode</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">90</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">increase</span><span class="o">-</span><span class="n">after</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">lock</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">91</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">final</span><span class="o">-</span><span class="n">overrange</span><span class="o">-</span><span class="n">count</span> <span class="n">value</span><span class="p">:</span> <span class="mi">3</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">92</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">final</span><span class="o">-</span><span class="n">settling</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">93</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">lpf</span><span class="o">-</span><span class="n">final</span><span class="o">-</span><span class="n">settling</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">94</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">lock</span><span class="o">-</span><span class="n">level</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">increase</span><span class="o">-</span><span class="n">upper</span><span class="o">-</span><span class="n">limit</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">95</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">lock</span><span class="o">-</span><span class="n">level</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">increase</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">96</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">lp</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">increment</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">97</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">lp</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">increment</span><span class="o">-</span><span class="n">time</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">98</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">allow</span><span class="o">-</span><span class="n">agc</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">increase</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">99</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">wait</span><span class="o">-</span><span class="n">time</span><span class="o">-</span><span class="n">ns</span> <span class="n">value</span><span class="p">:</span> <span class="mi">260</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">100</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">fagc</span><span class="o">-</span><span class="n">dec</span><span class="o">-</span><span class="nb">pow</span><span class="o">-</span><span class="n">measurement</span><span class="o">-</span><span class="n">duration</span> <span class="n">value</span><span class="p">:</span> <span class="mi">64</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">101</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">immed</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">change</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">102</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">immed</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">change</span><span class="o">-</span><span class="k">if</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">103</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">update</span><span class="o">-</span><span class="n">interval</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">104</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">sync</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">counter</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">105</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">dig</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">step</span><span class="o">-</span><span class="n">size</span> <span class="n">value</span><span class="p">:</span> <span class="mi">4</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">106</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">dig</span><span class="o">-</span><span class="n">saturation</span><span class="o">-</span><span class="n">exceed</span><span class="o">-</span><span class="n">counter</span> <span class="n">value</span><span class="p">:</span> <span class="mi">3</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">107</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">inc</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">108</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">small</span><span class="o">-</span><span class="n">exceed</span><span class="o">-</span><span class="n">counter</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">109</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">exceed</span><span class="o">-</span><span class="n">counter</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">110</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">small</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">prevent</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">inc</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">111</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">inc</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">112</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">exceed</span><span class="o">-</span><span class="n">counter</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">113</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">small</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">exceed</span><span class="o">-</span><span class="n">counter</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">114</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">outer</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="n">inc</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">115</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">outer</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">low</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">116</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">inner</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="n">inc</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">117</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">inner</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">low</span> <span class="n">value</span><span class="p">:</span> <span class="mi">12</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">118</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">inner</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">dec</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">119</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">inner</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">high</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">120</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">outer</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">dec</span><span class="o">-</span><span class="n">steps</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">121</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">outer</span><span class="o">-</span><span class="n">thresh</span><span class="o">-</span><span class="n">high</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">122</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">agc</span><span class="o">-</span><span class="n">attack</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">extra</span><span class="o">-</span><span class="n">margin</span><span class="o">-</span><span class="n">us</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">123</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">mgc</span><span class="o">-</span><span class="n">split</span><span class="o">-</span><span class="n">table</span><span class="o">-</span><span class="n">ctrl</span><span class="o">-</span><span class="n">inp</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">mode</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">124</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">mgc</span><span class="o">-</span><span class="n">dec</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">step</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">125</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">mgc</span><span class="o">-</span><span class="n">inc</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">step</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">126</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">mgc</span><span class="o">-</span><span class="n">rx2</span><span class="o">-</span><span class="n">ctrl</span><span class="o">-</span><span class="n">inp</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">127</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">mgc</span><span class="o">-</span><span class="n">rx1</span><span class="o">-</span><span class="n">ctrl</span><span class="o">-</span><span class="n">inp</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">128</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">fir</span><span class="o">-</span><span class="n">out</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="n">dec</span><span class="o">-</span><span class="n">pwr</span><span class="o">-</span><span class="n">meas</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">129</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">dig</span><span class="o">-</span><span class="n">gain</span> <span class="n">value</span><span class="p">:</span> <span class="mi">15</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">130</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">dig</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">131</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="n">power</span><span class="o">-</span><span class="n">thresh</span> <span class="n">value</span><span class="p">:</span> <span class="mi">24</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">132</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">dec</span><span class="o">-</span><span class="nb">pow</span><span class="o">-</span><span class="n">measurement</span><span class="o">-</span><span class="n">duration</span> <span class="n">value</span><span class="p">:</span> <span class="mi">8192</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">133</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="n">thresh</span> <span class="n">value</span><span class="p">:</span> <span class="mi">704</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">134</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">lmt</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="n">thresh</span> <span class="n">value</span><span class="p">:</span> <span class="mi">800</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">135</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">large</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">thresh</span> <span class="n">value</span><span class="p">:</span> <span class="mi">58</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">136</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">small</span><span class="o">-</span><span class="n">overload</span><span class="o">-</span><span class="n">thresh</span> <span class="n">value</span><span class="p">:</span> <span class="mi">47</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">137</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">adc</span><span class="o">-</span><span class="n">ovr</span><span class="o">-</span><span class="n">sample</span><span class="o">-</span><span class="n">size</span> <span class="n">value</span><span class="p">:</span> <span class="mi">4</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">138</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">rx2</span><span class="o">-</span><span class="n">mode</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">139</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">gc</span><span class="o">-</span><span class="n">rx1</span><span class="o">-</span><span class="n">mode</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">140</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">update</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="ow">in</span><span class="o">-</span><span class="n">alert</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">141</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">tx</span><span class="o">-</span><span class="n">attenuation</span><span class="o">-</span><span class="n">mdB</span> <span class="n">value</span><span class="p">:</span> <span class="mi">10000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">142</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rf</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">bandwidth</span><span class="o">-</span><span class="n">hz</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18000000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">143</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rf</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">bandwidth</span><span class="o">-</span><span class="n">hz</span> <span class="n">value</span><span class="p">:</span> <span class="mi">18000000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">144</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">qec</span><span class="o">-</span><span class="n">tracking</span><span class="o">-</span><span class="n">slow</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">145</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">dc</span><span class="o">-</span><span class="n">offset</span><span class="o">-</span><span class="n">count</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="nb">range</span> <span class="n">value</span><span class="p">:</span> <span class="mi">50</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">146</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">dc</span><span class="o">-</span><span class="n">offset</span><span class="o">-</span><span class="n">count</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="nb">range</span> <span class="n">value</span><span class="p">:</span> <span class="mi">40</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">147</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">dc</span><span class="o">-</span><span class="n">offset</span><span class="o">-</span><span class="n">attenuation</span><span class="o">-</span><span class="n">low</span><span class="o">-</span><span class="nb">range</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">148</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">dc</span><span class="o">-</span><span class="n">offset</span><span class="o">-</span><span class="n">attenuation</span><span class="o">-</span><span class="n">high</span><span class="o">-</span><span class="nb">range</span> <span class="n">value</span><span class="p">:</span> <span class="mi">6</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">149</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">dc</span><span class="o">-</span><span class="n">offset</span><span class="o">-</span><span class="n">tracking</span><span class="o">-</span><span class="n">update</span><span class="o">-</span><span class="n">event</span><span class="o">-</span><span class="n">mask</span> <span class="n">value</span><span class="p">:</span> <span class="mi">5</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">150</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">clk</span><span class="o">-</span><span class="n">output</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">select</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">151</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">external</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">lo</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">152</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">external</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">lo</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">153</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">xo</span><span class="o">-</span><span class="n">disable</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">ext</span><span class="o">-</span><span class="n">refclk</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">154</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">trx</span><span class="o">-</span><span class="n">synthesizer</span><span class="o">-</span><span class="n">target</span><span class="o">-</span><span class="n">fref</span><span class="o">-</span><span class="n">overwrite</span><span class="o">-</span><span class="n">hz</span> <span class="n">value</span><span class="p">:</span> <span class="mi">80008000</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">155</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rx1</span><span class="o">-</span><span class="n">rx2</span><span class="o">-</span><span class="n">phase</span><span class="o">-</span><span class="n">inversion</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">156</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">tx</span><span class="o">-</span><span class="n">rf</span><span class="o">-</span><span class="n">port</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="n">select</span><span class="o">-</span><span class="n">lock</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">157</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rx</span><span class="o">-</span><span class="n">rf</span><span class="o">-</span><span class="n">port</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="n">select</span><span class="o">-</span><span class="n">lock</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">158</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">tx</span><span class="o">-</span><span class="n">rf</span><span class="o">-</span><span class="n">port</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="n">select</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">159</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rx</span><span class="o">-</span><span class="n">rf</span><span class="o">-</span><span class="n">port</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="n">select</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">160</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">split</span><span class="o">-</span><span class="n">gain</span><span class="o">-</span><span class="n">table</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">161</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="mi">1</span><span class="n">rx</span><span class="o">-</span><span class="mi">1</span><span class="n">tx</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">tx</span><span class="o">-</span><span class="n">num</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">162</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="mi">1</span><span class="n">rx</span><span class="o">-</span><span class="mi">1</span><span class="n">tx</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">rx</span><span class="o">-</span><span class="n">num</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">163</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="mi">2</span><span class="n">rx</span><span class="o">-</span><span class="mi">2</span><span class="n">tx</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">164</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">digital</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">tune</span><span class="o">-</span><span class="n">fir</span><span class="o">-</span><span class="n">disable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">165</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">digital</span><span class="o">-</span><span class="n">interface</span><span class="o">-</span><span class="n">tune</span><span class="o">-</span><span class="n">skip</span><span class="o">-</span><span class="n">mode</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">166</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">tx</span><span class="o">-</span><span class="n">fastlock</span><span class="o">-</span><span class="n">pincontrol</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">167</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rx</span><span class="o">-</span><span class="n">fastlock</span><span class="o">-</span><span class="n">pincontrol</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">168</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">rx</span><span class="o">-</span><span class="n">fastlock</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">ns</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">169</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">tx</span><span class="o">-</span><span class="n">fastlock</span><span class="o">-</span><span class="n">delay</span><span class="o">-</span><span class="n">ns</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">170</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">tdd</span><span class="o">-</span><span class="n">skip</span><span class="o">-</span><span class="n">vco</span><span class="o">-</span><span class="n">cal</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">171</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">tdd</span><span class="o">-</span><span class="n">use</span><span class="o">-</span><span class="n">dual</span><span class="o">-</span><span class="n">synth</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">172</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">debug</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">173</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">ensm</span><span class="o">-</span><span class="n">enable</span><span class="o">-</span><span class="n">txnrx</span><span class="o">-</span><span class="n">control</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">174</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">ensm</span><span class="o">-</span><span class="n">enable</span><span class="o">-</span><span class="n">pin</span><span class="o">-</span><span class="n">pulse</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">175</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">frequency</span><span class="o">-</span><span class="n">division</span><span class="o">-</span><span class="n">duplex</span><span class="o">-</span><span class="n">independent</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">176</span><span class="p">:</span> <span class="n">adi</span><span class="p">,</span><span class="n">frequency</span><span class="o">-</span><span class="n">division</span><span class="o">-</span><span class="n">duplex</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="n">enable</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1</span>
+                                <span class="n">debug</span> <span class="n">attr</span> <span class="mi">177</span><span class="p">:</span> <span class="n">direct_reg_access</span> <span class="n">value</span><span class="p">:</span> <span class="mh">0x0</span>
+        <span class="n">iio</span><span class="p">:</span><span class="n">device4</span><span class="p">:</span> <span class="n">cf</span><span class="o">-</span><span class="n">ad9361</span><span class="o">-</span><span class="n">lpc</span> <span class="p">(</span><span class="n">buffer</span> <span class="n">capable</span><span class="p">)</span>
+                <span class="mi">2</span> <span class="n">channels</span> <span class="n">found</span><span class="p">:</span>
+                        <span class="n">voltage0</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">le</span><span class="p">:</span><span class="n">S12</span><span class="o">/</span><span class="mi">16</span><span class="o">&gt;&gt;</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="mi">6</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">calibphase</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">calibbias</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">calibscale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">1.000000</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">samples_pps</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">device</span> <span class="p">(</span><span class="o">-</span><span class="mi">19</span><span class="p">)</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span> <span class="mi">3840000</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                        <span class="n">voltage1</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">le</span><span class="p">:</span><span class="n">S12</span><span class="o">/</span><span class="mi">16</span><span class="o">&gt;&gt;</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="mi">6</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">calibbias</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">calibphase</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.000000</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">calibscale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">1.000000</span>
+                                <span class="n">attr</span>  <span class="mi">3</span><span class="p">:</span> <span class="n">samples_pps</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">device</span> <span class="p">(</span><span class="o">-</span><span class="mi">19</span><span class="p">)</span>
+                                <span class="n">attr</span>  <span class="mi">4</span><span class="p">:</span> <span class="n">sampling_frequency_available</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span> <span class="mi">3840000</span>
+                                <span class="n">attr</span>  <span class="mi">5</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">30720000</span>
+                <span class="mi">2</span> <span class="n">buffer</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">watermark</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2048</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">data_available</span> <span class="n">value</span><span class="p">:</span> <span class="mi">0</span>
+                <span class="mi">2</span> <span class="n">debug</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">pseudorandom_err_check</span> <span class="n">value</span><span class="p">:</span> <span class="n">CH0</span> <span class="p">:</span> <span class="n">PN9</span> <span class="p">:</span> <span class="n">Out</span> <span class="n">of</span> <span class="n">Sync</span> <span class="p">:</span> <span class="n">PN</span> <span class="n">Error</span>
+<span class="n">CH1</span> <span class="p">:</span> <span class="n">PN9</span> <span class="p">:</span> <span class="n">Out</span> <span class="n">of</span> <span class="n">Sync</span> <span class="p">:</span> <span class="n">PN</span> <span class="n">Error</span>
+                                <span class="n">debug</span> <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">direct_reg_access</span> <span class="n">value</span><span class="p">:</span> <span class="mh">0x0</span>
+        <span class="n">iio</span><span class="p">:</span><span class="n">device2</span><span class="p">:</span> <span class="n">xadc</span>
+                <span class="mi">10</span> <span class="n">channels</span> <span class="n">found</span><span class="p">:</span>
+                        <span class="n">voltage5</span><span class="p">:</span> <span class="n">vccoddr</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1832</span>
+                        <span class="n">voltage0</span><span class="p">:</span> <span class="n">vccint</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1374</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                        <span class="n">voltage4</span><span class="p">:</span> <span class="n">vccpaux</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2446</span>
+                        <span class="n">temp0</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">3</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">123.040771484</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">offset</span> <span class="n">value</span><span class="p">:</span> <span class="o">-</span><span class="mi">2219</span>
+                                <span class="n">attr</span>  <span class="mi">2</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2637</span>
+                        <span class="n">voltage7</span><span class="p">:</span> <span class="n">vrefn</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span>
+                        <span class="n">voltage1</span><span class="p">:</span> <span class="n">vccaux</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">2440</span>
+                        <span class="n">voltage2</span><span class="p">:</span> <span class="n">vccbram</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1371</span>
+                        <span class="n">voltage3</span><span class="p">:</span> <span class="n">vccpint</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1367</span>
+                        <span class="n">voltage8</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">3673</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.244140625</span>
+                        <span class="n">voltage6</span><span class="p">:</span> <span class="n">vrefp</span> <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">1695</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.732421875</span>
+                <span class="mi">1</span> <span class="n">device</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">sampling_frequency</span> <span class="n">value</span><span class="p">:</span> <span class="mi">961538</span>
+        <span class="n">iio</span><span class="p">:</span><span class="n">device0</span><span class="p">:</span> <span class="n">adm1177</span>
+                <span class="mi">2</span> <span class="n">channels</span> <span class="n">found</span><span class="p">:</span>
+                        <span class="n">voltage0</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">6.433105468</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">724</span>
+                        <span class="n">current0</span><span class="p">:</span>  <span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+                        <span class="mi">2</span> <span class="n">channel</span><span class="o">-</span><span class="n">specific</span> <span class="n">attributes</span> <span class="n">found</span><span class="p">:</span>
+                                <span class="n">attr</span>  <span class="mi">0</span><span class="p">:</span> <span class="n">raw</span> <span class="n">value</span><span class="p">:</span> <span class="mi">853</span>
+                                <span class="n">attr</span>  <span class="mi">1</span><span class="p">:</span> <span class="n">scale</span> <span class="n">value</span><span class="p">:</span> <span class="mf">0.516601562</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div></section>
+</section>
+<section id="iio-readdev">
+<span id="libiio-iio-readdev"></span><h2>iio_readdev<a class="headerlink" href="#iio-readdev" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">iio_readdev</span></code> is part of the <a class="reference internal" href="index.html#libiio"><span class="std std-ref">Libiio</span></a> package and allows to
+read an IIO buffer device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_readdev -h
+Usage:
+    iio_readdev [-n &lt;hostname&gt;] [-t &lt;trigger&gt;] [-T &lt;timeout-ms&gt;] [-b &lt;buffer-size&gt;] [-s &lt;samples&gt;] &lt;iio_device&gt; [&lt;channel&gt; ...]
+
+Options:
+    -h, --help
+            Show this help and quit.
+    -n, --network
+            Use the network backend with the provided hostname.
+    -u, --uri
+            Use the context with the provided URI.
+    -t, --trigger
+            Use the specified trigger.
+    -b, --buffer-size
+            Size of the capture buffer. Default is 256.
+    -s, --samples
+            Number of samples to capture, 0 = infinite. Default is 0.
+    -T, --timeout
+            Buffer timeout in milliseconds. 0 = no timeout
+    -a, --auto
+            Scan for available contexts and if only one is available use it.
+</pre></div>
+</div>
+<section id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>A quick example, captures 4 frames of 256 samples, (1024 samples in total), from
+the receive side of the ADALM-PLUTO.</p>
+<ol class="arabic">
+<li><p>Find the device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~/github/libiio/build$ iio_info -s
+Library version: 0.9 (git tag: 263bd08)
+Compiled with backends: local xml ip usb serial
+Available contexts:
+    0: 0456:b673 (Analog Devices Inc. PlutoSDR (ADALM-PLUTO)), serial=104473222a87000c0a000e009b8ed5102e [usb:3.80.5]
+</pre></div>
+</div>
+</li>
+<li><p>Find the streaming device</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_attr -u usb:3.80.5 -s -c ad
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;voltage0&#39; (output, index: 0, format: le:S16/16&gt;&gt;0)
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;voltage1&#39; (output, index: 1, format: le:S16/16&gt;&gt;0)
+dev &#39;cf-ad9361-lpc&#39;, channel &#39;voltage0&#39; (input, index: 0, format: le:S12/16&gt;&gt;0)
+dev &#39;cf-ad9361-lpc&#39;, channel &#39;voltage1&#39; (input, index: 1, format: le:S12/16&gt;&gt;0)
+</pre></div>
+</div>
+<p>In this case (which happens to use the ADALM-PLUTO, it is <code class="docutils literal notranslate"><span class="pre">cf-ad9361-lpc</span></code>
+for the input (rx), and <code class="docutils literal notranslate"><span class="pre">cf-ad9361-dds-core-lpc</span></code> for the output.</p>
+</li>
+<li><p>Put the device into Digital loopback mode, so we know what we should be
+seeing</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_attr -u usb:3.80.5  -D ad9361-phy loopback 1
+dev &#39;ad9361-phy&#39;, debug attr &#39;loopback&#39;, value :&#39;0&#39;
+wrote 2 bytes to loopback
+dev &#39;ad9361-phy&#39;, debug attr &#39;loopback&#39;, value :&#39;1&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Set the DDS to something slow, so it is easier to see, and we don’t alias
+when looking at things in the time domain.
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_attr -a -c cf-ad9361-dds-core-lpc altvoltage0 frequency 50000
+Using auto-detected IIO context at URI &quot;usb:2.26.5&quot;
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage0&#39; (output), id &#39;TX1_I_F1&#39;, attr &#39;frequency&#39;, value &#39;9279985&#39;
+wrote 5 bytes to frequency
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage0&#39; (output), id &#39;TX1_I_F1&#39;, attr &#39;frequency&#39;, value &#39;50034&#39;
+
+analog@imhotep:~$ iio_attr -a -c cf-ad9361-dds-core-lpc altvoltage2 frequency 50000
+Using auto-detected IIO context at URI &quot;usb:2.26.5&quot;
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage2&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;frequency&#39;, value &#39;9279985&#39;
+wrote 5 bytes to frequency
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage2&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;frequency&#39;, value &#39;50034&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Set the amplitude of the DDS, so you know what it is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_attr -a -c cf-ad9361-dds-core-lpc altvoltage0 scale 0.4
+Using auto-detected IIO context at URI &quot;usb:2.26.5&quot;
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage0&#39; (output), id &#39;TX1_I_F1&#39;, attr &#39;scale&#39;, value &#39;0.000000&#39;
+wrote 4 bytes to scale
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage0&#39; (output), id &#39;TX1_I_F1&#39;, attr &#39;scale&#39;, value &#39;0.400024&#39;
+
+analog@imhotep:~$ **iio_attr -a -c cf-ad9361-dds-core-lpc altvoltage1 scale 0.0**
+Using auto-detected IIO context at URI &quot;usb:2.26.5&quot;
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage1&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;scale&#39;, value &#39;0.000000&#39;
+wrote 4 bytes to scale
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage1&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;scale&#39;, value &#39;0.000000&#39;
+
+analog@imhotep:~$ **iio_attr -a -c cf-ad9361-dds-core-lpc altvoltage2 scale 0.4**
+Using auto-detected IIO context at URI &quot;usb:2.26.5&quot;
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage2&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;scale&#39;, value &#39;0.000000&#39;
+wrote 4 bytes to scale
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage2&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;scale&#39;, value &#39;0.400024&#39;
+
+analog@imhotep:~$ **iio_attr -a -c cf-ad9361-dds-core-lpc altvoltage3 scale 0.0**
+Using auto-detected IIO context at URI &quot;usb:2.26.5&quot;
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage3&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;scale&#39;, value &#39;0.000000&#39;
+wrote 4 bytes to scale
+dev &#39;cf-ad9361-dds-core-lpc&#39;, channel &#39;altvoltage3&#39; (output), id &#39;TX1_I_F2&#39;, attr &#39;scale&#39;, value &#39;0.000000&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Set the sample rate to something reasonable for the DDS frequency</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_attr -a -i -c ad9361-phy voltage0 sampling_frequency 3000000
+Using auto-detected IIO context at URI &quot;usb:2.29.5&quot;
+dev &#39;ad9361-phy&#39;, channel &#39;voltage0&#39; (input), attr &#39;sampling_frequency&#39;, value &#39;3000000&#39;
+wrote 8 bytes to sampling_frequency
+dev &#39;ad9361-phy&#39;, channel &#39;voltage0&#39; (input), attr &#39;sampling_frequency&#39;, value &#39;3000000&#39;
+</pre></div>
+</div>
+</li>
+<li><p>Capture 1024 samples in 256 sample buffers</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_readdev -u usb:3.80.5 -b 256 -s 1024 cf-ad9361-lpc &gt; samples.dat
+</pre></div>
+</div>
+</li>
+<li><p>Check the data via <code class="docutils literal notranslate"><span class="pre">hexdump</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ hexdump -d ./samples.dat | less
+0000000   64086   65499   64097   65352   64124   65206   64165   65064
+0000010   64220   64926   64289   64794   64371   64670   64466   64555
+0000020   64572   64451   64688   64358   64813   64278   64946   64211
+0000030   65085   64158   65228   64119   65374   64095   65520   64086
+0000040   00131   64092   00277   64113   00421   64148   00561   64199
+0000050   00695   64263   00822   64341   00940   64431   01048   64533
+0000060   01145   64646   01230   64768   01302   64898   01360   65035
+0000070   01404   65177   01433   65322   01448   65468   01447   00079
+0000080   01431   00225   01401   00370   01356   00512   01296   00648
+</pre></div>
+</div>
+</li>
+<li><p>Plot the results in gnuplot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ gnuplot
+gnuplot&gt; **plot &#39;samples.dat&#39; binary format=&#39;%short%short&#39; using 1 with lines, &#39;samples.dat&#39; binary format=&#39;%short%short&#39; using 2 with lines**
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../_images/sine_wave_pluto.png"><img alt="../../../_images/sine_wave_pluto.png" src="../../../_images/sine_wave_pluto.png" style="width: 600px;" />
+</a>
+</li>
+<li><p>If you can see discontinuities then the sample rate is too high, so check
+that.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_attr -a -i -c ad9361-phy voltage0 sampling_frequency
+dev &#39;ad9361-phy&#39;, channel &#39;voltage0&#39; (input), attr &#39;sampling_frequency&#39;, value &#39;30720000&#39;
+</pre></div>
+</div>
+<p>You can expect that 30.72 MSPS is too fast to stream over USB with zero gaps
+between buffers. Increasing the buffer length is the best thing to do.</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="iio-writedev">
+<span id="libiio-iio-writedev"></span><h2>iio_writedev<a class="headerlink" href="#iio-writedev" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">iio_writedev</span></code> is part of the <a class="reference internal" href="index.html#libiio"><span class="std std-ref">Libiio</span></a> package and allows to
+write an IIO buffer device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>analog@imhotep:~$ iio_writedev -h
+Usage:
+        iio_writedev [-n &lt;hostname&gt;] [-t &lt;trigger&gt;] [-T &lt;timeout-ms&gt;] [-b &lt;buffer-size&gt;] [-s &lt;samples&gt;] &lt;iio_device&gt; [&lt;channel&gt; ...]
+
+Options:
+        -h, --help
+                        Show this help and quit.
+        -n, --network
+                        Use the network backend with the provided hostname.
+        -u, --uri
+                        Use the context with the provided URI.
+        -t, --trigger
+                        Use the specified trigger.
+        -b, --buffer-size
+                        Size of the capture buffer. Default is 256.
+        -s, --samples
+                        Number of samples to write, 0 = infinite. Default is 0.
+        -T, --timeout
+                        Buffer timeout in milliseconds. 0 = no timeout
+        -a, --auto
+                        Scan for available contexts and if only one is available use it.
+        -c, --cyclic
+                        Use cyclic buffer mode.
+</pre></div>
+</div>
+<section id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># iio_readdev -b 100000 cf-ad9361-lpc | iio_writedev -b 100000 cf-ad9361-dds-core-lpc</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+              <div class="related">
+                &nbsp;
+    <a href="internals.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">About libiio</a>
+    <a href="../pyadi-iio/index.html" title="Next document (Alt+Shift+RightArrow)" class="next">PyADI-IIO</a>
+              </div>
+          
+        </div>
+      </div>
+  </div>
+
+  <div id="vertical-border"></div>
+
+  <label id="cancel-area-show-toc" for="input-show-toc"></label>
+  <label id="cancel-area-show-localtoc" for="input-show-localtoc"></label>
+    <footer>
+      &#169;2024, Analog Devices, Inc.
+      
+      |
+      Made with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+      &amp; <a href="https://github.com/analogdevicesinc/doctools">Doctools</a>
+      
+    </footer>
+  </body>
+</html>
