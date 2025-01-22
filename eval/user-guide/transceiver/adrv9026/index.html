@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Quickstart &#8212; System Level Documentation  documentation</title>
+    <title>ADRV9026 &amp; ADRV9029 &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8e8a900e" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/style.min.css?v=a9555194" />
     <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
@@ -15,8 +15,8 @@
     <link rel="icon" href="../../../../_static/icon.svg"/>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="ZCU102 Quickstart" href="zynqmp.html" />
-    <link rel="prev" title="Prerequisites" href="../prerequisites.html" />
+    <link rel="next" title="Prerequisites" href="prerequisites.html" />
+    <link rel="prev" title="Basic IQ Datafiles" href="../adrv9009/basic-iq-datafiles.html" />
    
   
   <meta name="global_root" content="../../../../../">
@@ -98,15 +98,16 @@
         </div>
         <nav>
           <ul>
-<li><a class="reference internal" href="#">Quickstart</a><ul>
-<li><a class="reference internal" href="#supported-carriers">Supported carriers</a></li>
-<li><a class="reference internal" href="#supported-environments">Supported Environments</a></li>
-<li><a class="reference internal" href="#hardware-setup">Hardware Setup</a><ul>
-<li><a class="reference internal" href="#zcu102-eval-adrv9026-adrv9029">ZCU102 + EVAL-ADRV9026/ADRV9029</a></li>
-<li><a class="reference internal" href="#vck190-eval-adrv9026-adrv9029">VCK190 + EVAL-ADRV9026/ADRV9029</a></li>
+<li><a class="reference internal" href="#">ADRV9026 &amp; ADRV9029</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of Contents</a></li>
+<li><a class="reference internal" href="#block-diagram">Block diagram</a></li>
+<li><a class="reference internal" href="#videos">Videos</a><ul>
+<li><a class="reference internal" href="#software-defined-radio-using-the-linux-iio-framework">Software Defined Radio using the Linux IIO Framework</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#unboxing-guide">Unboxing guide</a></li>
+<li><a class="reference internal" href="#adi-articles">ADI Articles</a></li>
+<li><a class="reference internal" href="#mathworks-webinars">MathWorks Webinars</a></li>
+<li><a class="reference internal" href="#warning">Warning</a></li>
 </ul>
 </li>
 </ul>
@@ -146,31 +147,28 @@ Content on this topic
   <html>
   <body><p class="caption" role="heading"><span class="caption-text">Kuiper &amp; Linux Kernel</span></p>
 <ul>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1" id="toctree-collapse-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/kuiper/index.html">Kuiper Linux</a><label for="toctree-collapse-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/release-notes.html">Release notes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/sdcard/index.html">SD Card flashing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/project-list.html">Project list</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/update.html">Updating</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1" id="toctree-collapse-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/index.html">Linux drivers</a><label for="toctree-collapse-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1-1" id="toctree-collapse-1-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/iio-adc/index.html">IIO ADC</a><label for="toctree-collapse-1-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../linux/drivers/iio-adc/ad4052/index.html">AD4052</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2" id="toctree-collapse-2"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/index.html">Linux drivers</a><label for="toctree-collapse-2"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1" id="toctree-collapse-2-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/iio-transceiver/index.html">IIO Transceivers</a><label for="toctree-collapse-2-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1-1" id="toctree-collapse-2-1-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/iio-transceiver/adrv9009/index.html">ADRV9009, ADRV9008-1, ADRV9008-2</a><label for="toctree-collapse-2-1-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1-2" id="toctree-collapse-1-2"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/iio-transceiver/index.html">IIO Transceivers</a><label for="toctree-collapse-1-2"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1-2-1" id="toctree-collapse-1-2-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/iio-transceiver/adrv9009/index.html">ADRV9009, ADRV9008-1, ADRV9008-2</a><label for="toctree-collapse-1-2-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../linux/drivers/iio-transceiver/adrv9009/customization.html">Customization</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-2" id="toctree-collapse-2-2"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/iio/index.html">Linux Industrial I/O Subsystem</a><label for="toctree-collapse-2-2"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-1-3" id="toctree-collapse-1-3"/><div class="collapse"><a class="reference internal" href="../../../../linux/drivers/iio/index.html">Linux Industrial I/O Subsystem</a><label for="toctree-collapse-1-3"><div class="icon"></div></label></div><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../linux/drivers/iio/iio-trig-sysfs.html">iio-trig-sysfs driver</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../linux/drivers/iio/iio-trig-bfin-timer.html">iio-trig-bfin-timer driver</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-3" id="toctree-collapse-3"/><div class="collapse"><a class="reference internal" href="../../../../linux/kernel/index.html">Kernel and devicetrees</a><label for="toctree-collapse-3"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-3-1" id="toctree-collapse-3-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/kernel/petalinux.html">Building with Petalinux</a><label for="toctree-collapse-3-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-3-1-1" id="toctree-collapse-3-1-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/kernel/petalinux-dts/index.html">Petalinux Device Trees</a><label for="toctree-collapse-3-1-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2" id="toctree-collapse-2"/><div class="collapse"><a class="reference internal" href="../../../../linux/kernel/index.html">Kernel and devicetrees</a><label for="toctree-collapse-2"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1" id="toctree-collapse-2-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/kernel/petalinux.html">Building with Petalinux</a><label for="toctree-collapse-2-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1-1" id="toctree-collapse-2-1-1"/><div class="collapse"><a class="reference internal" href="../../../../linux/kernel/petalinux-dts/index.html">Petalinux Device Trees</a><label for="toctree-collapse-2-1-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../../../linux/kernel/petalinux-dts/petalinux-custom-dts.html">Custom Device Trees with meta-adi</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../linux/kernel/petalinux-dts/petalinux-meta-adi-bypass.html">Custom Device Trees with DTG (meta-adi Bypass)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../linux/kernel/petalinux-dts/petalinux-system-user.html">Device Tree Modifications with system-user.dtsi</a></li>
@@ -178,6 +176,13 @@ Content on this topic
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-3" id="toctree-collapse-3"/><div class="collapse"><a class="reference internal" href="../../../../linux/kuiper/index.html">Kuiper Linux</a><label for="toctree-collapse-3"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/release-notes.html">Release notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/sdcard/index.html">SD Card flashing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/project-list.html">Project list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../linux/kuiper/update.html">Updating</a></li>
 </ul>
 </li>
 </ul>
@@ -214,21 +219,25 @@ Content on this topic
 <p class="caption" role="heading"><span class="caption-text">Evaluation Boards</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8" id="toctree-collapse-8" checked=""/><div class="collapse"><a class="reference internal" href="../../index.html">User guides</a><label for="toctree-collapse-8"><div class="icon"></div></label></div><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../eval-adxl355-pmdz/index.html">EVAL-ADXL355-PMDZ User Guide</a></li>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-1" id="toctree-collapse-8-1"/><div class="collapse"><a class="reference internal" href="../../adrv9009/index.html">ADRV9009 &amp; ADRV9008</a><label for="toctree-collapse-8-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../adrv9009/prerequisites.html">Prerequisites</a></li>
-<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-1-1" id="toctree-collapse-8-1-1"/><div class="collapse"><a class="reference internal" href="../../adrv9009/quickstart/index.html">Quickstart</a><label for="toctree-collapse-8-1-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../adrv9009/quickstart/zynqmp.html">ZCU102</a></li>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-1" id="toctree-collapse-8-1"/><div class="collapse"><a class="reference internal" href="../../adc/ad4052-ardz/index.html">EVAL-AD4050/AD4052-ARDZ</a><label for="toctree-collapse-8-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../adc/ad4052-ardz/user-guide.html">Evaluating the device</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../adrv9009/basic-iq-datafiles.html">Basic IQ Datafiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mem/adxl355-pmdz/index.html">EVAL-ADXL355-PMDZ</a></li>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-2" id="toctree-collapse-8-2"/><div class="collapse"><a class="reference internal" href="../adrv9009/index.html">ADRV9009 &amp; ADRV9008</a><label for="toctree-collapse-8-2"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../adrv9009/prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-2-1" id="toctree-collapse-8-2-1"/><div class="collapse"><a class="reference internal" href="../adrv9009/quickstart/index.html">Quickstart</a><label for="toctree-collapse-8-2-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l4"><a class="reference internal" href="../adrv9009/quickstart/zynqmp.html">ZCU102</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-2" id="toctree-collapse-8-2" checked=""/><div class="collapse"><a class="reference internal" href="../index.html">ADRV9026 &amp; ADRV9029</a><label for="toctree-collapse-8-2"><div class="icon"></div></label></div><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../prerequisites.html">Prerequisites</a></li>
-<li class="toctree-l3 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-2-1" id="toctree-collapse-8-2-1" checked=""/><div class="collapse"><a class="current reference internal" href="#">Quickstart</a><label for="toctree-collapse-8-2-1"><div class="icon"></div></label></div><ul>
-<li class="toctree-l4"><a class="reference internal" href="zynqmp.html">ZCU102</a></li>
-<li class="toctree-l4"><a class="reference internal" href="versal.html">VCK190</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adrv9009/basic-iq-datafiles.html">Basic IQ Datafiles</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-3" id="toctree-collapse-8-3" checked=""/><div class="collapse"><a class="current reference internal" href="#">ADRV9026 &amp; ADRV9029</a><label for="toctree-collapse-8-3"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8-3-1" id="toctree-collapse-8-3-1"/><div class="collapse"><a class="reference internal" href="quickstart/index.html">Quickstart</a><label for="toctree-collapse-8-3-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/zynqmp.html">ZCU102</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart/versal.html">VCK190</a></li>
 </ul>
 </li>
 </ul>
@@ -320,9 +329,12 @@ Content on this topic
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing and Guidelines</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/forking_publishing.html">Forking and publishing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/creating_new_pages.html">Creating new pages</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-15" id="toctree-collapse-15"/><div class="collapse"><a class="reference internal" href="../../../../contributing/creating_new_pages.html">Creating new pages</a><label for="toctree-collapse-15"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../contributing/template/eval.html">Evaluation Boards</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing/docs_guidelines.html">Documentation guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing/forking_publishing.html">Forking and publishing</a></li>
 </ul>
 </body>
 </html>
@@ -336,175 +348,150 @@ Content on this topic
         <div class="bodywrapper" id="top-anchor">
           <div class="body" role="main">
             
-  <section id="quickstart">
-<span id="adrv9026-quickstart"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h1>
-<p>The Quick Start Guides provide a simple step by step instruction on how to do
-an initial system setup for the <a class="icon adi reference external" href="https://www.analog.com/EVAL-ADRV9026">EVAL-ADRV9026/ADRV9029</a>
-boards on various FPGA development boards. They will discuss how to program the
-bitstream, run a no-OS program or boot a Linux distribution.</p>
+  <section id="adrv9026-adrv9029">
+<span id="adrv9026"></span><h1>ADRV9026 &amp; ADRV9029<a class="headerlink" href="#adrv9026-adrv9029" title="Link to this heading"></a></h1>
+<a class="reference internal image-reference" href="../../../../_images/adrv9026-bc.webp"><img alt="../../../../_images/adrv9026-bc.webp" class="align-left" src="../../../../_images/adrv9026-bc.webp" style="width: 150px;" />
+</a>
+<p>The <a class="icon adi reference external" href="https://www.analog.com/EVAL-ADRV9026">EVAL-ADRV9026/ADRV9029</a>, are FMC radio cards for the
+<a class="icon adi reference external" href="https://www.analog.com/ADRV9026">ADRV9026</a> and <a class="icon adi reference external" href="https://www.analog.com/ADRV9029">ADRV9029</a>, highly integrated, radio frequency (RF)
+agile transceivers offering four independently controlled transmitters,
+dedicated observation receiver inputs for monitoring each transmitter channel,
+four independently controlled receivers, integrated synthesizers, and digital
+signal processing functions providing complete transceiver solutions. The
+devices provide the performance demanded by cellular infrastructure
+applications, such as small cell base station radios, macro 3G/4G/5G systems,
+and massive multiple in/multiple out (MIMO) base stations.</p>
+<img alt="../../../../_images/adrv9026-pcb.png" class="align-center" src="../../../../_images/adrv9026-pcb.png" />
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="zynqmp.html">ZCU102</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="zynqmp.html#required-software">Required Software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="zynqmp.html#required-hardware">Required Hardware</a></li>
-<li class="toctree-l2"><a class="reference internal" href="zynqmp.html#testing">Testing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="zynqmp.html#console-output">Console Output</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="zynqmp.html#iio-oscilloscope-remote">IIO Oscilloscope Remote</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="versal.html">VCK190</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="versal.html#required-software">Required Software</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versal.html#required-hardware">Required Hardware</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versal.html#testing">Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versal.html#acap-sdcard-boot-files">ACAP SDcard boot files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versal.html#setting-up-uart">Setting up UART</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versal.html#boot-messages">Boot messages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="versal.html#console-output">Console Output</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="versal.html#iio-oscilloscope-remote">IIO Oscilloscope Remote</a></li>
-</ul>
-</li>
-</ul>
 </div>
-<section id="supported-carriers">
-<span id="adrv9026-carriers"></span><h2>Supported carriers<a class="headerlink" href="#supported-carriers" title="Link to this heading"></a></h2>
-<p>The <a class="icon adi reference external" href="https://www.analog.com/EVAL-ADRV9026">EVAL-ADRV9026/ADRV9029</a>, is, by definition a “FPGA
-mezzanine card” (FMC), that means it needs a carrier to plug into.
-The carriers we support are:</p>
-<div class="table-wrapper docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Board</p></th>
-<th class="head"><p>EVAL-ADRV9026</p></th>
-<th class="head"><p>EVAL-ADRV9029</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/ZCU102">ZCU102</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.xilinx.com/KC705">KC705</a></p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/VC707">VC707</a></p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.xilinx.com/KCU105">KCU105</a></p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/ZC706">ZC706</a></p></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.xilinx.com/VCU118">VCU118</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/VCK190">VCK190</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.intel.com/content/www/us/en/products/details/fpga/arria/10.html">Arria 10 SoC</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-</tbody>
-</table>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading"></a></h2>
+<p>People who follow the flow that is outlined, have a much better experience with
+things. However, like many things, documentation is never as complete as it
+should be. If you have any questions, feel free to
+<a class="reference internal" href="../../../../user-guide/ad-fmcomms2-ebz/help-and-support.html#ad-fmcomms2-ebz-help-and-support"><span class="std std-ref">ask</span></a>.</p>
+<ol class="arabic simple">
+<li><p>Use the board to better understand the ADRV9026/ADRV9029</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="prerequisites.html#adrv9026-prerequisites"><span class="std std-ref">What you need to get started</span></a></p></li>
+<li><p><a class="reference internal" href="quickstart/index.html#adrv9026-quickstart"><span class="std std-ref">Quick Start Guides</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="quickstart/zynqmp.html#adrv9026-quickstart-zynqmp"><span class="std std-ref">Linux on ZCU102</span></a></p></li>
+<li><p><a class="reference internal" href="../../../../linux/kuiper/sdcard/index.html#kuiper-sdcard"><span class="std std-ref">Configure a pre-existing SD Card</span></a></p></li>
+<li><p><a class="reference internal" href="../../../../linux/kuiper/update.html#kuiper-update"><span class="std std-ref">Update the old card you received with your hardware</span></a></p></li>
+</ol>
+</li>
+<li><p>Linux Applications</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="../../../../software/iio-oscilloscope/index.html#iio-oscilloscope"><span class="std std-ref">IIO Oscilloscope</span></a></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Design with the ADRV9026/ADRV9029</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#adrv9026-blockdiagram"><span class="std std-ref">Block diagram</span></a></p>
+<ol class="arabic simple">
+<li><p><a class="icon adi reference external" href="https://www.analog.com/ADRV9026">ADRV9026 Product page</a></p></li>
+<li><p><a class="icon adi reference external" href="https://www.analog.com/ADRV9029">ADRV9029 Product page</a></p></li>
+<li><p><a class="icon adi reference external" href="https://www.analog.com/en/design-center/landing-pages/001/integrated-rf-agile-transceiver-design-resources.html">Full Datasheet and chip design package</a></p></li>
+</ol>
+</li>
+<li><p>Hardware in the Loop / How to design your own custom BaseBand</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-software/gnuradio">GNU Radio</a></p></li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/transceiver-toolbox">Transceiver Toolbox</a></p></li>
+</ol>
+</li>
+<li><p>Design a custom ADRV9026/ADRV9029 based platform</p>
+<ol class="arabic simple">
+<li><p>Linux software</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/adrv9025">ADRV9026/ADRV9029 Linux Device Driver</a></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/adrv9025-customization">ADRV9026/ADRV9029 Device Driver Customization</a></p></li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/ad-fmcomms2-ebz/software/linux/zynq_tips_tricks">Customizing the devicetree on the target</a></p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/jesd204/jesd204-fsm-framework">JESD204 (FSM) Interface Linux Kernel Framework</a></p></li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-pll/ad9528">AD9528 Low Jitter Clock Generator Linux Driver</a></p></li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/axi-dmac">AXI-DMAC DMA Controller Linux Driver</a></p></li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/jesd204/axi_jesd204_tx">JESD204B Transmit Linux Driver</a></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-software/jesd_status">JESD204B Status Utility</a></p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/jesd204/axi_jesd204_rx">JESD204B Receive Linux Driver</a></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-software/jesd_status">JESD204B Status Utility</a></p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/jesd204/axi_adxcvr">JESD204B/C AXI_ADXCVR Highspeed Transceivers Linux Driver</a></p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-software/jesd_eye_scan">JESD204 Eye Scan</a></p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-adc/axi-adc-hdl">AXI ADC HDL Linux Driver</a></p></li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-dds/axi-dac-dds-hdl">AXI DAC HDL Linux Driver</a></p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/rf-trx-vcxo-and-profiles">Changing the VCXO frequency and updating the default RF Transceiver Profile</a></p></li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/adrv9026/ad9026_hdl">HDL Reference Design</a> which you must use in your FPGA.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/ad-fmcomms1-ebz/math">Additional Documentation about SDR Signal Chains - The math behind the RF</a></p></li>
+<li><p><a class="reference internal" href="../../../../user-guide/ad-fmcomms2-ebz/help-and-support.html#ad-fmcomms2-ebz-help-and-support"><span class="std std-ref">Help and Support</span></a></p></li>
+</ol>
+</section>
+<section id="block-diagram">
+<span id="adrv9026-blockdiagram"></span><h2>Block diagram<a class="headerlink" href="#block-diagram" title="Link to this heading"></a></h2>
+<img alt="../../../../_images/blockdiagram1.png" src="../../../../_images/blockdiagram1.png" />
+</section>
+<section id="videos">
+<h2>Videos<a class="headerlink" href="#videos" title="Link to this heading"></a></h2>
+<section id="software-defined-radio-using-the-linux-iio-framework">
+<h3>Software Defined Radio using the Linux IIO Framework<a class="headerlink" href="#software-defined-radio-using-the-linux-iio-framework" title="Link to this heading"></a></h3>
+<div class="embed-video"><video class="only-screen" controls="controls"><source src="http://ftp.fau.de/fosdem/2015/devroom-software_defined_radio/iiosdr.mp4" type="video/mp4"></source></video><span class="only-screen"></span><div class="admonition video only-print"><p class="admonition-title">Video</p>
+<p><a href="http://ftp.fau.de/fosdem/2015/devroom-software_defined_radio/iiosdr.mp4"><span>http://ftp.fau.de/fosdem/2015/devroom-software_defined_radio/iiosdr.mp4</span></a></p>
+</div></div></section>
+</section>
+<section id="adi-articles">
+<h2>ADI Articles<a class="headerlink" href="#adi-articles" title="Link to this heading"></a></h2>
+<p>#. Four Quick Steps to Production: Using Model-Based Design for
+Software-Defined Radio</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="icon adi reference external" href="https://www.analog.com/library/analogDialogue/archives/49-09/four-step-sdr-01.html">Part 1 - The Analog Devices/Xilinx SDR Rapid Prototyping Platform: Its Capabilities, Benefits, and Tools</a></p></li>
+<li><p><a class="icon adi reference external" href="https://www.analog.com/library/analogDialogue/archives/49-10/four-step-sdr-02.html">Part 2 - Mode S Detection and Decoding Using MATLAB and Simulink</a></p></li>
+<li><p><a class="icon adi reference external" href="https://www.analog.com/library/analogDialogue/archives/49-11/four-step-sdr-03.html">Part 3 - Mode S Signals Decoding Algorithm Validation Using Hardware in the Loop</a></p></li>
+<li><p><a class="icon adi reference external" href="https://www.analog.com/library/analogDialogue/archives/49-12/four-step-sdr-04.html">Part 4 - Rapid Prototyping Using the Zynq SDR Kit and Simulink Code Generation Workflow</a></p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="mathworks-webinars">
+<h2>MathWorks Webinars<a class="headerlink" href="#mathworks-webinars" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://www.mathworks.com/videos/modelling-and-simulating-analog-devices-rf-transceivers-with-matlab-and-simrf-89934.html">Modelling and Simulating Analog Devices’ RF Transceivers with MATLAB and SimRF</a></p></li>
+<li><p><a class="reference external" href="https://www.mathworks.com/videos/getting-started-with-software-defined-radio-using-matlab-and-simulink-108646.html">Getting Started with Software-Defined Radio using MATLAB and Simulink</a></p></li>
+</ol>
+</section>
+<section id="warning">
+<h2>Warning<a class="headerlink" href="#warning" title="Link to this heading"></a></h2>
+<div><div class="esd-warning docutils container">
+<div class="icon"></div><p>All the products described on this page include ESD (electrostatic discharge) sensitive devices. Electrostatic charges as high as 4000V readily accumulate on the human body or test equipment and can discharge without detection.
+Although the boards feature ESD protection circuitry, permanent damage may occur on devices subjected to high-energy electrostatic discharges. Therefore, proper ESD precautions are recommended to avoid performance degradation or loss of functionality. This includes removing static charge on external equipment, cables, or antennas before connecting to the device. </p>
 </div>
-</section>
-<section id="supported-environments">
-<h2>Supported Environments<a class="headerlink" href="#supported-environments" title="Link to this heading"></a></h2>
-<p>The supported OS are:</p>
-<div class="table-wrapper docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Board</p></th>
-<th class="head"><p>HDL</p></th>
-<th class="head"><p>Linux Software</p></th>
-<th class="head"><p>No-OS Software</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/ZCU102">ZCU102</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.xilinx.com/KC705">KC705</a></p></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/VC707">VC707</a></p></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.xilinx.com/KCU105">KCU105</a></p></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/ZC706">ZC706</a></p></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.xilinx.com/VCU118">VCU118</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://www.xilinx.com/VCK190">VCK190</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://www.intel.com/content/www/us/en/products/details/fpga/arria/10.html">Arria 10 SoC</a></p></td>
-<td><p>Yes</p></td>
-<td><p>Yes</p></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="hardware-setup">
-<h2>Hardware Setup<a class="headerlink" href="#hardware-setup" title="Link to this heading"></a></h2>
-<p>In most carriers, the <a class="icon adi reference external" href="https://www.analog.com/EVAL-ADRV9026">EVAL-ADRV9026/ADRV9029</a> boards
-connects to the HPC1 connector (unless otherwise noted). The carrier setup
-requires power, UART (115200), ethernet (Linux), HDMI (if available) and/or
-JTAG (no-OS) connections. A few typical setups are shown below.</p>
-<section id="zcu102-eval-adrv9026-adrv9029">
-<h3>ZCU102 + EVAL-ADRV9026/ADRV9029<a class="headerlink" href="#zcu102-eval-adrv9026-adrv9029" title="Link to this heading"></a></h3>
-<a class="reference internal image-reference" href="../../../../_images/adrv9026_zcu102_quickstart.jpg"><img alt="../../../../_images/adrv9026_zcu102_quickstart.jpg" src="../../../../_images/adrv9026_zcu102_quickstart.jpg" style="width: 800px;" />
-</a>
-</section>
-<section id="vck190-eval-adrv9026-adrv9029">
-<h3>VCK190 + EVAL-ADRV9026/ADRV9029<a class="headerlink" href="#vck190-eval-adrv9026-adrv9029" title="Link to this heading"></a></h3>
-<a class="reference internal image-reference" href="../../../../_images/adrv9026_vck190_quickstart.jpg"><img alt="../../../../_images/adrv9026_vck190_quickstart.jpg" src="../../../../_images/adrv9026_vck190_quickstart.jpg" style="width: 800px;" />
-</a>
-</section>
-</section>
-<section id="unboxing-guide">
-<h2>Unboxing guide<a class="headerlink" href="#unboxing-guide" title="Link to this heading"></a></h2>
-<p><a class="icon ez reference external" href="https://ez.analog.com/cfs-file/__key/communityserver-discussions-components-files/703/AD9371-and-ADRV9026-setup-with-ZCU102-or-ZC706-April2019.pdf">Detailed unboxing guide</a></p>
-</section>
+</div></section>
 </section>
 
 
           </div>
               <div class="related">
                 &nbsp;
-    <a href="../prerequisites.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">Prerequisites</a>
-    <a href="zynqmp.html" title="Next document (Alt+Shift+RightArrow)" class="next">ZCU102 Quickstart</a>
+    <a href="../adrv9009/basic-iq-datafiles.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">Basic IQ Datafiles</a>
+    <a href="prerequisites.html" title="Next document (Alt+Shift+RightArrow)" class="next">Prerequisites</a>
               </div>
           
         </div>
