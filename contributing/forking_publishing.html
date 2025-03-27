@@ -102,7 +102,7 @@
 <li><a class="reference internal" href="#adding-content">Adding content</a></li>
 <li><a class="reference internal" href="#pushing-and-triggering-the-ci">Pushing and triggering the CI</a></li>
 <li><a class="reference internal" href="#resuming-work-at-a-later-time">Resuming work at a later time</a></li>
-<li><a class="reference internal" href="#conquer-git-lfs">Conquer git lfs</a><ul>
+<li><a class="reference internal" href="#conquer-git-lfs">Conquer git LFS</a><ul>
 <li><a class="reference internal" href="#files-that-should-have-been-pointers">Files that should have been pointers</a></li>
 <li><a class="reference internal" href="#checking-out-branches-and-commits">Checking out branches and commits</a></li>
 <li><a class="reference internal" href="#pull-request-permission">Pull request permission</a></li>
@@ -382,7 +382,7 @@ Content on this topic
 It ensures that GitHub Actions and GitHub Pages are enabled, so you can run
 continuous integration and see the pages live at <em>&lt;your_user&gt;.github.io/documentation</em>,
 and <a class="reference external" href="https://git-lfs.com/">git-lfs</a> artifacts are properly synced.
-To learn about git lfs and use it as a pro, read <a class="reference internal" href="#git-lfs"><span class="std std-ref">Conquer git lfs</span></a>.</p>
+To learn about git LFS and use it as a pro, read <a class="reference internal" href="#git-lfs"><span class="std std-ref">Conquer git LFS</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Using the Python virtual environment (venv) is recommended, but if you wish
@@ -598,9 +598,9 @@ clone and build the doc for the first time (working directory: repo root):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span><span class="nb">cd</span><span class="w"> </span>docs<span class="w"> </span><span class="p">;</span><span class="w"> </span>adoc<span class="w"> </span>serve<span class="o">)</span>
 </pre></div>
 </div>
-<div class="clear-left"></div></div></div><p>The server will fetch on demand the git lfs resource (smudge step) from the
+<div class="clear-left"></div></div></div><p>The server will fetch on demand the git LFS resource (smudge step) from the
 pages you visit on the local server, and watched files you touch.</p>
-<p>Alternatively, you can build it once calling Sphinx directly, but if the git lfs
+<p>Alternatively, you can build it once calling Sphinx directly, but if the git LFS
 smudge step was skipped, the images and other binary files will be missing.</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
 </pre></div>
@@ -703,13 +703,13 @@ configure GitHub Pages at <em>github.com/&lt;your_user&gt;/documentation/setting
 <div class="clear-left"></div></div></div><p>Edit, build, commit, push as usual.</p>
 </section>
 <section id="conquer-git-lfs">
-<span id="git-lfs"></span><h2>Conquer git lfs<a class="headerlink" href="#conquer-git-lfs" title="Link to this heading"></a></h2>
-<p>Since git lfs is not that common in the wild, it may be tricky to get the hang
+<span id="git-lfs"></span><h2>Conquer git LFS<a class="headerlink" href="#conquer-git-lfs" title="Link to this heading"></a></h2>
+<p>Since git LFS is not that common in the wild, it may be tricky to get the hang
 of it.</p>
 <p>First of all, the basics:
-lfs replaces binaries files with pointers, and stores the binaries outside the
+Git LFS replaces binaries files with pointers, and stores the binaries outside the
 git repository, in an external server.</p>
-<p>When you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone/pull</span></code>, by default lfs will also download the binaries
+<p>When you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone/pull</span></code>, by default LFS will also download the binaries
 at the “smudge” step.
 But we <strong>highly</strong> recommend to change this behaviour to fetch the artifacts on
 demand by setting globally <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span> <span class="pre">--skip-smudge</span></code> or temporally with
@@ -799,17 +799,17 @@ And to fix is simple:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
 </pre></div>
 </div>
-<div class="clear-left"></div></div></div><p>Then, advise the committer to ensure he has git lfs enabled with
+<div class="clear-left"></div></div></div><p>Then, advise the committer to ensure he has git LFS enabled with
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code> and to read this page.</p>
 </section>
 <section id="checking-out-branches-and-commits">
 <h3>Checking out branches and commits<a class="headerlink" href="#checking-out-branches-and-commits" title="Link to this heading"></a></h3>
-<p>Git lfs simply follows the rules on the <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/.gitattributes">.gitattributes</a> file.
+<p>Git LFS simply follows the rules on the <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/.gitattributes">.gitattributes</a> file.
 And some times you may encounter during checkout:</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>other_branch<span class="w"> </span>-f
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>other_branch
 </pre></div>
 </div>
 <div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>error: Your local changes to the following files would be overwritten by checkout:
@@ -829,9 +829,12 @@ If you don’t care about this file at the moment, just <code class="docutils li
 <div class="clear-left"></div></div></div></section>
 <section id="pull-request-permission">
 <h3>Pull request permission<a class="headerlink" href="#pull-request-permission" title="Link to this heading"></a></h3>
-<p>When a user opens a pull request, he temporally grants you write permission for their
-remove branch for commits, but not for git lfs storage, so pushing lfs artifacts to
-their remote will cause:</p>
+<blockquote>
+<div><p>When a user creates a pull request, they temporarily grant write permission
+for the removal of branches containing commits.
+However, this does not extend to LFS.
+As such, pushing LFS artifacts to their remote will result in:</p>
+</div></blockquote>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
 </pre></div>
 </div>
@@ -857,12 +860,13 @@ remote: Try to push them with &#39;git lfs push --all&#39;.
 To https://github.com/&lt;contributor&gt;/documentation.git
 </pre></div>
 </div>
-<div class="clear-left"></div></div></div><p>As a reviewer, this may get on the way and there is no particular fix for that beyond not pushing
-commits with new lfs artifacts, or awkwardly asking contributor permissions to their repository.</p>
-<p>If you want to add new lfs artifacts, as a reviewer, just merge the PR, and commit to main.
-If it is a complex PR, you can push to a new branch, and work from there and once you and the
-contributor are ratified, close the original PR without merging, merging the branch on the main
-remote instead.</p>
+<div class="clear-left"></div></div></div><p>As a reviewer, this gets on the way and there is no straightforward
+solution beyond not pushing commits with new LFS artifacts, or awkwardly requesting
+contributor permissions to their repository.</p>
+<p>If you wish to add new LFS artifacts, as a reviewer, simply merge the PR and commit to main.
+If the pull request is complex, you can push to a new branch, work on it, and
+once both parties are satisfied, close the original PR without merging, merging
+the branch onto the main remote instead.</p>
 </section>
 </section>
 </section>
