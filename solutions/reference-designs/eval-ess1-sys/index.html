@@ -566,22 +566,19 @@ Browser GUI from below link:</p>
 <li><p>BMS Browser must be downloaded from MyAnalog as outlined above.</p></li>
 <li><p>Double click on <strong>bms_browser_gui_broadmarket-relX.Y.Z.exe</strong> to install the
 GUI.</p>
-<blockquote>
-<div><a class="reference internal image-reference" href="../../../_images/gui_install.png"><img alt="../../../_images/gui_install.png" class="align-center" src="../../../_images/gui_install.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/gui_install.png"><img alt="../../../_images/gui_install.png" class="align-center" src="../../../_images/gui_install.png" style="width: 500px;" />
 </a>
-</div></blockquote>
 </li>
-<li><p>Accept the license terms and click <strong>Next</strong> to proceed with the installation.</p>
+<li><p>Accept the license terms and click <strong>Next</strong> to proceed with the installation.</p></li>
+</ol>
 <blockquote>
 <div><a class="reference internal image-reference" href="../../../_images/gui_license.png"><img alt="../../../_images/gui_license.png" class="align-center" src="../../../_images/gui_license.png" style="width: 500px;" />
 </a>
 </div></blockquote>
-</li>
+<ol class="arabic">
 <li><p>Default installation directory will be in <strong>C:\Analog Devices\</strong></p>
-<blockquote>
-<div><a class="reference internal image-reference" href="../../../_images/gui_destination.png"><img alt="../../../_images/gui_destination.png" class="align-center" src="../../../_images/gui_destination.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../../../_images/gui_destination.png"><img alt="../../../_images/gui_destination.png" class="align-center" src="../../../_images/gui_destination.png" style="width: 500px;" />
 </a>
-</div></blockquote>
 </li>
 </ol>
 </section>
@@ -596,15 +593,13 @@ on the MCU board has been updated for other evaluation purposes.</p>
 <p>The MCU should be programmed using the following steps:</p>
 <p><strong>MAX326825PICO Debugger (One-time setup)</strong></p>
 <ol class="arabic">
-<li><p>Download the firmware file <a class="reference external" href="https://confluence.analog.com/download/attachments/984201370/max32625_max32690evkit_if_crc_swd_v1.0.7.bin?version=1&amp;modificationDate=1709666334248&amp;api=v2">firmware file</a> for the MAX32625PICO board.</p></li>
+<li><p>Download the firmware file <a class="reference download internal" download="" href="../../../_downloads/ce6018e55e23ceebb4cbdc72bc3fb7a4/max32625_max32690evkit_if_crc_swd_v1.0.7.bin"><code class="xref download docutils literal notranslate"><span class="pre">firmware</span> <span class="pre">file</span></code></a> for the MAX32625PICO board.</p></li>
 <li><p>Consult the <a class="reference external" href="https://analogdevicesinc.github.io/msdk/USERGUIDE/#updating-the-max32625pico-pico-debug-adapter-firmware">MSDK User Guide</a>
 for detailed instructions on updating the MAX32625PICO Debug Adapter Firmware.</p>
 <blockquote>
 <div><ul>
 <li><p>Plug in the MAX32625PICO board while holding the on-board button. A red LED should blink, then hold steady, and a MAINTENANCE drive should appear on your PC.</p>
-<blockquote>
-<div><img alt="../../../_images/max32625pico_maxdap.png" src="../../../_images/max32625pico_maxdap.png" />
-</div></blockquote>
+<img alt="../../../_images/max32625pico_maxdap.png" src="../../../_images/max32625pico_maxdap.png" />
 </li>
 <li><p><strong>Drag-n-drop</strong> the .hex file onto the MAINTENANCE drive. The file transfer should be complete in about 30 seconds.</p></li>
 <li><p>Unplug and replug the device.</p></li>
@@ -676,9 +671,7 @@ measurements with the EV-ADES1830CCSZ.</p>
 <li><p>Attach the EVAL-ADBMS6822 board to the AD-APARD32690-SL Arduino headers.</p></li>
 <li><p>Use the DuraClik-to-RJ45 cable to connect the MAIN isoSPI port on the
 EVAL-ADBMS6822 to PORT A on the EV-ADES1830CCSZ.</p>
-<blockquote>
-<div><img alt="../../../_images/single_chain.png" src="../../../_images/single_chain.png" />
-</div></blockquote>
+<img alt="../../../_images/single_chain.png" src="../../../_images/single_chain.png" />
 </li>
 <li><p>Connect the DC2472A emulator board to the EV-ADES1830CCSZ using the provided
 16-cell adapter cable.</p></li>
@@ -695,16 +688,12 @@ to ADBMSGEN6.</p></li>
 <li><p>From the <strong>Products</strong> list, select the ADES1830, then click on the right
 arrow to add it to the Daisy Chain. Settings can remain as default.</p></li>
 <li><p>Click <strong>Launch</strong>.</p>
-<blockquote>
-<div><img alt="../../../_images/1.9.png" src="../../../_images/1.9.png" />
-</div></blockquote>
+<img alt="../../../_images/1.9.png" src="../../../_images/1.9.png" />
 </li>
 <li><p>Upon launch, the Quick Measure tab will open. <strong>Note:</strong> this utility only
 supports a single BMS product in a Daisy Chain. Click <strong>Start Quick Measure</strong>
 to begin measurements.</p>
-<blockquote>
-<div><img alt="../../../_images/1.10.png" src="../../../_images/1.10.png" />
-</div></blockquote>
+<img alt="../../../_images/1.10.png" src="../../../_images/1.10.png" />
 </li>
 <li><p>Check the Total PEC Status on the 3rd row under the Memory Map. This
 indicates the status of the isoSPI link between the EVAL-ADBMS6822 and the
@@ -722,9 +711,7 @@ to the Arduino header on the AD-APARD3269-SL.</p></li>
 DC2472A to modify the emulated cell voltages. Monitor the voltage channels on
 the <strong>Quick Measure Utility graph</strong>. Select which signals to display on the
 graph under the <strong>Plot All Devices</strong> column.</p>
-<blockquote>
-<div><img alt="../../../_images/1.12.png" src="../../../_images/1.12.png" />
-</div></blockquote>
+<img alt="../../../_images/1.12.png" src="../../../_images/1.12.png" />
 </li>
 </ol>
 </section>
@@ -748,7 +735,8 @@ and ~100 mA in active mode.</p></li>
 </li>
 <li><p>Attach a current source to the shunt using crocodile clips, ensuring the positive terminal connects to the bat- port
 and the negative terminal to the shunt- port. Note that crocodile clips are appropriate only for low currents, primarily
-for checking hardware functionality. For high current evaluations, consult the <a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/eval-adbms2950-basic">EVAL-ADBMS2950-BASIC User Guide</a>.</p></li>
+for checking hardware functionality. For high current evaluations, consult the
+<a class="reference external" href="https://wiki.analog.com/resources/eval/user-guides/eval-adbms2950-basic">EVAL-ADBMS2950-BASIC User Guide</a>.</p></li>
 <li><p>Configure the power supply to generate a 5A current.</p></li>
 <li><p>Open the <strong>BMS_Browser</strong> and select the correct COM port. Set ADBMSGEN6 in the Generation drop-down box. Then, add the
 ADBMS2950 from the product list to the Daisy Chain and click <strong>Launch</strong>.</p>
@@ -845,8 +833,8 @@ Plot number from the dropdown menu under each device to display the relevant dat
 <p>For questions and more information, please visit the Analog Devices Engineer
 Zone.</p>
 <p>For internal support, you can raise a question or submit a ticket through our
-Jira Service Desk using the following link: <a class="reference external" href="https://jira.analog.com/servicedesk/customer/portal/131">BU Applications Technical
-Support</a>.</p>
+Jira Service Desk using the following link:
+<a class="reference external" href="https://jira.analog.com/servicedesk/customer/portal/131">BU Applications Technical Support</a>.</p>
 <p>For external users, please post your questions under the <a class="icon ez reference external" href="https://ez.analog.com/Reference Designs">EngineerZone</a> forum in EngineerZone to get assistance from
 the community and experts.</p>
 </section>
