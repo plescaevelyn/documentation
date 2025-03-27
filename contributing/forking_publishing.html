@@ -102,7 +102,12 @@
 <li><a class="reference internal" href="#adding-content">Adding content</a></li>
 <li><a class="reference internal" href="#pushing-and-triggering-the-ci">Pushing and triggering the CI</a></li>
 <li><a class="reference internal" href="#resuming-work-at-a-later-time">Resuming work at a later time</a></li>
-<li><a class="reference internal" href="#understanding-git-lfs">Understanding git lfs</a></li>
+<li><a class="reference internal" href="#conquer-git-lfs">Conquer git lfs</a><ul>
+<li><a class="reference internal" href="#files-that-should-have-been-pointers">Files that should have been pointers</a></li>
+<li><a class="reference internal" href="#checking-out-branches-and-commits">Checking out branches and commits</a></li>
+<li><a class="reference internal" href="#pull-request-permission">Pull request permission</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -376,7 +381,8 @@ Content on this topic
 <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/">this</a> repository,
 It ensures that GitHub Actions and GitHub Pages are enabled, so you can run
 continuous integration and see the pages live at <em>&lt;your_user&gt;.github.io/documentation</em>,
-and <a class="reference external" href="https://git-lfs.com/">git-lfs</a> artifacts are properly synced.</p>
+and <a class="reference external" href="https://git-lfs.com/">git-lfs</a> artifacts are properly synced.
+To learn about git lfs and use it as a pro, read <a class="reference internal" href="#git-lfs"><span class="std std-ref">Conquer git lfs</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Using the Python virtual environment (venv) is recommended, but if you wish
@@ -696,8 +702,8 @@ configure GitHub Pages at <em>github.com/&lt;your_user&gt;/documentation/setting
 </div>
 <div class="clear-left"></div></div></div><p>Edit, build, commit, push as usual.</p>
 </section>
-<section id="understanding-git-lfs">
-<h2>Understanding git lfs<a class="headerlink" href="#understanding-git-lfs" title="Link to this heading"></a></h2>
+<section id="conquer-git-lfs">
+<span id="git-lfs"></span><h2>Conquer git lfs<a class="headerlink" href="#conquer-git-lfs" title="Link to this heading"></a></h2>
 <p>Since git lfs is not that common in the wild, it may be tricky to get the hang
 of it.</p>
 <p>First of all, the basics:
@@ -705,16 +711,74 @@ lfs replaces binaries files with pointers, and stores the binaries outside the
 git repository, in an external server.</p>
 <p>When you do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone/pull</span></code>, by default lfs will also download the binaries
 at the “smudge” step.
-But instead, we recommend to change this behaviour by setting globally
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span> <span class="pre">--skip-smudge</span></code> or temporally with <code class="docutils literal notranslate"><span class="pre">GIT_LFS_SKIP_SMUDGE=1</span></code>
-environment variable and then fetch the artifacts on demand, either by the
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">pull</span> <span class="pre">public</span> <span class="pre">-I</span> <span class="pre">file_basename</span></code> or letting <a class="reference external" href="https://analogdevicesinc.github.io/doctools/cli.html#serve" title="(in Doctools vmain)"><span>Serve</span></a> handle it.
-This method on-demand saves a lot of bandwidth and time.</p>
-<p>If during a clone or pull you obtain the error:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Encountered</span> <span class="o">&lt;</span><span class="n">n</span><span class="o">&gt;</span> <span class="n">file</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">that</span> <span class="n">should</span> <span class="n">have</span> <span class="n">been</span> <span class="n">pointers</span>
+But we <strong>highly</strong> recommend to change this behaviour to fetch the artifacts on
+demand by setting globally <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span> <span class="pre">--skip-smudge</span></code> or temporally with
+<code class="docutils literal notranslate"><span class="pre">GIT_LFS_SKIP_SMUDGE=1</span></code> environment variable.
+It is recommended because it saves a lot of bandwidth and (your precious) time.</p>
+<p>In this configuration, you can fetch the artifact:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
 </pre></div>
 </div>
-<p>That simply means that someone pushed files to remote that should have been
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>lfs<span class="w"> </span>pull<span class="w"> </span>-I<span class="w"> </span>path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking size</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span>path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 me me 34162787 Mar 25 11:09 path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>And revert to it’s pointer state:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>path/to/my_file.png<span class="w"> </span><span class="p">;</span><span class="w"> </span>git<span class="w"> </span>restore<span class="w"> </span>--<span class="w"> </span><span class="nv">$_</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Checking pointer</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/documentation$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>path/to/my_file.png
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>version https://git-lfs.github.com/spec/v1
+oid sha256:837ad06a63c0b1c10a02615601f73b7b7596746a62064fe35bb8a4d1543f04a2
+size 34162787
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>For documentation, you don’t need to do it manually, <a class="reference external" href="https://analogdevicesinc.github.io/doctools/cli.html#serve" title="(in Doctools vmain)"><span>Serve</span></a>
+will automatically fetch lfs artifacts of watched touched files and visited pages
+on the live server.</p>
+<p>In the following subsections are common issues and on what to do in each situation.</p>
+<section id="files-that-should-have-been-pointers">
+<span id="files-pointers"></span><h3>Files that should have been pointers<a class="headerlink" href="#files-that-should-have-been-pointers" title="Link to this heading"></a></h3>
+<p>Git lfs simply follows the rules on the <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/.gitattributes">.gitattributes</a> file.
+And some times you may encounter during clone and pull:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Encountered &lt;n&gt; file(s) that should have been pointers
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>That simply means that someone pushed files to remote that should have been
 pointers (defined in the <em>.gitattributes</em> file).
 And to fix is simple:</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
@@ -735,8 +799,71 @@ And to fix is simple:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
 </pre></div>
 </div>
-<div class="clear-left"></div></div></div><p>And advise the committer to ensure he has git lfs enabled with
-<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code>.</p>
+<div class="clear-left"></div></div></div><p>Then, advise the committer to ensure he has git lfs enabled with
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">lfs</span> <span class="pre">install</span></code> and to read this page.</p>
+</section>
+<section id="checking-out-branches-and-commits">
+<h3>Checking out branches and commits<a class="headerlink" href="#checking-out-branches-and-commits" title="Link to this heading"></a></h3>
+<p>Git lfs simply follows the rules on the <a class="icon git reference external" href="https://github.com/analogdevicesinc/documentation/tree/main/.gitattributes">.gitattributes</a> file.
+And some times you may encounter during checkout:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>other_branch<span class="w"> </span>-f
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>error: Your local changes to the following files would be overwritten by checkout:
+        path/to/file/that_should_be_a_pointer.pptx
+Please commit your changes or stash them before you switch branches.
+Aborting
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>It is the same cause as <a class="reference internal" href="#files-pointers"><span class="std std-ref">previously</span></a>.
+If you don’t care about this file at the moment, just <code class="docutils literal notranslate"><span class="pre">--force</span></code> your way out.</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>other_branch<span class="w"> </span>-f
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div></section>
+<section id="pull-request-permission">
+<h3>Pull request permission<a class="headerlink" href="#pull-request-permission" title="Link to this heading"></a></h3>
+<p>When a user opens a pull request, he temporally grants you write permission for their
+remove branch for commits, but not for git lfs storage, so pushing lfs artifacts to
+their remote will cause:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>contributor
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>error: Authentication error: Authentication required: You must have push access to verify locks
+error: failed to push some refs to &#39;https://github.com/&lt;contributor&gt;/documentation.git&#39;
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>contributor<span class="w"> </span>--no-verify
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Writing objects: 100% (8/8), 1.08 KiB | 1.08 MiB/s, done.
+Total 8 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
+remote: error: GH008: Your push referenced at least 1 unknown Git LFS object:
+remote:     9b439f0ad3b1e8e965955487b72e84045e85fb844392890c7d34ba45b3430c1e
+remote: Try to push them with &#39;git lfs push --all&#39;.
+To https://github.com/&lt;contributor&gt;/documentation.git
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>As a reviewer, this may get on the way and there is no particular fix for that beyond not pushing
+commits with new lfs artifacts, or awkwardly asking contributor permissions to their repository.</p>
+<p>If you want to add new lfs artifacts, as a reviewer, just merge the PR, and commit to main.
+If it is a complex PR, you can push to a new branch, and work from there and once you and the
+contributor are ratified, close the original PR without merging, merging the branch on the main
+remote instead.</p>
+</section>
 </section>
 </section>
 
