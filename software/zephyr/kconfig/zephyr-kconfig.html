@@ -5,16 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Standard Plugin &#8212; System Level Documentation  documentation</title>
+    <title>Introduction to Kconfig &#8212; System Level Documentation  documentation</title>
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8e8a900e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/app.min.css?v=c218d0f6" />
     <script defer="" src="../../../_static/app.umd.js?v=8984ea49"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="icon" href="../../../_static/icon.svg"/>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Advanced plugin" href="advanced-plugin.html" />
-    <link rel="prev" title="ADRV9009" href="index.html" />
+    <link rel="next" title="Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem" href="../using-zephyr-codefusion-fs/zephyr_codefusion_fs.html" />
+    <link rel="prev" title="Intro to Devicetree" href="../zephyr-devicetree.html" />
    
   
   <meta name="repository" content="documentation">
@@ -85,20 +84,16 @@
         </div>
         <nav>
           <ul>
-<li><a class="reference internal" href="#">Standard Plugin</a><ul>
-<li><a class="reference internal" href="#device-global-settings">Device Global Settings</a></li>
-<li><a class="reference internal" href="#receive-chain">Receive Chain</a></li>
-<li><a class="reference internal" href="#transmit-chain">Transmit Chain</a></li>
-<li><a class="reference internal" href="#observation-chain">Observation Chain</a></li>
-<li><a class="reference internal" href="#fpga-settings">FPGA Settings</a><ul>
-<li><a class="reference internal" href="#transmit-dds">Transmit/DDS</a></li>
-<li><a class="reference internal" href="#one-cw-tone">One CW Tone</a></li>
-<li><a class="reference internal" href="#two-cw-tone">Two CW Tone</a></li>
-<li><a class="reference internal" href="#independent-i-q-control">Independent I/Q Control</a></li>
-<li><a class="reference internal" href="#dac-buffer-output">DAC Buffer Output</a></li>
-<li><a class="reference internal" href="#disable">Disable</a></li>
+<li><a class="reference internal" href="#">Introduction to Kconfig</a><ul>
+<li><a class="reference internal" href="#defconfig-files">defconfig files</a></li>
+<li><a class="reference internal" href="#prj-conf">prj.conf</a></li>
+<li><a class="reference internal" href="#menuconfig-and-guiconfig">menuconfig and guiconfig</a></li>
+<li><a class="reference internal" href="#kconfig-search-index">Kconfig Search Index</a><ul>
+<li><a class="reference internal" href="#kconfig-devicetree-relationship">Kconfig / Devicetree Relationship</a></li>
+<li><a class="reference internal" href="#selects">“Selects”</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
 </ul>
@@ -171,10 +166,10 @@ Content on this topic
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Software</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4" id="toctree-collapse-4" checked=""/><div class="collapse"><a class="reference internal" href="../index.html">IIO Oscilloscope</a><label for="toctree-collapse-4"><div class="icon"></div></label></div><ul class="current">
-<li class="toctree-l2 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1" id="toctree-collapse-4-1" checked=""/><div class="collapse"><a class="reference internal" href="index.html">ADRV9009</a><label for="toctree-collapse-4-1"><div class="icon"></div></label></div><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Standard Plugin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="advanced-plugin.html">Advanced plugin</a></li>
+<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4" id="toctree-collapse-4"/><div class="collapse"><a class="reference internal" href="../../iio-oscilloscope/index.html">IIO Oscilloscope</a><label for="toctree-collapse-4"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-4-1" id="toctree-collapse-4-1"/><div class="collapse"><a class="reference internal" href="../../iio-oscilloscope/adrv9009/index.html">ADRV9009</a><label for="toctree-collapse-4-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../iio-oscilloscope/adrv9009/plugin.html">Standard Plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../iio-oscilloscope/adrv9009/advanced-plugin.html">Advanced plugin</a></li>
 </ul>
 </li>
 </ul>
@@ -198,10 +193,10 @@ Content on this topic
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../pyadi-iio/index.html">PyADI-IIO</a></li>
-<li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8" id="toctree-collapse-8"/><div class="collapse"><a class="reference internal" href="../../zephyr/index.html">Zephyr RTOS</a><label for="toctree-collapse-8"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../zephyr/zephyr-devicetree.html">Intro to Devicetree</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../zephyr/kconfig/zephyr-kconfig.html">Introduction to Kconfig</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../zephyr/using-zephyr-codefusion-fs/zephyr_codefusion_fs.html">Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem</a></li>
+<li class="toctree-l1 current"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-8" id="toctree-collapse-8" checked=""/><div class="collapse"><a class="reference internal" href="../index.html">Zephyr RTOS</a><label for="toctree-collapse-8"><div class="icon"></div></label></div><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../zephyr-devicetree.html">Intro to Devicetree</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction to Kconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../using-zephyr-codefusion-fs/zephyr_codefusion_fs.html">Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem</a></li>
 </ul>
 </li>
 </ul>
@@ -384,264 +379,167 @@ Content on this topic
           <div class="body-header">
     <nav class="breadcrumb">
         <ol>
-          <li><a href="../index.html">IIO Oscilloscope</a></li>
-          <li><a href="index.html">ADRV9009</a></li>
+          <li><a href="../index.html">Zephyr RTOS</a></li>
           </ol>
     </nav>
   </div>
 
           <div class="body" role="main">
             
-  <section id="standard-plugin">
-<span id="iio-oscilloscope-adrv9009-plugin"></span><h1>Standard Plugin<a class="headerlink" href="#standard-plugin" title="Link to this heading"></a></h1>
-<p>The ADRV9009 plugin works with the
-<a class="reference internal" href="../index.html#iio-oscilloscope"><span class="std std-ref">IIO Oscilloscope</span></a>.
-You always use the latest version if possible. Changing any field will immediately
-write changes which have been made to the ADRV9009 settings to the hardware, and
-then read it back to make sure the setting is valid. If you want to set
-something that the GUI changes to a different number, that either means that GUI
-is rounding (sorry), or the hardware (either the ADRV9009 or the FPGA fabric)
-does not support that mode/precision.</p>
-<p>If you want to go play with <code class="docutils literal notranslate"><span class="pre">/sys/bus/iio/devices/....</span></code> and manipulate the
-devices behind the back of the GUI, it’s still possible to see the settings by
-clicking the “refresh” button at the bottom of the GUI.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>This plugin supports multiple device instantiations.
-Typically used in a multichip design, where all devices and links are being
-synchronized.
-In order to support this mode, all IIO devices need unique names.
-Such as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="n">d</span>
-<span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="n">c</span>
-<span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="n">b</span>
-<span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="n">a</span> <span class="p">[</span><span class="n">JESD204</span> <span class="n">FSM</span> <span class="n">Top</span> <span class="n">Device</span><span class="p">]</span>
+  <section id="introduction-to-kconfig">
+<h1>Introduction to Kconfig<a class="headerlink" href="#introduction-to-kconfig" title="Link to this heading"></a></h1>
+<p>Kconfig is a method of configuring an application outside of source code
+at build time – very similar to GNU Make and Makefiles. It is borrowed
+from Linux and should be similar or identical to the ways in which Linux
+handles this process. The goal is to be able to modify the Zephyr kernel
+and subsystems built into an application without having to modify much
+(or any) source code.</p>
+<section id="defconfig-files">
+<h2>defconfig files<a class="headerlink" href="#defconfig-files" title="Link to this heading"></a></h2>
+<p>Individual boards have .defconfig files which can enable individual
+features by default. Here’s an example from the max32650fthr_defconfig
+file in the Zephyr tree:</p>
+<div class="highlight-Kconfig notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copyright (c) 2023-2024 Analog Devices, Inc.</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+
+<span class="c1"># Enable GPIO driver</span>
+CONFIG_GPIO=y
+
+<span class="c1"># Enable Console with a UART backend</span>
+CONFIG_CONSOLE=y
+CONFIG_UART_CONSOLE=y
+
+<span class="c1"># Enable UART and set to Asynchronous</span>
+CONFIG_SERIAL=y
+CONFIG_UART_INTERRUPT_DRIVEN=y
 </pre></div>
 </div>
-<p>or:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="mi">3</span>
-<span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="mi">2</span>
-<span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="mi">1</span>
-<span class="n">adrv9009</span><span class="o">-</span><span class="n">phy</span><span class="o">-</span><span class="mi">0</span> <span class="p">[</span><span class="n">JESD204</span> <span class="n">FSM</span> <span class="n">Top</span> <span class="n">Device</span><span class="p">]</span>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>In the above sample we can see various configuration features enabled by
+default for the MAX32655FTHR for a generic Zephyr application.  Some of
+these include the Zephyr GPIO API, UART driver, and the Console
+subsystem with a UART Backend. Because they are in the defconfig file,
+these will be enabled by default for any Zephyr application building for
+this board. For other boards like the AD-SWIOT1L Ethernet platform,
+these defconfigs (“default configs”) may include enabling the MPU or
+Trustzone-M support for the ARM Cortex-M SoC.</p>
+<p>Initial configuration for a given project is applied as follows (from
+the Zephyr project):</p>
+<ol class="arabic simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">BOARD</span></code>-specific configuration file stored
+in <code class="docutils literal notranslate"><span class="pre">boards/&lt;architecture&gt;/&lt;BOARD&gt;/&lt;BOARD&gt;_defconfig</span></code></p></li>
+<li><p>Any CMake cache entries prefix with <code class="docutils literal notranslate"><span class="pre">CONFIG_</span></code></p></li>
+<li><p>The application configuration, contained in a <strong>prj.conf</strong> file local
+to the project</p></li>
+</ol>
+</section>
+<section id="prj-conf">
+<h2>prj.conf<a class="headerlink" href="#prj-conf" title="Link to this heading"></a></h2>
+<p>A prj.conf file is a Kconfig file that is local to the project files. It
+can be used to enable features or override configuration done elsewhere
+in the Kconfig. For example, anything you need that is not enabled in
+the defconfig for your board can be enabled here. You can also over-ride
+the defconfig parameters in this file. Here is an example prj.conf for a
+substantial project with the <strong>apard32690_max32690_m4</strong> board target:</p>
+<div class="highlight-Kconfig notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copyright (c) 2021 Nordic Semiconductor ASA</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># This file contains selected Kconfig options for the application.</span>
+
+<span class="c1"># Enable Logging</span>
+CONFIG_LOG=y
+CONFIG_LOG_BACKEND_UART=y
+CONFIG_APP_LOG_LEVEL_INF=y
+CONFIG_LOG_DEFAULT_LEVEL=1
+CONFIG_LOG_MAX_LEVEL=4
+
+<span class="c1"># Print boot banner</span>
+CONFIG_BOOT_BANNER=y
+
+<span class="c1"># I2C + SPI for sensors</span>
+CONFIG_SPI=y
+CONFIG_I2C=y
+
+<span class="c1"># Sensor subsystem</span>
+CONFIG_SENSOR=y
+CONFIG_SENSOR_INFO=y
+CONFIG_SENSOR_LOG_LEVEL_WRN=y
+
+<span class="c1"># Enable the command-line shell and various subsystem shells</span>
+CONFIG_SHELL=y
+CONFIG_I2C_SHELL=y
+CONFIG_SPI_SHELL=y
+CONFIG_SENSOR_SHELL=y
+
+<span class="c1"># Enable ADT7420 I2C Temp Sensor</span>
+CONFIG_ADT7420
+
+<span class="c1"># Thread stack sizes</span>
+CONFIG_MAIN_STACK_SIZE=4096
+CONFIG_SHELL_STACK_SIZE=4096
 </pre></div>
 </div>
-<p>When used with the JESD204 finite state machine framework.
-The Top Device needs to be suffixed with a letter or numeral smaller than the
-slave devices. (a &lt; b &lt; c … or 0 &lt; 1 &lt; 2 …)</p>
-</div>
-<p>If you think the device has a setting that isn’t managed by this tab, check out
-the <a class="reference internal" href="advanced-plugin.html"><span class="doc">ADRV9009 Advanced Plugin</span></a> for the IIO Oscilloscope.</p>
-<p>The ADRV9009 view is divided in four sections:</p>
-<ul class="simple">
-<li><p>Device Global Settings</p></li>
-<li><p>Receive Chain</p></li>
-<li><p>Transmit Chain</p></li>
-<li><p>Observation Chain</p></li>
-<li><p>FPGA Settings</p></li>
-</ul>
-<img alt="../../../_images/adrv9009_main_plugin_1.png" class="align-right" src="../../../_images/adrv9009_main_plugin_1.png" />
-<section id="device-global-settings">
-<h2>Device Global Settings<a class="headerlink" href="#device-global-settings" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>Active ENSM:</strong> Displays the active mode of the Enable State Machine.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-enable-state-machine-controls"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>ENSM Modes:</strong> Selects one of the available modes
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-enable-state-machine-controls"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Profile configuration:</strong> Allows a Profile configuration to be loaded from a
-file.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-profiles"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>TRX LO Frequency(MHz):</strong> Selects the local oscillator frequency. Range
-75MHz to 6GHz with low tuning granularity.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-local-oscillator-control-lo"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Calibrations:</strong> Allows the user to reschedule a certain calibration
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-arm-calibrations"><span class="std std-ref">Read More</span></a></p></li>
-</ul>
 </section>
-<section id="receive-chain">
-<h2>Receive Chain<a class="headerlink" href="#receive-chain" title="Link to this heading"></a></h2>
-<ul>
-<li><p><strong>RF Bandwidth(MHz):</strong> Displays the Primary Signal Bandwidth of the current
-Profile.
-<a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/adrv9009#rx_signal_path">Read More</a></p></li>
-<li><p><strong>Sampling Rate(MSPS):</strong> Displays the RX Sample Rate of the current Profile.
-<a class="reference external" href="https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/adrv9009#rx_signal_path">Read More</a></p></li>
-<li><p><strong>RX</strong></p>
-<ul>
-<li><p><strong>Hardware Gain(dB):</strong> Controls the RX gain only in Manual Gain Control
-Mode (MGC).
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-mgc-setting-the-current-gain"><span class="std std-ref">Read More</span></a></p></li>
-<li><dl class="simple">
-<dt><strong>RSSI(dB):</strong> Displays the received strength signal level.</dt><dd><p><a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-received-strength-signal-indicator-rssi"><span class="std std-ref">Read More</span></a></p>
-</dd>
-</dl>
-</li>
-<li><p><strong>Gain Control:</strong> Displays the active gain mode.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-gain-control-modes"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Gain Control Modes:</strong> Selects one of the available modes: manual, hybrid
-and automatic.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-gain-control-modes"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Gain Control Pin Mode:</strong> Enables Pin Control Mode
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-mgc-controlling-the-gain-using-pin-control"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Tracking</strong>
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-calibration-tracking-controls"><span class="std std-ref">Read More</span></a></p>
-<blockquote>
-<div><ul class="simple">
-<li><p><strong>Quadrature</strong></p></li>
-<li><p><strong>HD2</strong></p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><strong>Powerdown:</strong> Channel Enable/Powerdown
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-channel-enablepowerdown-controls"><span class="std std-ref">Read More</span></a></p></li>
-</ul>
-</li>
-</ul>
+<section id="menuconfig-and-guiconfig">
+<h2>menuconfig and guiconfig<a class="headerlink" href="#menuconfig-and-guiconfig" title="Link to this heading"></a></h2>
+<p>There are two interactive GUI-style interfaces Zephyr provides for
+exploring and configuring the available Kconfig options in a given
+application. They are <strong>menuconfig</strong> and <strong>guiconfig</strong>. They can be
+viewed in the below images:</p>
+<img alt="../../../_images/menuconfig.png" src="../../../_images/menuconfig.png" />
+<img alt="../../../_images/guiconfig.png" src="../../../_images/guiconfig.png" />
+<p>These interfaces save some config artifacts to the build/ folder, in the
+form of a unified .config file by default. This then ties into the west
+meta-build system, which will roll your full configuration into the next
+time you call “west build”. When you do a “pristine” build, this will
+re-write your configuration, so it may be worth saving .config files
+that you want to keep between projects builds. Otherwise, using
+something like menuconfig to note down parameters to include in your
+prj.conf can be a useful workflow. More information on menuconfig and
+guiconfig can be found at the Zephyr project documentation for these
+interfaces:
+<a class="reference external" href="https://docs.zephyrproject.org/latest/build/kconfig/menuconfig.html">Interactive Kconfig interfaces — Zephyr Project Documentation</a>.</p>
 </section>
-<section id="transmit-chain">
-<h2>Transmit Chain<a class="headerlink" href="#transmit-chain" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>RF Bandwidth(MHz):</strong> Displays the Primary Signal Bandwidth of the current
-Profile.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-tx-signal-path"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Sampling Rate(MSPS):</strong> Displays the RX Sample Rate of the current Profile.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-tx-signal-path"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>PA Protection:</strong> Enables PA protection
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-pa-protection"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>TX</strong></p>
-<ul>
-<li><p><strong>Attenuation(dB):</strong> The TX attenuation/gain can be individually controlled
-for TX1 and TX2. The range is from 0 to -41.95 dB in programmable steps sizes.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-tx-attenuation-control"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Attenuation Pin Control Mode:</strong> Enables Pin Control Mode
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-tx-attenuation-pin-control"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Tracking</strong>
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-calibration-tracking-controls"><span class="std std-ref">Read More</span></a></p>
-<ul>
-<li><p><strong>Quadrature</strong></p></li>
-<li><p><strong>LO Leakage</strong></p></li>
-</ul>
-</li>
-<li><p><strong>Powerdown:</strong> Channel Enable/Powerdown
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-channel-enablepowerdown-controls"><span class="std std-ref">Read More</span></a></p></li>
-</ul>
-</li>
-</ul>
+<section id="kconfig-search-index">
+<h2>Kconfig Search Index<a class="headerlink" href="#kconfig-search-index" title="Link to this heading"></a></h2>
+<p>One difficult part of using Zephyr can be navigating the Kconfig
+dependencies – many Kconfigs are not actually designed to be set
+directly because they depend on other Kconfigs already being set. A good
+place to start looking through Kconfig dependencies is the Kconfig
+Search Index in the Zephyr documentation:
+<a class="reference external" href="https://docs.zephyrproject.org/latest/kconfig.html">Kconfig Search — Zephyr Project Documentation</a>.</p>
+<img alt="../../../_images/kconfig-search.png" src="../../../_images/kconfig-search.png" />
+<p>We can see in the above image that we get some helpful info right off
+the bat from searching this index, such as the Menu path in the
+menuconfig interface, and the location of the place where this Kconfig
+field is defined.</p>
+<section id="kconfig-devicetree-relationship">
+<h3>Kconfig / Devicetree Relationship<a class="headerlink" href="#kconfig-devicetree-relationship" title="Link to this heading"></a></h3>
+<p>In the above image, notice how the CONFIG_ADT7420 value depends on
+DT_HAS_ADI_ADT7420_ENABLED and CONFIG_SENSOR. This means that this value
+actually requires an “adt7420” compatible node in your Devicetree that
+has its “status” property set to “okay”.  It also requires CONFIG_SENSOR
+to be enabled in your project.</p>
 </section>
-<section id="observation-chain">
-<h2>Observation Chain<a class="headerlink" href="#observation-chain" title="Link to this heading"></a></h2>
-<img alt="../../../_images/adrv9009_main_plugin_2.png" class="align-right" src="../../../_images/adrv9009_main_plugin_2.png" />
-<ul class="simple">
-<li><p><strong>RF Bandwidth(MHz):</strong> Displays the Primary Signal Bandwidth of the current
-Profile.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-observation-rx-signal-path"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Sampling Rate(MSPS):</strong> Displays the RX Sample Rate of the current Profile.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-observation-rx-signal-path"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>AUX PLL LO Frequency(MHz):</strong> Controls the AUX PLL local oscillator
-frequency. Range 75MHz to 6GHz with low tuning granularity.
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-local-oscillator-control-lo"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Observation Path LO Source:</strong> Controls the LO source for the observation
-receiver
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-observation-rx-signal-path"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>RX</strong></p>
-<ul>
-<li><p><strong>Hardware Gain(dB):</strong> Controls the RX gain only in Manual Gain Control
-Mode (MGC).
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-mgc-setting-the-current-gain"><span class="std std-ref">Read More</span></a></p></li>
-<li><p><strong>Tracking</strong>
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-calibration-tracking-controls"><span class="std std-ref">Read More</span></a></p>
-<ul>
-<li><p><strong>Quadrature</strong></p></li>
-</ul>
-</li>
-<li><p><strong>Powerdown:</strong> Channel Enable/Powerdown
-<a class="reference internal" href="../../../linux/drivers/iio-transceiver/adrv9009/index.html#iio-transceiver-adrv9009-channel-enablepowerdown-controls"><span class="std std-ref">Read More</span></a></p></li>
-</ul>
-</li>
-</ul>
+<section id="selects">
+<h3>“Selects”<a class="headerlink" href="#selects" title="Link to this heading"></a></h3>
+<p>The ADT7420 Kconfig “Selects” CONFIG_I2C, meaning it forces this Kconfig
+to “Y”, enabling it.</p>
 </section>
-<section id="fpga-settings">
-<h2>FPGA Settings<a class="headerlink" href="#fpga-settings" title="Link to this heading"></a></h2>
-<section id="transmit-dds">
-<h3>Transmit/DDS<a class="headerlink" href="#transmit-dds" title="Link to this heading"></a></h3>
-<img alt="../../../_images/adrv9009_main_plugin_3.png" src="../../../_images/adrv9009_main_plugin_3.png" />
-<p>The plugin provides several options on how the transmitted data is generated.</p>
-<p>It is possible to either use the built-in two tone <strong>Direct Digital Synthesizer
-(DDS)</strong> to transmit a bi-tonal signal on channels I and Q of the DAC. Or it is
-possible to use the <strong>Direct Memory Access (DMA) facility</strong> to transmit custom
-data that you have stored in a file.</p>
-<p>This can be achieved by selecting one of the following options listed by the
-<strong>DDS Mode</strong>:</p>
 </section>
-<section id="one-cw-tone">
-<h3>One CW Tone<a class="headerlink" href="#one-cw-tone" title="Link to this heading"></a></h3>
-<img alt="../../../_images/one_cw_tone.png" class="align-right" src="../../../_images/one_cw_tone.png" />
-<p>In <strong>One CW Tone</strong> mode one continuous wave (CW) tone will be outputted. The
-plugin displays the controls to set the Frequency, Amplitude and Phase for just
-one tone and makes sure that the amplitude of the other tone is set to 0. The
-resulting signal will be outputted on the Channel I of the DAC and the exact
-same signal but with a difference in phase of 90 degrees will be outputted on
-the Channel Q of the DAC.</p>
-</section>
-<section id="two-cw-tone">
-<h3>Two CW Tone<a class="headerlink" href="#two-cw-tone" title="Link to this heading"></a></h3>
-<img alt="../../../_images/two_cw_tones.png" class="align-right" src="../../../_images/two_cw_tones.png" />
-<p>In <strong>Two CW Tone</strong> mode two continuous wave (CW) tones will be outputted. The
-plugin displays the controls to set the frequencies F1 and F2, amplitudes A1 and
-A2, phases P1 and P2 for the two tones. The resulting signal will be outputted
-on the Channel I of the DAC and the exact same signal but with a difference in
-phase of 90 degrees will be outputted on the Channel Q of the DAC.</p>
-</section>
-<section id="independent-i-q-control">
-<h3>Independent I/Q Control<a class="headerlink" href="#independent-i-q-control" title="Link to this heading"></a></h3>
-<img alt="../../../_images/iq_independent.png" class="align-right" src="../../../_images/iq_independent.png" />
-<p>In <strong>Independent I/Q Control</strong> the plugin displays the controls to set the
-frequencies, amplitudes and phases for the two tones that will be outputted on
-channel I and additionally it allows for the two tones that will be outputted on
-channel Q of the DAC to be configured independently.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The bi-tonal signal (T) is defined as the sum of two tones:</p>
-<p><span class="math notranslate nohighlight">\(T(t) = A1 * sin(2 * p * F1 * t + P1) + A2 * sin(2 * p * F2 * t + P2)\)</span>,</p>
-<p>where A-amplitude, F-frequency, P-phase of a tone.</p>
-</div>
-</section>
-<section id="dac-buffer-output">
-<h3>DAC Buffer Output<a class="headerlink" href="#dac-buffer-output" title="Link to this heading"></a></h3>
-<img alt="../../../_images/dac_output_buffer_panel.png" class="align-right" src="../../../_images/dac_output_buffer_panel.png" />
-<p>The file selector under the <strong>File Selection</strong> section is used to
-locate and choose the desired data file. Under the <strong>DAC Channels</strong> section the
-enabled channels will be used to transmit the data stored in the file. To
-finalize the process, a click on the <strong>Load</strong> button is required.</p>
-<p>Restrictions:</p>
-<ul class="simple">
-<li><p>There are two types of files than can be loaded: <strong>.txt</strong> or <strong>.mat</strong>. The
-IIO-Oscilloscope comes with several <a class="icon git reference external" href="https://github.com/analogdevicesinc/iio-oscilloscope/tree/main/waveforms">data files</a>
-that can be used. If you want to create your own data files please take a look
-at the <a class="reference internal" href="../../../eval/user-guide/transceiver/adrv9009/basic-iq-datafiles.html#adrv9009-basic-iq-datafiles"><span class="std std-ref">Basic IQ Datafiles</span></a>
-documentation first.</p></li>
-<li><p>Due to hardware limitation only specific combinations of enabled channels
-are possible. You can enable a total of 1, 2, 4, etc. channels. If 1 channel
-is enabled then it can be any of them. If two channels are enabled then
-channels 0, 1 or channels 2, 3 can be enabled and so on.</p></li>
-</ul>
-</section>
-<section id="disable">
-<h3>Disable<a class="headerlink" href="#disable" title="Link to this heading"></a></h3>
-<p>In this mode both DDS and DMA are disabled causing the DAC channels to stop
-transmitting any data.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Upon pressing <strong>Reload Settings</strong> button the values will be
-reloaded with the corresponding driver values. Useful in scenarios where the
-diver values get changed outside this plugin (e.g with the use of Debug
-plugin) and a refresh on plugin’s values is needed.</p>
-</div>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Some plugin values will be rounded to the nearest value supported by the
-hardware.</p>
-</div>
-</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Try creating a Zephyr workspace, and building for a particular target
+board. Now search the menuconfig interface and try enabling various
+subsystems to enable connected sensors or add individual shell commands.
+Be careful not to overflow your allotted stack space for your threads!
+You can easily get into a situation with Kconfigs where you enable a
+subsystem that overflows a thread’s stack space, which will crash your
+application. It may be useful in prototyping to set stack sizes larger
+than needed, or investigate some Kconfigs for the “Stack Sentinel”
+Zephyr subsystem for debugging purposes.</p>
 </section>
 </section>
 
@@ -649,8 +547,8 @@ hardware.</p>
           </div>
               <div class="related">
                 &nbsp;
-    <a href="index.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">ADRV9009</a>
-    <a href="advanced-plugin.html" title="Next document (Alt+Shift+RightArrow)" class="next">Advanced plugin</a>
+    <a href="../zephyr-devicetree.html" title="Previous document (Alt+Shift+LeftArrow)" class="prev">Intro to Devicetree</a>
+    <a href="../using-zephyr-codefusion-fs/zephyr_codefusion_fs.html" title="Next document (Alt+Shift+RightArrow)" class="next">Using Zephyr &amp; Codefusion Studio to Partition a Flash Filesystem</a>
               </div>
           
         </div>
