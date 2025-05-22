@@ -1,5 +1,5 @@
-      A Precision Converter FPGA Integration Jurney
-================================
+A Precision Converter FPGA Integration Journey
+==============================================
 
 Agenda
 ~~~~~~
@@ -16,15 +16,16 @@ Introduction
 
 **Customer Journey**
 
-.. figure:: intro_customer_jurney_1.png
+.. figure:: intro_customer_journey_1.png
    :align: center
 
 Tools / Platforms are a customer choice, ADI ports to “current” development
 environment/kit.
 
-.. figure:: intro_customer_jurney_2.png
+.. figure:: intro_customer_journey_2.png
    :align: center
-Maintenance is an ADI burden. Customer don’t start their designs at the same 
+
+Maintenance is an ADI burden. Customer don’t start their designs at the same
 time, and want to use the latest and greatest.
 
 **COS Reference Design “Donut Hole” Strategy**
@@ -35,7 +36,7 @@ time, and want to use the latest and greatest.
 *Leverage ecosystems*
 *Develop/participate in viable communities / ecosystems:*
 - Linux kernel (1.3 Billion users)
-- Github (40 Million users)
+- GitHub (40 Million users)
 - Python (100 Million users)
 - MATLAB (1 Million users)
 
@@ -113,14 +114,14 @@ SPI Engine Architecture
 
 **Serial Peripheral Interface**
 
-A full-duplex serial communication bus design by Motorola in mid 1980’s, used in short distance chip to chip communication, primarily in embedded systems. It become a ‘de facto’ standard, with small variations depending on the use case and application.​
+A full-duplex serial communication bus design by Motorola in mid 1980’s, used in short distance chip to chip communication, primarily in embedded systems. It become a ‘de facto’ standard, with small variations depending on the use case and application.
 
 .. figure:: spi_master_slave.png
    :align: center
 
-SCLK – Serial CLocK from master​
-MOSI – Master Output Slave Input​
-MISO – Master Input Slave Output​
+SCLK – Serial CLocK from master
+MOSI – Master Output Slave Input
+MISO – Master Input Slave Output
 CSN  – Chip Select N (active low)
 
 .. figure:: spi_modes_1.png
@@ -159,7 +160,11 @@ CSN  – Chip Select N (active low)
 
 **SPI Engine Framework – What it is?**
 
-SPI Engine is a highly flexible and powerful SPI controller open-source framework. It consist out of multiple sub-modules which communicate over well-defined interfaces. This allows a high degree of flexibility and re-usability while at the same time staying highly customizable and easily extensibl.
+SPI Engine is a highly flexible and powerful SPI controller open-source
+framework. It consists out of multiple sub-modules which communicate over
+well-defined interfaces. This allows a high degree of flexibility and
+re-usability while at the same time staying highly customizable and easily
+extensible.
 
 *Some of the SPI Engine Framework features are:*
 - HDL IP supporting the two major FPGA vendors (Xilinx and Intel)
@@ -201,7 +206,7 @@ SPI Engine is a highly flexible and powerful SPI controller open-source framewor
 
 - Internal RAM/ROM for CMD and SDO stream
 - A trigger launches a command stream
-- Received data is send to an AXI4-streaming interface
+- Received data is sent to an AXI4-streaming interface
 - It can be connected directly to a DMA
 
 .. figure:: spie_offload_ip.png
@@ -323,28 +328,38 @@ Supply voltage [V]           -2.5 and 5             -2.5 and 5
 **HDL Framework instantiation**
 
 - TCL Function header:
+
 proc spi_engine_create {{name "spi_engine"} {data_width 32} {async_spi_clk 1} {num_cs 1} {num_sdi 1} {sdi_delay 0} {echo_sclk 0}}
 
 - Instantiation example for PulSAR ADC:
-source $ad_hdl_dir/library/spi_engine/scripts/spi_engine.tcl4
-set data_width32
-set async_spi_clk1
-set num_cs1
-set num_sdi1
-set sdi_delay1
-set hier_spi_enginespi_pulsar_adc
-spi_engine_create $hier_spi_engine $data_width $async_spi_clk $num_cs $num_sdi $sdi_delay
 
+  .. code:: tcl
 
-1. Data_width - will set the width of the data bus / data line used by the SPI engine to connect tothe DMA. It will also set the maximum word length for the SPI transfer. Since the Pulsar_ADC devices are all single SDI/SDO and some of them require 18bit transfers, this value will be rounded to 32bit.
+     source $ad_hdl_dir/library/spi_engine/scripts/spi_engine.tcl4
+     set data_width32
+     set async_spi_clk1
+     set num_cs1
+     set num_sdi1
+     set sdi_delay1
+     set hier_spi_enginespi_pulsar_adc
+     spi_engine_create $hier_spi_engine $data_width $async_spi_clk $num_cs $num_sdi $sdi_delay
 
-2. Async_spi_clk - will chose the reference clock for the SPI Engine. Setting this to 0 will configure the hierarchy to use the axi clock (100MHz) as the reference clock. Setting it to 1 will allow for an external reference clock (spi_clk).
+1. Data_width - will set the width of the data bus / data line used by the SPI
+   engine to connect to the DMA. It will also set the maximum word length for
+   the SPI transfer. Since the Pulsar_ADC devices are all single SDI/SDO and
+   some of them require 18bit transfers, this value will be rounded to 32bit.
+
+2. Async_spi_clk - will choose the reference clock for the SPI Engine. Setting
+   this to 0 will configure the hierarchy to use the axi clock (100MHz) as the
+   reference clock. Setting it to 1 will allow for an external reference clock
+   (spi_clk).
 
 3. Num_cs - selects the number of CS lines.
 
 4. Num_sdi - selects the number of SDI lines.
 
-5. Sdi_delay - the latch of the SDI line can be delayed with 1, 2 or 3 SPI core clock cycle. Needed for designs with high SCLK rate (>50MHz).
+5. Sdi_delay - the latch of the SDI line can be delayed with 1, 2 or 3 SPI core
+   clock cycle. Needed for designs with high SCLK rate (>50MHz).
 
 **PulSAR ADC Architecture**
 
@@ -352,31 +367,40 @@ spi_engine_create $hier_spi_engine $data_width $async_spi_clk $num_cs $num_sdi $
    :align: center
 
 *ADI AXI PWM GENERATOR*
-- ad_ip_parameter pulsar_adc_trigger_gen CONFIG.PULSE_0_PERIOD 120
-- ad_ip_parameter pulsar_adc_trigger_gen CONFIG.PULSE_0_WIDTH 1
-- ad_connect spi_clk pulsar_adc_trigger_gen/ext_clk
-- ad_connect pulsar_adc_trigger_gen/pwm_0 $hier_spi_engine/offload/trigger
+
+.. code:: tcl
+
+   ad_ip_parameter pulsar_adc_trigger_gen CONFIG.PULSE_0_PERIOD 120
+   ad_ip_parameter pulsar_adc_trigger_gen CONFIG.PULSE_0_WIDTH 1
+   ad_connect spi_clk pulsar_adc_trigger_gen/ext_clk
+   ad_connect pulsar_adc_trigger_gen/pwm_0 $hier_spi_engine/offload/trigger
 
 *AXI CLKGEN*
-- ad_ip_instance axi_clkgen spi_clkgen
-- ad_ip_parameter spi_clkgen CONFIG.CLK0_DIV 5
-- ad_ip_parameter spi_clkgen CONFIG.VCO_DIV 1
-- ad_ip_parameter spi_clkgen CONFIG.VCO_MUL 8
-- ad_connect $hier_spi_engine/m_spi pulsar_adc_spi
-- ad_connect spi_clk spi_clkgen/clk_0
-- ad_connect spi_clk spi_pulsar_adc/spi_clk
+
+.. code:: tcl
+
+   ad_ip_instance axi_clkgen spi_clkgen
+   ad_ip_parameter spi_clkgen CONFIG.CLK0_DIV 5
+   ad_ip_parameter spi_clkgen CONFIG.VCO_DIV 1
+   ad_ip_parameter spi_clkgen CONFIG.VCO_MUL 8
+   ad_connect $hier_spi_engine/m_spi pulsar_adc_spi
+   ad_connect spi_clk spi_clkgen/clk_0
+   ad_connect spi_clk spi_pulsar_adc/spi_clk
 
 *ADI AXI DMA CONTROLLER*
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_TYPE_SRC 1
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_TYPE_DEST 0
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.CYCLIC 0
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.SYNC_TRANSFER_START 0
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.AXI_SLICE_SRC 0
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.AXI_SLICE_DEST 1
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_2D_TRANSFER 0
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_DATA_WIDTH_SRC 32
-- ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_DATA_WIDTH _DEST 64
-- ad_connect spi_clk axi_pulsar_adc_dma/s_axis_aclk
+
+.. code:: tcl
+
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_TYPE_SRC 1
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_TYPE_DEST 0
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.CYCLIC 0
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.SYNC_TRANSFER_START 0
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.AXI_SLICE_SRC 0
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.AXI_SLICE_DEST 1
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_2D_TRANSFER 0
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_DATA_WIDTH_SRC 32
+   ad_ip_parameter axi_pulsar_adc_dma CONFIG.DMA_DATA_WIDTH _DEST 64
+   ad_connect spi_clk axi_pulsar_adc_dma/s_axis_aclk
 
 **Debug options – ILA**
 
@@ -436,7 +460,7 @@ Uses the ADALM2000 to implement virtual instruments:
    :align: center
 
 **System Build - Power Supply**
-   
+
 .. figure:: system_build_power_supply.png
    :align: center
 
@@ -511,7 +535,7 @@ Compare the results
 
 **System Evaluation - Python script**
 
-.. figure:: system_evaluation_spi_python_script.png
+.. figure:: system_evaluation_python_script.png
    :align: center
 
 **System Evaluation – Python from the FPGA board**
@@ -631,7 +655,7 @@ Parameter                                   Datasheet Regular SPI controller    
                                                       (Fin=1kHz, SR=15KHz, Ain=-0.5dBFS) (Fin=1kHz, SR=15KHz, Ain=-0.5dBFS) (Fin=1kHz, SR=1.33MHz, Ain=-0.5dBFS)
 =========================================== ========= ================================== ================================== ====================================
 Signal-to-Noise SNR [dBFS]                     98.5                 14.81                               78.60                               77.70
-Spurious-Free Dynamic Range SFDR [dBFS]       112.5                 21.13                               92.97                               99.15  
+Spurious-Free Dynamic Range SFDR [dBFS]       112.5                 21.13                               92.97                               99.15
 Total Harmonic Distortion THD [dBFS]         -110.5                -45.65                              -99.20                                -110
 Signal-to-(Noise + Distortion) SINAD [dBFS]      98                 14.30                                  78                               77.20
 =========================================== ========= ================================== ================================== ====================================
@@ -652,16 +676,17 @@ Conclusions
 
 1. A classic MCU can be used for converters that have the sampling rate up to 100kSPS.
 2. Maximum performance, in terms of sampling rate, SNR, THD can be only achieved with an FPGA.
-3. SPI Engine is a highly flexible and powerful open-source SPI controller framework which can interface a wide range of precision converters.
+3. SPI Engine is a highly flexible and powerful open-source SPI controller
+   framework which can interface a wide range of precision converters.
 4. We are now familiar with the COS group open-source solution stack.
 
 **Thank You!**
 
 **Related Presentations**
 
-- My customer uses a FPGA in his product. Now what?​
+- My customer uses a FPGA in his product. Now what?
 - ADALM2000 in real life applications
-- Just enough Software and HDL for High-Speed designs​
+- Just enough Software and HDL for High-Speed designs
 - Hardware and Software Tools for Precision Wideband Instrumentation
 
 **Questions?**

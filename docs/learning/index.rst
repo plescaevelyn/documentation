@@ -58,10 +58,10 @@ Workshops
 
 
 .. toctree::
-   :caption: A Precision Converter FPGA Integration Jurney
+   :caption: A Precision Converter FPGA Integration Journey
    :maxdepth: 1
 
-   workshop_a_precision_converter_fpga_integration_jurney/index
+   workshop_a_precision_converter_fpga_integration_journey/index
 
 
 Academic Workshops
