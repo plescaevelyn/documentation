@@ -91,7 +91,7 @@
 <li><a class="reference internal" href="#on-the-development-host">On the development host</a><ul>
 <li><a class="reference internal" href="#checkout-the-release-branch">Checkout the Release branch</a></li>
 <li><a class="reference internal" href="#setup-cross-compile-environment-variables">Setup cross compile environment variables</a><ul>
-<li><a class="reference internal" href="#using-the-xilinx-toolchain">Using the Xilinx toolchain</a></li>
+<li><a class="reference internal" href="#using-the-amd-xilinx-toolchain">Using the AMD Xilinx toolchain</a></li>
 <li><a class="reference internal" href="#using-the-linaro-toolchain">Using the Linaro toolchain</a></li>
 </ul>
 </li>
@@ -108,9 +108,9 @@
 <li><a class="reference internal" href="#id1">Using a script</a></li>
 <li><a class="reference internal" href="#id2">Building with Petalinux</a></li>
 <li><a class="reference internal" href="#id3">On the development host</a><ul>
-<li><a class="reference internal" href="#checkout-the-main-development">Checkout the main development</a></li>
+<li><a class="reference internal" href="#id4">Checkout the Release branch</a></li>
 <li><a class="reference internal" href="#add-aarch64-linux-gnu-gcc-to-path">Add aarch64-linux-gnu-gcc to PATH</a><ul>
-<li><a class="reference internal" href="#id4">Using the Xilinx toolchain</a></li>
+<li><a class="reference internal" href="#using-the-xilinx-toolchain">Using the Xilinx toolchain</a></li>
 <li><a class="reference internal" href="#id5">Using the Linaro toolchain</a></li>
 </ul>
 </li>
@@ -121,6 +121,16 @@
 </li>
 <li><a class="reference internal" href="#common-issues">Common Issues</a><ul>
 <li><a class="reference internal" href="#displayport-no-picture">DisplayPort - no picture?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#building-the-microblaze-linux-kernel-and-devicetrees-from-source">Building the MicroBlaze Linux kernel and devicetrees from source</a><ul>
+<li><a class="reference internal" href="#id8">On the development host</a><ul>
+<li><a class="reference internal" href="#id9">Checkout the Release branch</a></li>
+<li><a class="reference internal" href="#id10">Setup cross compile environment variables</a></li>
+<li><a class="reference internal" href="#compile-the-kernel">Compile the kernel</a></li>
+<li><a class="reference internal" href="#boot-on-fpga-microblaze">Boot on FPGA MicroBlaze</a></li>
 </ul>
 </li>
 </ul>
@@ -419,28 +429,33 @@ devicetrees for different platforms on different hosts.</p>
 <p>Jump to your platform and preferred method:</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#building-the-zynq-linux-kernel-and-devicetrees-from-source" id="id8">Building the Zynq Linux kernel and devicetrees from source</a></p>
+<li><p><a class="reference internal" href="#building-the-zynq-linux-kernel-and-devicetrees-from-source" id="id11">Building the Zynq Linux kernel and devicetrees from source</a></p>
 <ul>
-<li><p><a class="reference internal" href="#using-a-script" id="id9">Using a script</a></p></li>
-<li><p><a class="reference internal" href="#building-with-petalinux" id="id10">Building with Petalinux</a></p></li>
-<li><p><a class="reference internal" href="#on-the-development-host" id="id11">On the development host</a></p></li>
-<li><p><a class="reference internal" href="#on-the-target-platform-devicetrees" id="id12">On the target platform (devicetrees)</a></p></li>
+<li><p><a class="reference internal" href="#using-a-script" id="id12">Using a script</a></p></li>
+<li><p><a class="reference internal" href="#building-with-petalinux" id="id13">Building with Petalinux</a></p></li>
+<li><p><a class="reference internal" href="#on-the-development-host" id="id14">On the development host</a></p></li>
+<li><p><a class="reference internal" href="#on-the-target-platform-devicetrees" id="id15">On the target platform (devicetrees)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#building-the-zynqmp-mpsoc-linux-kernel-and-devicetrees-from-source" id="id13">Building the ZynqMP / MPSoC Linux kernel and devicetrees from source</a></p>
+<li><p><a class="reference internal" href="#building-the-zynqmp-mpsoc-linux-kernel-and-devicetrees-from-source" id="id16">Building the ZynqMP / MPSoC Linux kernel and devicetrees from source</a></p>
 <ul>
-<li><p><a class="reference internal" href="#id1" id="id14">Using a script</a></p></li>
-<li><p><a class="reference internal" href="#id2" id="id15">Building with Petalinux</a></p></li>
-<li><p><a class="reference internal" href="#id3" id="id16">On the development host</a></p></li>
-<li><p><a class="reference internal" href="#common-issues" id="id17">Common Issues</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id17">Using a script</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id18">Building with Petalinux</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id19">On the development host</a></p></li>
+<li><p><a class="reference internal" href="#common-issues" id="id20">Common Issues</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#building-the-microblaze-linux-kernel-and-devicetrees-from-source" id="id21">Building the MicroBlaze Linux kernel and devicetrees from source</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id8" id="id22">On the development host</a></p></li>
 </ul>
 </li>
 </ul>
 </nav>
 <section id="building-the-zynq-linux-kernel-and-devicetrees-from-source">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">Building the Zynq Linux kernel and devicetrees from source</a><a class="headerlink" href="#building-the-zynq-linux-kernel-and-devicetrees-from-source" title="Link to this heading"></a></h2>
+<span id="kernel-zynq"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">Building the Zynq Linux kernel and devicetrees from source</a><a class="headerlink" href="#building-the-zynq-linux-kernel-and-devicetrees-from-source" title="Link to this heading"></a></h2>
 <section id="using-a-script">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">Using a script</a><a class="headerlink" href="#using-a-script" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Using a script</a><a class="headerlink" href="#using-a-script" title="Link to this heading"></a></h3>
 <p>We provide
 <a class="icon git reference external" href="https://raw.githubusercontent.com/analogdevicesinc/wiki-scripts/main/linux/build_zynq_kernel_image.sh">a script</a>
 that does automates the build for Zynq using the Linaro toolchain.</p>
@@ -471,11 +486,11 @@ chmod<span class="w"> </span>+x<span class="w"> </span>build_zynq_kernel_image.s
 </div>
 <div class="clear-left"></div></div></div></section>
 <section id="building-with-petalinux">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">Building with Petalinux</a><a class="headerlink" href="#building-with-petalinux" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Building with Petalinux</a><a class="headerlink" href="#building-with-petalinux" title="Link to this heading"></a></h3>
 <p>Please see here: <a class="reference internal" href="petalinux.html#linux-kernel-petalinux"><span class="std std-ref">Building with Petalinux</span></a>.</p>
 </section>
 <section id="on-the-development-host">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">On the development host</a><a class="headerlink" href="#on-the-development-host" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">On the development host</a><a class="headerlink" href="#on-the-development-host" title="Link to this heading"></a></h3>
 <p>Make sure you have <code class="docutils literal notranslate"><span class="pre">u-boot-tools</span></code> installed, to have the <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> utility
 available. You can install it via your distro’s package manager.</p>
 <p>Then</p>
@@ -498,36 +513,7 @@ around 3.4GB and growing.</p>
 <p class="admonition-title">Tip</p>
 <p>Use the latest release, if not required otherwise!</p>
 </div>
-<div class="table-wrapper docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Release names and Branches</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>2014_R2</p></td>
-</tr>
-<tr class="row-odd"><td><p>2015_R2</p></td>
-</tr>
-<tr class="row-even"><td><p>2016_R1</p></td>
-</tr>
-<tr class="row-odd"><td><p>2016_R2</p></td>
-</tr>
-<tr class="row-even"><td><p>2017_R1</p></td>
-</tr>
-<tr class="row-odd"><td><p>2018_R1</p></td>
-</tr>
-<tr class="row-even"><td><p>2018_R2</p></td>
-</tr>
-<tr class="row-odd"><td><p>2019_R1</p></td>
-</tr>
-<tr class="row-even"><td><p>2019_R2</p></td>
-</tr>
-<tr class="row-odd"><td><p>2021_R1</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>The release branches have the format <code class="docutils literal notranslate"><span class="pre">&lt;Year&gt;_R[1|2]</span></code>, starting from <code class="docutils literal notranslate"><span class="pre">2014_R2</span></code>.</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
 </pre></div>
 </div>
@@ -541,12 +527,12 @@ Switched to a new branch &#39;2021_R1&#39;
 <div class="clear-left"></div></div></div></section>
 <section id="setup-cross-compile-environment-variables">
 <h4>Setup cross compile environment variables<a class="headerlink" href="#setup-cross-compile-environment-variables" title="Link to this heading"></a></h4>
-<p>There are a few toolchains that can be used. The Xilinx toolchain is
+<p>There are a few toolchains that can be used. The AMD Xilinx toolchain is
 recommended, but the Linaro toolchain can also be used.</p>
 <p>Other toolchains/compilers for ARM may work as well, but the ones described here
 have been tested and found to work.</p>
-<section id="using-the-xilinx-toolchain">
-<h5>Using the Xilinx toolchain<a class="headerlink" href="#using-the-xilinx-toolchain" title="Link to this heading"></a></h5>
+<section id="using-the-amd-xilinx-toolchain">
+<h5>Using the AMD Xilinx toolchain<a class="headerlink" href="#using-the-amd-xilinx-toolchain" title="Link to this heading"></a></h5>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <thead>
@@ -674,7 +660,7 @@ As long as the board is a ZYNQ FPGA, use the configuration below.</p>
 <div class="clear-left"></div></div></div></section>
 <section id="build-the-kernel">
 <h4>Build the kernel<a class="headerlink" href="#build-the-kernel" title="Link to this heading"></a></h4>
-<p>Build the kernel via ‘make’. This is the same for all Xilinx ZYNQ FPGAs.</p>
+<p>Build the kernel via ‘make’. This is the same for all AMD Xilinx ZYNQ FPGAs.</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
 </pre></div>
 </div>
@@ -1054,7 +1040,7 @@ See <a class="reference internal" href="../kuiper/sdcard/index.html#kuiper-sdcar
 <div class="clear-left"></div></div></div></section>
 </section>
 <section id="on-the-target-platform-devicetrees">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">On the target platform (devicetrees)</a><a class="headerlink" href="#on-the-target-platform-devicetrees" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">On the target platform (devicetrees)</a><a class="headerlink" href="#on-the-target-platform-devicetrees" title="Link to this heading"></a></h3>
 <p>To modify devicetrees on the target platform:</p>
 <ol class="arabic">
 <li><p>Make sure the boot partition is mounted. On new images, this can be done by
@@ -1096,9 +1082,9 @@ this step.</p>
 </section>
 </section>
 <section id="building-the-zynqmp-mpsoc-linux-kernel-and-devicetrees-from-source">
-<h2><a class="toc-backref" href="#id13" role="doc-backlink">Building the ZynqMP / MPSoC Linux kernel and devicetrees from source</a><a class="headerlink" href="#building-the-zynqmp-mpsoc-linux-kernel-and-devicetrees-from-source" title="Link to this heading"></a></h2>
+<span id="kernel-zynqmp"></span><h2><a class="toc-backref" href="#id16" role="doc-backlink">Building the ZynqMP / MPSoC Linux kernel and devicetrees from source</a><a class="headerlink" href="#building-the-zynqmp-mpsoc-linux-kernel-and-devicetrees-from-source" title="Link to this heading"></a></h2>
 <section id="id1">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">Using a script</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Using a script</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>We provide
 <a class="icon git reference external" href="https://raw.githubusercontent.com/analogdevicesinc/wiki-scripts/main/linux/build_zynqmp_kernel_image.sh">a script</a>
 that does automates the build for Zynq using the Linaro toolchain.</p>
@@ -1114,7 +1100,7 @@ if you want to use an already cloned kernel repo</p></li>
 build. Default is <code class="docutils literal notranslate"><span class="pre">xilinx/zynqmp-zcu102-rev10-ad9361-fmcomms2-3.dtb</span></code> for
 ZynqMP</p></li>
 <li><p><strong>&lt;path_to_other_toolchain&gt;</strong> - in case you have your own preferred toolchain
-(other than Linaro’s or Xilinx’s) you can use override it with this 3rd param</p></li>
+(other than Linaro’s or AMD Xilinx’s) you can use override it with this 3rd paramameter</p></li>
 </ol>
 <p>The script will:</p>
 <ul class="simple">
@@ -1134,11 +1120,11 @@ ZynqMP</p></li>
 </div>
 <div class="clear-left"></div></div></div></section>
 <section id="id2">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">Building with Petalinux</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Building with Petalinux</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>Please see here: <a class="reference internal" href="petalinux.html#linux-kernel-petalinux"><span class="std std-ref">Building with Petalinux</span></a>.</p>
 </section>
 <section id="id3">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">On the development host</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">On the development host</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>Make sure you have <code class="docutils literal notranslate"><span class="pre">u-boot-tools</span></code> installed, to have the <code class="docutils literal notranslate"><span class="pre">mkimage</span></code> utility
 available. You can install it via your distro’s package manager.</p>
 <p>Then</p>
@@ -1155,23 +1141,28 @@ available. You can install it via your distro’s package manager.</p>
 cloning by fetching only near the head of each branch/release, you may remove
 them to fetch all history, but bear in mind it will go from around 800MB to
 around 3.4GB and growing.</p>
-<section id="checkout-the-main-development">
-<h4>Checkout the main development<a class="headerlink" href="#checkout-the-main-development" title="Link to this heading"></a></h4>
+<section id="id4">
+<h4>Checkout the Release branch<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use the latest release, if not required otherwise!</p>
+</div>
+<p>The release branches have the format <code class="docutils literal notranslate"><span class="pre">&lt;Year&gt;_R[1|2]</span></code>, starting from <code class="docutils literal notranslate"><span class="pre">2014_R2</span></code>.</p>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>origin/2021_R1<span class="w"> </span>-b<span class="w"> </span>2021_R1
 </pre></div>
 </div>
-<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Already on &#39;main&#39;
-Your branch is up-to-date with &#39;origin/main&#39;.
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Branch 2021_R1 set up to track remote branch 2021_R1 from origin.
+Switched to a new branch &#39;2021_R1&#39;
 </pre></div>
 </div>
 <div class="clear-left"></div></div></div></section>
 <section id="add-aarch64-linux-gnu-gcc-to-path">
 <h4>Add aarch64-linux-gnu-gcc to PATH<a class="headerlink" href="#add-aarch64-linux-gnu-gcc-to-path" title="Link to this heading"></a></h4>
-<section id="id4">
-<h5>Using the Xilinx toolchain<a class="headerlink" href="#id4" title="Link to this heading"></a></h5>
+<section id="using-the-xilinx-toolchain">
+<h5>Using the Xilinx toolchain<a class="headerlink" href="#using-the-xilinx-toolchain" title="Link to this heading"></a></h5>
 <div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
 </pre></div>
 </div>
@@ -1360,7 +1351,7 @@ See <a class="reference internal" href="../kuiper/sdcard/index.html#kuiper-sdcar
 <div class="clear-left"></div></div></div></section>
 </section>
 <section id="common-issues">
-<h3><a class="toc-backref" href="#id17" role="doc-backlink">Common Issues</a><a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Common Issues</a><a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
 <p>This sections goes through common issues related to the Linux Kernel on the
 ZynqMP.</p>
 <section id="displayport-no-picture">
@@ -1380,6 +1371,224 @@ and that is what the configuration is set up for.</p>
 <a class="reference external" href="https://www.xilinx.com/support/answers/68671.html">here</a>.
 Resolution or image problems may appear if there is used a monitor that was not
 tested.</p>
+</section>
+</section>
+</section>
+<section id="building-the-microblaze-linux-kernel-and-devicetrees-from-source">
+<span id="kernel-microblaze"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">Building the MicroBlaze Linux kernel and devicetrees from source</a><a class="headerlink" href="#building-the-microblaze-linux-kernel-and-devicetrees-from-source" title="Link to this heading"></a></h2>
+<section id="id8">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">On the development host</a><a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>This guide provides some step-by-step instructions on how to build a Microblaze
+Linux Kernel image for the FMC board connected to a:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.xilinx.com/KC705">KC705</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/KCU105">KCU105</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/VC707">VC707</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/VCU118">VCU118</a></p></li>
+<li><p><a class="reference external" href="https://www.xilinx.com/VCU128">VCU128</a></p></li>
+</ul>
+<p>The <a class="icon git reference external" href="https://github.com/analogdevicesinc/linux/tree/main/">ADI Linux repository</a> contains the Linux Kernel flavor from Analog Devices Inc.
+<a class="reference download external" download="" href="https://swdownloads.analog.com/cse/microblaze/rootfs/rootfs.cpio.gz"><code class="xref download docutils literal notranslate"><span class="pre">rootfs.cpio.gz</span></code></a>
+contains the files system to be used.
+As the compiler, the Microblaze GNU Tools are bumbled on both
+<a class="reference external" href="https://www.xilinx.com/en/products/software/adaptive-socs-and-fpgas/vivado.html">AMD Vivado</a> and
+<a class="reference external" href="https://www.xilinx.com/en/products/software/adaptive-socs-and-fpgas/vivado.html">AMD Vivis</a>, as well
+as the <code class="docutils literal notranslate"><span class="pre">xsdb</span></code> tool for booting.</p>
+<p>After ensuring all tools are installed, clone the <a class="icon git reference external" href="https://github.com/analogdevicesinc/linux/tree/main/">ADI Linux repository</a></p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/analogdevicesinc/linux.git<span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--no-single-branch<span class="w"> </span>--depth<span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+<span class="w">            </span>--<span class="w"> </span>linux
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>The <code class="docutils literal notranslate"><span class="pre">depth</span></code> and <code class="docutils literal notranslate"><span class="pre">no-single-branch</span></code> options are included to speed up the
+cloning by fetching only near the head of each branch/release, you may remove
+them to fetch all history, but bear in mind it will go from around 800 MB to
+around 3.4GB and growing.</p>
+<section id="id9">
+<h4>Checkout the Release branch<a class="headerlink" href="#id9" title="Link to this heading"></a></h4>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Use the latest release, if not required otherwise!</p>
+</div>
+<p>The release branches have the format <code class="docutils literal notranslate"><span class="pre">&lt;Year&gt;_R[1|2]</span></code>, starting from <code class="docutils literal notranslate"><span class="pre">2014_R2</span></code>.</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>origin/2021_R1<span class="w"> </span>-b<span class="w"> </span>2021_R1
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>Branch 2021_R1 set up to track remote branch 2021_R1 from origin.
+Switched to a new branch &#39;2021_R1&#39;
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div></section>
+<section id="id10">
+<h4>Setup cross compile environment variables<a class="headerlink" href="#id10" title="Link to this heading"></a></h4>
+<p>The Microblaze GNU Toolchain bumbled in AMD Vivado/Xilinx is the recommended
+compiler.</p>
+<p>/data/opt/Xilinx/Vitis/$XVERSION/gnu/microblaze/linux_toolchain/lin64_le/bin/</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">XVERSION</span><span class="o">=</span><span class="m">2024</span>.2
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">GCC_MICROBLAZE</span><span class="o">=</span><span class="nv">$PATH_TO_XILINX</span>/Vits/<span class="nv">$VITIS_VERSION</span>/gnu/microblaze/linux_toolchain/lin64_le/bin/
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>microblaze
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$GCC_MICROBLAZE</span><span class="s2">/microblazeel-xilinx-linux-gnu-&quot;</span>
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Find the path to the Xilinx installation folder, and then use
+it to replace this string: <strong>$PATH_TO_XILINX</strong> that is written above.
+Same goes for the <strong>$VITIS_VERSION</strong>, where you choose the Vitis version.
+Alternatively, you can replace Vitis with Vivado.</p>
+</div>
+</section>
+<section id="compile-the-kernel">
+<h4>Compile the kernel<a class="headerlink" href="#compile-the-kernel" title="Link to this heading"></a></h4>
+<p>Prepare the configuration:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/linux$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>adi_mb_defconfig
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>#
+# configuration written to .config
+#
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>Download the rootfs:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/linux$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://swdownloads.analog.com/cse/microblaze/rootfs/rootfs.cpio.gz
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span> Saving to: ‘rootfs.cpio.gz’
+ rootfs.cpio.gz    100%[======================&gt;]   4.74M  6.39MB/s    in 0.7s
+ 2025-05-28 11:00:09 (6.39 MB/s) - ‘rootfs.cpio.gz’ saved [4970267/4970267]
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>The result of building the kernel is an elf file in <em>arch/microblaze/boot</em> named
+<cite>simpleImage.&lt;dts-file&gt;</cite> based on the dts specified.</p>
+<p>The build process for the kernel searches in the <em>arch/microblaze/boot/dts</em>
+directory for a specified device tree file and then builds the device tree into
+the kernel image.</p>
+<p>The following command shows the general format for the build target name. Note
+that the <em>&lt;dts-file&gt;</em> does not include the file extension <em>.dts</em>.</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/linux$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>simpleImage.&lt;dts-file&gt;
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>To see what device-trees for the different FPGA carrier and FMC module combination exist type:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/linux$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-l<span class="w"> </span>arch/microblaze/boot/dts
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>So, for example, for <em>vcu118_quad_ad9081_204c_txmode_23_rxmode_25_onchip_pll_revc_nz1.dts</em>:</p>
+<div class="code-shell"><div><div class="no-select float-left highlight-default notranslate"><div class="highlight"><pre><span></span>~/linux$
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>simpleImage.vcu118_quad_ad9081_204c_txmode_23_rxmode_25_onchip_pll_revc_nz1
+</pre></div>
+</div>
+<div class="clear-left"></div></div><div><div class="no-select highlight-text notranslate"><div class="highlight"><pre><span></span>  SYNC    include/config/auto.conf.cmd
+  CC      scripts/mod/empty.o
+  CC      scripts/mod/devicetable-offsets.s
+  MKELF   scripts/mod/elfconfig.h
+  HOSTCC  scripts/mod/modpost.o
+  HOSTCC  scripts/mod/sumversion.o
+  HOSTCC  scripts/mod/file2alias.o
+
+[ --snip-- ]
+
+  AR      init/built-in.a
+  LD      vmlinux.o
+  MODPOST vmlinux.symvers
+  MODINFO modules.builtin.modinfo
+  GEN     modules.builtin
+  LD      .tmp_vmlinux.kallsyms1
+  KSYMS   .tmp_vmlinux.kallsyms1.S
+  AS      .tmp_vmlinux.kallsyms1.S
+  LD      .tmp_vmlinux.kallsyms2
+  KSYMS   .tmp_vmlinux.kallsyms2.S
+  AS      .tmp_vmlinux.kallsyms2.S
+  LD      vmlinux
+  SORTTAB vmlinux
+  SYSMAP  System.map
+  OBJCOPY arch/microblaze/boot/simpleImage.vcu118_quad_ad9081_204c_txmode_23_rxmode_25_onchip_pll_revc_nz1
+  SHIPPED arch/microblaze/boot/simpleImage.vcu118_quad_ad9081_204c_txmode_23_rxmode_25_onchip_pll_revc_nz1.unstrip
+  STRIP   vmlinux arch/microblaze/boot/simpleImage.vcu118_quad_ad9081_204c_txmode_23_rxmode_25_onchip_pll_revc_nz1.strip
+  UIMAGE  arch/microblaze/boot/simpleImage.vcu118_quad_ad9081_204c_txmode_23_rxmode_25_onchip_pll_revc_nz1.ub
+Image Name:   Linux-5.10.0-97916-g513446e488c3
+Created:      Tue Jan 18 12:07:35 2022
+Image Type:   MicroBlaze Linux Kernel Image (uncompressed)
+Data Size:    18398124 Bytes = 17966.92 KiB = 17.55 MiB
+Load Address: 80000000
+Entry Point:  80000000
+Kernel: arch/microblaze/boot/simpleImage.vcu118_quad_ad9081_204c_txmode_23_rxmode_25_onchip_pll_revc_nz1 is ready  (#3678)
+</pre></div>
+</div>
+<div class="clear-left"></div></div></div><p>The STRIP image (<em>.strip</em>) found under <em>arch/microblaze/boot</em> is the ELF image
+to load via the debugger.</p>
+</section>
+<section id="boot-on-fpga-microblaze">
+<h4>Boot on FPGA MicroBlaze<a class="headerlink" href="#boot-on-fpga-microblaze" title="Link to this heading"></a></h4>
+<p>One method to load the kernel onto the already built and running FPGA which has
+the MicroBlaze processor is to use <code class="docutils literal notranslate"><span class="pre">xsdb</span></code>/<code class="docutils literal notranslate"><span class="pre">xsct</span></code> or <code class="docutils literal notranslate"><span class="pre">xmd</span></code> from the AMD
+Xilinx Vivado/Vitis toolset to download the build <em>.strip</em> file.</p>
+<p>Go to the folder containing the <em>.strip</em> and <em>system_top.bit</em> file, to flash the
+bitstream and download the Image.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>system_top.bit</strong> is obtained from the HDL project.
+Learn how to <a class="reference external" href="https://analogdevicesinc.github.io/hdl/user_guide/build_hdl.html#build-hdl" title="(in HDL)"><span>Build an HDL project</span></a>, but instead of using the generated
+<strong>*.sdk/system_top.xsa</strong>, use the <strong>*.runs/impl_1/system_top.bit</strong>.</p>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">xsdb</span></code>/<code class="docutils literal notranslate"><span class="pre">xsct</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xsdb</span><span class="o">&gt;</span> <span class="n">connect</span>
+<span class="n">xsdb</span><span class="o">&gt;</span> <span class="n">fpga</span> <span class="o">-</span><span class="n">f</span> <span class="n">system_top</span><span class="o">.</span><span class="n">bit</span>
+<span class="n">xsdb</span><span class="o">&gt;</span> <span class="n">targets</span>
+  <span class="mi">1</span>  <span class="n">xcku040</span>
+     <span class="mi">2</span>  <span class="n">MicroBlaze</span> <span class="n">Debug</span> <span class="n">Module</span> <span class="n">at</span> <span class="n">USER2</span>
+        <span class="mi">3</span>  <span class="n">MicroBlaze</span> <span class="c1">#0 (Running)</span>
+<span class="n">xsdb</span><span class="o">&gt;</span> <span class="n">targets</span> <span class="mi">3</span>
+<span class="n">xsdb</span><span class="o">&gt;</span> <span class="n">dow</span> <span class="n">simpleImage</span><span class="o">.</span><span class="n">kcu105_fmcdaq2</span>
+<span class="n">xsdb</span><span class="o">&gt;</span> <span class="n">con</span>
+<span class="n">xsdb</span><span class="o">&gt;</span> <span class="n">disconnect</span>
+</pre></div>
+</div>
+<p>To automate, the same commands can be added to a <em>.tcl</em> script and run with <code class="docutils literal notranslate"><span class="pre">xsdb</span> <span class="pre">run.tcl</span></code>.</p>
+<p>With <code class="docutils literal notranslate"><span class="pre">xmd</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xmd</span><span class="o">&gt;</span> <span class="n">fpga</span> <span class="o">-</span><span class="n">f</span> <span class="n">system_top</span><span class="o">.</span><span class="n">bit</span>
+<span class="n">xmd</span><span class="o">&gt;</span> <span class="n">connect</span> <span class="n">mb</span> <span class="n">mdm</span>
+<span class="n">xmd</span><span class="o">&gt;</span> <span class="n">dow</span> <span class="n">simpleImage</span><span class="o">.</span><span class="n">vc707_fmcomms2</span><span class="o">-</span><span class="mi">3</span>
+<span class="n">xmd</span><span class="o">&gt;</span> <span class="n">run</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
