@@ -132,7 +132,10 @@ Content on this topic
 </ul>
 </li>
 <li class="toctree-l1"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2" id="toctree-collapse-2"/><div class="collapse"><a class="reference internal" href="kernel/index.html">Kernel and devicetrees</a><label for="toctree-collapse-2"><div class="icon"></div></label></div><ul>
-<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1" id="toctree-collapse-2-1"/><div class="collapse"><a class="reference internal" href="kernel/petalinux.html">Building with Petalinux</a><label for="toctree-collapse-2-1"><div class="icon"></div></label></div><ul>
+<li class="toctree-l2"><a class="reference internal" href="kernel/zynq.html">Build Zynq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel/zynqmp.html">Build ZynqMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel/microblaze.html">Build MicroBlaze</a></li>
+<li class="toctree-l2"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1" id="toctree-collapse-2-1"/><div class="collapse"><a class="reference internal" href="kernel/petalinux.html">Build with Petalinux</a><label for="toctree-collapse-2-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l3"><input class="toctree-collapse" type="checkbox" name="toctree-collapse-2-1-1" id="toctree-collapse-2-1-1"/><div class="collapse"><a class="reference internal" href="kernel/petalinux-dts/index.html">Petalinux Device Trees</a><label for="toctree-collapse-2-1-1"><div class="icon"></div></label></div><ul>
 <li class="toctree-l4"><a class="reference internal" href="kernel/petalinux-dts/petalinux-custom-dts.html">Custom Device Trees with meta-adi</a></li>
 <li class="toctree-l4"><a class="reference internal" href="kernel/petalinux-dts/petalinux-meta-adi-bypass.html">Custom Device Trees with DTG (meta-adi Bypass)</a></li>
@@ -526,52 +529,63 @@ Content on this topic
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="kernel/index.html">Kernel and devicetrees</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kernel/index.html#building-the-zynq-linux-kernel-and-devicetrees-from-source">Building the Zynq Linux kernel and devicetrees from source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#using-a-script">Using a script</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#building-with-petalinux">Building with Petalinux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#on-the-development-host">On the development host</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#checkout-the-release-branch">Checkout the Release branch</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#setup-cross-compile-environment-variables">Setup cross compile environment variables</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="kernel/index.html#using-the-amd-xilinx-toolchain">Using the AMD Xilinx toolchain</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kernel/index.html#using-the-linaro-toolchain">Using the Linaro toolchain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel/zynq.html">Build Zynq</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynq.html#using-a-script">Using a script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynq.html#building-with-petalinux">Building with Petalinux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynq.html#on-the-development-host">On the development host</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynq.html#checkout-the-release-branch">Checkout the Release branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynq.html#setup-cross-compile-environment-variables">Setup cross compile environment variables</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="kernel/zynq.html#using-the-amd-xilinx-toolchain">Using the AMD Xilinx toolchain</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kernel/zynq.html#using-the-linaro-toolchain">Using the Linaro toolchain</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#configure-the-kernel">Configure the kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#build-the-kernel">Build the kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#build-the-devicetree-fcmomms2-3-4-5">Build the devicetree FCMOMMS2/3/4/5</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#copy-the-generated-files-to-your-sd-card">Copy the generated files to your SD Card</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynq.html#configure-the-kernel">Configure the kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynq.html#build-the-kernel">Build the kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynq.html#build-the-devicetree-fcmomms2-3-4-5">Build the devicetree FCMOMMS2/3/4/5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynq.html#copy-the-generated-files-to-your-sd-card">Copy the generated files to your SD Card</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#on-the-target-platform-devicetrees">On the target platform (devicetrees)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynq.html#on-the-target-platform-devicetrees">On the target platform (devicetrees)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="kernel/index.html#building-the-zynqmp-mpsoc-linux-kernel-and-devicetrees-from-source">Building the ZynqMP / MPSoC Linux kernel and devicetrees from source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#id1">Using a script</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#id2">Building with Petalinux</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#id3">On the development host</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#id4">Checkout the Release branch</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#add-aarch64-linux-gnu-gcc-to-path">Add aarch64-linux-gnu-gcc to PATH</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="kernel/index.html#using-the-xilinx-toolchain">Using the Xilinx toolchain</a></li>
-<li class="toctree-l5"><a class="reference internal" href="kernel/index.html#id5">Using the Linaro toolchain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel/zynqmp.html">Build ZynqMP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynqmp.html#using-a-script">Using a script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynqmp.html#building-with-petalinux">Building with Petalinux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynqmp.html#on-the-development-host">On the development host</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynqmp.html#checkout-the-release-branch">Checkout the Release branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynqmp.html#add-aarch64-linux-gnu-gcc-to-path">Add aarch64-linux-gnu-gcc to PATH</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="kernel/zynqmp.html#using-the-xilinx-toolchain">Using the Xilinx toolchain</a></li>
+<li class="toctree-l5"><a class="reference internal" href="kernel/zynqmp.html#using-the-linaro-toolchain">Using the Linaro toolchain</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#id6">Configure the kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#build-the-devicetree-fcmomms2-3">Build the devicetree FCMOMMS2/3</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#id7">Copy the generated files to your SD Card</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynqmp.html#configure-the-kernel">Configure the kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynqmp.html#build-the-devicetree-fcmomms2-3">Build the devicetree FCMOMMS2/3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynqmp.html#copy-the-generated-files-to-your-sd-card">Copy the generated files to your SD Card</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#common-issues">Common Issues</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#displayport-no-picture">DisplayPort - no picture?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kernel/zynqmp.html#common-issues">Common Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kernel/zynqmp.html#displayport-no-picture">DisplayPort - no picture?</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="kernel/index.html#building-the-microblaze-linux-kernel-and-devicetrees-from-source">Building the MicroBlaze Linux kernel and devicetrees from source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kernel/index.html#id8">On the development host</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#id9">Checkout the Release branch</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#id10">Setup cross compile environment variables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#compile-the-kernel">Compile the kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="kernel/index.html#boot-on-fpga-microblaze">Boot on FPGA MicroBlaze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kernel/microblaze.html">Build MicroBlaze</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kernel/microblaze.html#on-the-development-host">On the development host</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kernel/microblaze.html#checkout-the-release-branch">Checkout the Release branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/microblaze.html#setup-cross-compile-environment-variables">Setup cross compile environment variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/microblaze.html#compile-the-kernel">Compile the kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kernel/microblaze.html#boot-on-fpga-microblaze">Boot on FPGA MicroBlaze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kernel/petalinux.html">Build with Petalinux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kernel/petalinux.html#messages">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kernel/petalinux.html#petalinux-meta-adi-and-device-trees">Petalinux, meta-adi and Device Trees</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="kernel/petalinux-dts/index.html">Petalinux Device Trees</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="kernel/petalinux-dts/index.html#device-tree-modifications">Device Tree Modifications</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
