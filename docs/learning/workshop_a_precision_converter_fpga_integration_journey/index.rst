@@ -19,16 +19,16 @@ Introduction
 .. figure:: intro_customer_jurney_1.png
    :align: center
 
-Tools / Platforms are a customer choice, ADI ports to “current” development
+Tools / Platforms are a customer choice, ADI ports to "current" development
 environment/kit.
 
 .. figure:: intro_customer_jurney_2.png
    :align: center
 
-Maintenance is an ADI burden. Customer don’t start their designs at the same
+Maintenance is an ADI burden. Customer don't start their designs at the same
 time, and want to use the latest and greatest.
 
-**COS Reference Design “Donut Hole” Strategy**
+**COS Reference Design "Donut Hole" Strategy**
 
 *Surround others processor, FPGA, micro ADI components*
 *Reference design creates stickiness*
@@ -58,7 +58,7 @@ time, and want to use the latest and greatest.
 - Termination to DMA via an AXI-STREAM or FIFO interface
 - Runs across different Intel and Xilinx carriers
 
-*Are designed to be disconnected to “insert custom signal processing”*
+*Are designed to be disconnected to "insert custom signal processing"*
 
 - Your modem, your signals intelligence, etc.
 
@@ -70,7 +70,7 @@ time, and want to use the latest and greatest.
 - Intel Signal Tap
 - MathWorks HDL Verifier (in SoC Blockset)
 
-.. figure:: intro_full_stack_hdl.png
+.. figure:: ad9081_204b_M4L8.svg
    :align: center
 
 **COS Typical Prototyping System**
@@ -97,7 +97,7 @@ time, and want to use the latest and greatest.
 - HDL
 - Software
 
-.. figure:: intro_jesd.png
+.. figure:: jesd204_chain.svg
    :align: center
 
 **COS Frameworks - SPI Engine Framework**
@@ -112,7 +112,7 @@ CUSTOM INTERFACE PROJECTS 45%
 
 SPI Engine supports 21.5% of the HLD projects.
 
-.. figure:: intro_spie.png
+.. figure:: intro_spie.svg
    :align: center
 
 SPI Engine Architecture
@@ -120,9 +120,9 @@ SPI Engine Architecture
 
 **Serial Peripheral Interface**
 
-A full-duplex serial communication bus design by Motorola in mid 1980’s, used
+A full-duplex serial communication bus design by Motorola in mid 1980's, used
 in short distance chip to chip communication, primarily in embedded systems.
-It become a ‘de facto’ standard, with small variations depending on the use 
+It become a ‘de facto' standard, with small variations depending on the use 
 case and application.​
 
 .. figure:: spi_master_slave.png
@@ -139,7 +139,7 @@ CSN  – Chip Select N (active low)
 .. figure:: spi_modes_2.png
    :align: center
 
-**Why the MCU SPI controller isn’t enough?**
+**Why the MCU SPI controller isn't enough?**
 
 *Physical layer challenges:*
 
@@ -180,13 +180,13 @@ extensible.
 *Some of the SPI Engine Framework features are:*
 
 - HDL IP supporting the two major FPGA vendors (Xilinx and Intel)
-- Software API integrated into the Linux kernel’s SPI framework
+- Software API integrated into the Linux kernel's SPI framework
 - Bare-metal software API
 - Examples with various devices (device drivers that leverage the framework)
 
 **SPI Engine Framework – HDL Architecture**
 
-.. figure:: spie_framework.png
+.. figure:: spie_framework.svg
    :align: center
 
 *Command Stream Generator (CSG)*
@@ -334,12 +334,12 @@ Supply voltage [V]           -2.5 and 5             -2.5 and 5
 
 **Timing parameters needed to configure the framework**
 
-.. figure:: use_case_timing_parameters_ad7984.png
+.. figure:: use_case_ad7984_timing_parameters.png
    :align: center
 
 **HDL design block diagram**
 
-.. figure:: use_case_hdl_bd.png
+.. figure:: use_case_hdl_bd.svg
    :align: center
 
 **HDL Framework instantiation**
@@ -469,7 +469,7 @@ Uses the ADALM2000 to implement virtual instruments:
 .. figure:: system_build_schematic.png
    :align: center
 
-**System Build - CORA Z7S Configuration**
+**System Build - `Cora Z7S`_ Configuration**
 
 .. figure:: system_build_cora.png
    :align: center
@@ -496,8 +496,49 @@ Uses the ADALM2000 to implement virtual instruments:
 
 **System Build - UART and Ethernet Testing**
 
-.. figure:: system_build_uart_and_eth.png
-   :align: center
+Step 1 - using Putty
+
+.. shell::
+   :caption: ifconfig
+   :user: root
+
+   $ifconfig
+    eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 169.254.92.202  netmask 255.255.255.0  broadcast 10.48.65.255
+        inet6 fe80::241:8f:d3d0:e43b  prefixlen 64  scopeid 0x20<link>
+        ether 0e:23:90:e3:61:01  txqueuelen 1000  (Ethernet)
+        RX packets 483757  bytes 81480222 (77.7 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 5562  bytes 775511 (757.3 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 38
+  
+    lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 83  bytes 10176 (9.9 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 83  bytes 10176 (9.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+Step 2 - using Cygwin
+
+.. shell::
+   :caption: ping 169.254.92.202
+   
+   $ping 169.254.92.202
+
+    Pinging 169.254.92.202 with 32 bytes of data:
+    Reply from 169.254.92.202: bytes=32 time=2ms TTL=64
+    Reply from 169.254.92.202: bytes=32 time=1ms TTL=64
+    Reply from 169.254.92.202: bytes=32 time=1ms TTL=64
+    Reply from 169.254.92.202: bytes=32 time=1ms TTL=64
+
+    Ping statistics for 169.254.92.202:
+      Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+    Approximate round trip times in milli-seconds:
+      Minimum = 1ms, Maximum = 2ms, Average = 1ms
 
 Evaluate System
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -516,7 +557,7 @@ Evaluate System
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals
-Run the Python script on Cora z7s / Cygwin
+Run the Python script on `Cora Z7S`_ / Cygwin
 Analyze results in VisualAnalog
 Compare the results
 =========================================================== ====================== =====================
@@ -543,7 +584,7 @@ Compare the results
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X
-Run the Python script on Cora z7s / Cygwin
+Run the Python script on `Cora Z7S`_ / Cygwin
 Analyze results in VisualAnalog
 Compare the results
 =========================================================== ====================== =====================
@@ -578,7 +619,7 @@ Compare the results
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X
-Run the Python script on Cora z7s / Cygwin                            X
+Run the Python script on `Cora Z7S`_ / Cygwin                            X
 Analyze results in VisualAnalog
 Compare the results
 =========================================================== ====================== =====================
@@ -594,12 +635,17 @@ Compare the results
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X                     X
-Run the Python script on Cora z7s / Cygwin                            X
+Run the Python script on `Cora Z7S`_ / Cygwin                            X
 Analyze results in VisualAnalog
 Compare the results
 =========================================================== ====================== =====================
 
 **System Evaluation – Python from the FPGA board**
+
+.. shell::
+   :caption: cd /boot/
+
+    $cd /cygdrive/c/work/fae_workshop_workspace
 
 .. figure:: system_evaluation_spie_python_from_fpga_1.png
    :align: center
@@ -624,17 +670,24 @@ Compare the results
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X                     X
-Run the Python script on Cora z7s / Cygwin                            X                     X
+Run the Python script on `Cora Z7S`_ / Cygwin                         X                     X
 Analyze results in VisualAnalog
 Compare the results
 =========================================================== ====================== =====================
 
-**System Evaluation – Analyze results**
+.. shell::
+   :caption: cd /cygdrive/c/work/fae_workshop_workspace
 
-.. figure:: system_evaluation_analyse_results_1.png
-   :align: center
+    $cd /cygdrive/c/work/fae_workshop_workspace
 
-.. figure:: system_evaluation_analyse_results_2.png
+.. shell::
+   :caption: scp root@169.254.92.202L/boot/workshop/fae_workshop_visual.vac .
+   
+    $scp root@169.254.92.202L/boot/workshop/fae_workshop_visual.vac .
+     root@169.254.92.202's password:analog
+     fae_worksop_visual.vac                        100% 17KB     1.7MB/s   00:00
+
+.. figure:: system_evaluation_analyse_results.png
    :align: center
 
 **System Evaluation–Analyze results (SPI Engine-1.3MSPS)**
@@ -658,7 +711,7 @@ Compare the results
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X                     X
-Run the Python script on Cora z7s / Cygwin                            X                     X
+Run the Python script on `Cora Z7S`_ / Cygwin                         X                     X
 Analyze results in VisualAnalog                                       X                     X
 Compare the results
 =========================================================== ====================== =====================
@@ -681,7 +734,7 @@ Signal-to-(Noise + Distortion) SINAD [dBFS]      98                 14.30       
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X                     X
-Run the Python script on Cora z7s / Cygwin                            X                     X
+Run the Python script on `Cora Z7S`_ / Cygwin                         X                     X
 Analyze results in VisualAnalog                                       X                     X
 Compare the results                                                   X                     X
 =========================================================== ====================== =====================
@@ -705,3 +758,5 @@ Conclusions
 
 **Questions?**
 :ez:`community/university-program`
+
+.. _Cora Z7S: https://digilent.com/shop/cora-z7-zynq-7000-single-core-for-arm-fpga-soc-development
