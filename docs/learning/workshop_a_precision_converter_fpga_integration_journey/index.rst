@@ -16,13 +16,13 @@ Introduction
 
 **Customer Journey**
 
-.. figure:: intro_customer_jurney_1.png
+.. figure:: intro_customer_journey_1.png
    :align: center
 
 Tools / Platforms are a customer choice, ADI ports to "current" development
 environment/kit.
 
-.. figure:: intro_customer_jurney_2.png
+.. figure:: intro_customer_journey_2.png
    :align: center
 
 Maintenance is an ADI burden. Customer don't start their designs at the same

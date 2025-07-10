@@ -58,7 +58,6 @@ Workshops
 
 
 .. toctree::
-
    :caption: A Precision Converter FPGA Integration Journey
    :maxdepth: 1
 
