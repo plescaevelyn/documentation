@@ -1,18 +1,11 @@
 A Precision Converter FPGA Integration Journey
-===============================================================================
+==============================================
 
-Agenda
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#. Introduction
-#. SPI Engine Architecture
-#. What Is the Use Case?
-#. System Build
-#. System Evaluation
-#. Conclusions
+This workshop goes through the whole stack for the integration of a precision
+converter using an FPGA.
 
 Introduction
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------
 
 **Customer Journey**
 
@@ -37,11 +30,12 @@ time, and want to use the latest and greatest.
 *Develop/participate in viable communities / ecosystems:*
 
 - Linux kernel (1.3 Billion users)
-- Github (40 Million users)
+- GitHub (40 Million users)
 - Python (100 Million users)
 - MATLAB (1 Million users)
 
 .. figure:: intro_donut.png
+   :width: 500
    :align: center
 
 **COS Full Stack High Level Overview**
@@ -116,25 +110,31 @@ SPI Engine supports 21.5% of the HLD projects.
    :align: center
 
 SPI Engine Architecture
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 **Serial Peripheral Interface**
 
-A full-duplex serial communication bus design by Motorola in mid 1980's, used
+A full-duplex serial communication bus design by Motorola in mid 1980s, used
 in short distance chip to chip communication, primarily in embedded systems.
-It become a ‘de facto' standard, with small variations depending on the use 
-case and application.​
+It becomes a 'de facto' standard, with small variations depending on the use
+case and application.
 
 .. figure:: spi_master_slave.png
    :align: center
 
-SCLK – Serial CLocK from master​
-MOSI – Master Output Slave Input​
-MISO – Master Input Slave Output​
+SCLK – Serial Clock from master
+MOSI – Master Output Slave Input
+MISO – Master Input Slave Output
 CSN  – Chip Select N (active low)
 
-.. figure:: spi_modes_1.png
-   :align: center
+======== ==== ====
+SPI MODE CPOL CPHA
+======== ==== ====
+0        0    0
+1        0    1
+2        1    0
+3        1    1
+======== ==== ====
 
 .. figure:: spi_modes_2.png
    :align: center
@@ -172,14 +172,14 @@ CSN  – Chip Select N (active low)
 **SPI Engine Framework – What it is?**
 
 SPI Engine is a highly flexible and powerful SPI controller open-source
-framework. It consist out of multiple sub-modules which communicate over
+framework. It consists out of multiple submodules which communicate over
 well-defined interfaces. This allows a high degree of flexibility and
 re-usability while at the same time staying highly customizable and easily
 extensible.
 
 *Some of the SPI Engine Framework features are:*
 
-- HDL IP supporting the two major FPGA vendors (Xilinx and Intel)
+- HDL IP supporting the two major FPGA vendors (AMD Xilinx and Intel)
 - Software API integrated into the Linux kernel's SPI framework
 - Bare-metal software API
 - Examples with various devices (device drivers that leverage the framework)
@@ -221,7 +221,7 @@ extensible.
 
 - Internal RAM/ROM for CMD and SDO stream
 - A trigger launches a command stream
-- Received data is send to an AXI4-streaming interface
+- Received data is sent to an AXI4-streaming interface
 - It can be connected directly to a DMA
 
 .. figure:: spie_offload_ip.png
@@ -230,7 +230,8 @@ extensible.
 **SPI Engine Framework – Interconnect IP**
 
 - Arbitrates multiple command streams into a single CSE
-- Arbitration is done at a SPI transaction level (a SYNC instruction must be used for end of transaction)
+- Arbitration is done at an SPI transaction level (a SYNC instruction must be
+  used for end of transaction)
 - Lower slave port always take precedence
 
 .. figure:: spie_interconnect_ip.png
@@ -281,7 +282,7 @@ extensible.
    :align: center
 
 Use Case
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------
 
 **What is the use case?**
 
@@ -464,7 +465,7 @@ clock cycle. Needed for designs with high SCLK rate (>50MHz).
    :align: center
 
 Build System
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------
 
 .. figure:: system_build_bd.png
    :align: center
@@ -501,13 +502,13 @@ Uses the ADALM2000 to implement virtual instruments:
 .. figure:: system_build_schematic.png
    :align: center
 
-**System Build - `Cora Z7S`_ Configuration**
+**System Build - Cora Z7S Configuration**
 
 .. figure:: system_build_cora.png
    :align: center
 
 **System Build - Power Supply**
-   
+
 .. figure:: system_build_power_supply.png
    :align: center
 
@@ -544,7 +545,7 @@ Step 1 - using Putty
         TX packets 5562  bytes 775511 (757.3 KiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
         device interrupt 38
-  
+
     lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         inet 127.0.0.1  netmask 255.0.0.0
         inet6 ::1  prefixlen 128  scopeid 0x10<host>
@@ -558,7 +559,7 @@ Step 2 - using Cygwin
 
 .. shell::
    :caption: ping 169.254.92.202
-   
+
    $ping 169.254.92.202
 
     Pinging 169.254.92.202 with 32 bytes of data:
@@ -573,7 +574,7 @@ Step 2 - using Cygwin
       Minimum = 1ms, Maximum = 2ms, Average = 1ms
 
 Evaluate System
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------
 
 **System Evaluation – regular SPI trigger configuration**
 
@@ -651,7 +652,7 @@ Compare the results
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X
-Run the Python script on `Cora Z7S`_ / Cygwin                            X
+Run the Python script on `Cora Z7S`_ / Cygwin                         X
 Analyze results in VisualAnalog
 Compare the results
 =========================================================== ====================== =====================
@@ -667,7 +668,7 @@ Compare the results
 Steps                                                       Regular SPI controller SPI Engine controller
 =========================================================== ====================== =====================
 Connect IIO Oscilloscope and visualize the captured signals           X                     X
-Run the Python script on `Cora Z7S`_ / Cygwin                            X
+Run the Python script on `Cora Z7S`_ / Cygwin                         X
 Analyze results in VisualAnalog
 Compare the results
 =========================================================== ====================== =====================
@@ -710,14 +711,14 @@ Compare the results
 .. shell::
    :caption: cd /cygdrive/c/work/fae_workshop_workspace
 
-    $cd /cygdrive/c/work/fae_workshop_workspace
+   $cd /cygdrive/c/work/fae_workshop_workspace
 
 .. shell::
    :caption: scp root@169.254.92.202L/boot/workshop/fae_workshop_visual.vac .
-   
-    $scp root@169.254.92.202L/boot/workshop/fae_workshop_visual.vac .
-     root@169.254.92.202's password:analog
-     fae_worksop_visual.vac                        100% 17KB     1.7MB/s   00:00
+
+   $scp root@169.254.92.202L/boot/workshop/fae_workshop_visual.vac .
+    root@169.254.92.202's password:analog
+    fae_worksop_visual.vac                        100% 17KB     1.7MB/s   00:00
 
 .. figure:: system_evaluation_analyse_results.png
    :align: center
@@ -755,7 +756,7 @@ Parameter                                   Datasheet Regular SPI controller    
                                                       (Fin=1kHz, SR=15KHz, Ain=-0.5dBFS) (Fin=1kHz, SR=15KHz, Ain=-0.5dBFS) (Fin=1kHz, SR=1.33MHz, Ain=-0.5dBFS)
 =========================================== ========= ================================== ================================== ====================================
 Signal-to-Noise SNR [dBFS]                     98.5                 14.81                               78.60                               77.70
-Spurious-Free Dynamic Range SFDR [dBFS]       112.5                 21.13                               92.97                               99.15  
+Spurious-Free Dynamic Range SFDR [dBFS]       112.5                 21.13                               92.97                               99.15
 Total Harmonic Distortion THD [dBFS]         -110.5                -45.65                              -99.20                                -110
 Signal-to-(Noise + Distortion) SINAD [dBFS]      98                 14.30                                  78                               77.20
 =========================================== ========= ================================== ================================== ====================================
@@ -772,20 +773,23 @@ Compare the results                                                   X         
 =========================================================== ====================== =====================
 
 Conclusions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------
 
-#. A classic MCU can be used for converters that have the sampling rate up to 100kSPS.
-#. Maximum performance, in terms of sampling rate, SNR, THD can be only achieved with an FPGA.
-#. SPI Engine is a highly flexible and powerful open-source SPI controller framework which can interface a wide range of precision converters.
+#. A classic MCU can be used for converters that have the sampling rate up to
+   100kSPS.
+#. Maximum performance, in terms of sampling rate, SNR, THD can be only
+   achieved with an FPGA.
+#. SPI Engine is a highly flexible and powerful open-source SPI controller
+   framework which can interface a wide range of precision converters.
 #. We are now familiar with the COS group open-source solution stack.
 
 **Thank You!**
 
 **Related Presentations**
 
-- My customer uses a FPGA in his product. Now what?​
+- My customer uses an FPGA in his product. Now what?
 - ADALM2000 in real life applications
-- Just enough Software and HDL for High-Speed designs​
+- Just enough Software and HDL for High-Speed designs
 - Hardware and Software Tools for Precision Wideband Instrumentation
 
 **Questions?**
