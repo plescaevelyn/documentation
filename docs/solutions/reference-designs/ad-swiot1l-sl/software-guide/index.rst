@@ -1,15 +1,15 @@
 Software User Guide
 ===================
 
-Hardware Setup
---------------
-
 Required Hardware
 ~~~~~~~~~~~~~~~~~
 
 - **Development kit**: :adi:`AD-SWIOT1L-SL` Software-configurable Analog and Digital I/O with 10BASE-T1L
 - **Power supplies**: 24V power supply at minimum 2A
 - **Programmer**: :adi:`MAX32625PICO` or any other similar programmer supporting the SWD interface
+
+System Setup
+------------
 
 - Connect the AD-SWIOT1L-SL to the AD-T1LUSB2.0-EBZ using the single pair Ethernet cable.
 - Connect the AD-T1LUSB2.0-EBZ to your PC using an USB cable.
@@ -98,4 +98,3 @@ Programming the AD-SWIOT1L-SL
 * Check the DAPLINK directory and make sure there is no FAIL.TXT file. In case
   there is, repeat the drag and drop step. Otherwise, you may disconnect the
   MAX32625PICO from the AD-SWIOT1L-SL, since the firmware update is complete.
-
